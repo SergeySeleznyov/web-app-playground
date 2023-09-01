@@ -3,6 +3,8 @@ const app = new express();
 const apiRoute = require('./routes/api')
 require('dotenv').config();
 
+app.use(express.static('html'))
+
 app.use('/api', apiRoute);
 
 const port = process.env.PORT;

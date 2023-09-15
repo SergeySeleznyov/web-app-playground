@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import requestPost from "../model/requestPost";
+import requestPost from "../backend/requestPost";
 
 const Post = ({ id, navigateBack }) => {
     const [post, setPost] = useState(null);

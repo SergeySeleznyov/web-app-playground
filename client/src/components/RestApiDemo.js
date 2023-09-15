@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
-import requestPostIDs from '../model/requestPostIDs';
+import requestPostIDs from '../backend/requestPostIDs';
 import PostList from './PostList';
 import Post from './Post';
 

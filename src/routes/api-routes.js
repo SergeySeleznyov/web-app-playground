@@ -7,7 +7,8 @@ apiRoute.get('/posts', async (req, res) => {
     try{
         const postsDBO = await Post.find({});
         const posts = postsDBO.map(i => ({
-            id: i.id
+            id: i.id,
+            title: i.title,
         }));
         if(posts) res.send(posts);
         else res.sendStatus(404);
@@ -23,7 +24,7 @@ apiRoute.get('/post/:id', async (req, res) => {
         const postId = req.params.id;
         if(!postId)
             throw new Error(`Post id can't be empty.`);
-        const post = await Post.find({"id": postId});
+        const post = await Post.findOne({"id": postId});
         if(post) res.send(post);
         else res.sendStatus(404);
     }

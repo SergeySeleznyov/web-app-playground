@@ -1,32 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
 import requestPostIDs from '../model/requestPostIDs';
+import PostList from './PostList';
+import Post from './Post';
 
 const RestApiDemo = () => {
-    const [modelInited, setModelInited] = useState(false);
-    const [postIDs, setPostIDs] = useState(null);
+    const [postInfos, setPostInfos] = useState(null);
+    const [selectedPostID, setSelectedPostID] = useState(null);
 
     useEffect(() => {
         (
             async () => {
-                const postIDs = await requestPostIDs();
-                setPostIDs(postIDs);
-
-                setModelInited(true);
+                const postInfos = await requestPostIDs();
+                setPostInfos(postInfos);
             }
         )()
-
     }, []);
 
+    const onPostClick = (postId) => setSelectedPostID(postId);
+    const closePost = () => setSelectedPostID(null);
 
-    if (!modelInited)
-        return (<Loading />);
-    return (
-        <span>
-            {postIDs}
-        </span>
-    )
+    const isModelLoading = () => postInfos !== null;
 
+    if (!isModelLoading())
+        return (<Loading />)
+
+    if (selectedPostID !== null)
+        return (<Post id={selectedPostID} backClick={closePost} />)
+
+    if (postInfos)
+        return (<PostList postInfos={postInfos} onPostClick={onPostClick} />)
+
+    // return (<div>{postIDs?.length}</div>)
+    return null;
 };
 
 export default RestApiDemo;

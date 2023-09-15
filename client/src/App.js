@@ -5,16 +5,7 @@ import RestApiDemo from './components/RestApiDemo';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          REST API response: <RestApiDemo></RestApiDemo>
-        </p>
-      </header>
-      
+        <RestApiDemo></RestApiDemo>
     </div>
   );
 }

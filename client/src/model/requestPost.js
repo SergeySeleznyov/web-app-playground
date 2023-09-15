@@ -1,12 +1,12 @@
 import { api_url } from "../config";
 
-const requestPostIDs = async () => {
-    const url = `${api_url}/posts`;
+const requestPost = async (id) => {
+    const url = `${api_url}/post/${id}`;
     const res = await fetch(url);
     const resBodyJson = await res.json();
     if (res.status !== 200)
-        throw new Error(`Failed fetch posts.`);
+        throw new Error(`Failed fetch post.`);
     return resBodyJson;
 }
 
-export default requestPostIDs;
+export default requestPost;

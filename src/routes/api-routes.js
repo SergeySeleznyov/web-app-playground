@@ -1,7 +1,8 @@
 
 const express = require('express');
 const { Post } = require('../schemas/Post');
-const { getPostInfos, getPost } = require('../controllers/posts');
+const { getPostInfos, getPost, setPost } = require('../controllers/posts');
+const PostDTO = require('../model/PostDTO');
 const apiRoute = express.Router();
 
 apiRoute.get('/posts', async (req, res) => {
@@ -25,6 +26,22 @@ apiRoute.get('/post/:id', async (req, res) => {
         if (post) res.send(post);
 
         else res.sendStatus(404);
+    }
+    catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+apiRoute.post('/post', async (req, res) => {
+    try {
+        const id = req.body.id;
+        const title = req.body.title;
+        const content = req.body.content;
+
+        setPost(id, title, content);
+
+        res.sendStatus(200);
     }
     catch (err) {
         console.log(err);

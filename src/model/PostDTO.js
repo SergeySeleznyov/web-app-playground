@@ -1,3 +1,4 @@
+const { Post } = require("../schemas/Post");
 const PostInfoDTO = require("./PostInfoDTO");
 
 class PostDTO extends PostInfoDTO {
@@ -15,6 +16,16 @@ class PostDTO extends PostInfoDTO {
             title: this.title,
             content: this.content,
         }
+    }
+
+    toDBO() {
+        const args = {
+            id: this.id,
+            title: this.title,
+            content: this.content,
+        };
+        const post = new Post(args);
+        return post;
     }
 }
 

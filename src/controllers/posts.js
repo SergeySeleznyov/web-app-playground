@@ -15,7 +15,7 @@ const getPostInfos = async () => {
         const errorMessage = `getPostInfos controller: ${innerError.message}`;
         console.log(errorMessage);
 
-        const e = new Error(errorMessage, {cause: innerError});
+        const e = new Error(errorMessage, { cause: innerError });
         throw e;
     }
 };
@@ -34,12 +34,19 @@ const getPost = async (postId) => {
         const errorMessage = `getPost controller: ${innerError.message}`;
         console.log(errorMessage);
 
-        const e = new Error(errorMessage, {cause: innerError});
+        const e = new Error(errorMessage, { cause: innerError });
         throw e;
     }
 };
 
+const setPost = async (id, title, content) => {
+    const postDTO = new PostDTO(id, title, content);
+    const postDBO = postDTO.toDBO();
+    postDBO.save();
+}
+
 module.exports = {
     getPostInfos,
-    getPost
+    getPost,
+    setPost,
 };

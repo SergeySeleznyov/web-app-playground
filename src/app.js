@@ -10,6 +10,7 @@ app.use(cors());
 
 app.use(express.static('html'));
 
+app.use(express.json());
 app.use('/api', apiRoute);
 
 (async () => {

@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import Loading from './Loading';
+import requestPostIDs from '../model/requestPostIDs';
 
-function RestApiDemo() {
-    const [response, setResponse] = useState(null);
+const RestApiDemo = () => {
+    const [modelInited, setModelInited] = useState(false);
+    const [postIDs, setPostIDs] = useState(null);
 
     useEffect(() => {
-        request();
+        (
+            async () => {
+                const postIDs = await requestPostIDs();
+                setPostIDs(postIDs);
+
+                setModelInited(true);
+            }
+        )()
+
     }, []);
 
-    const request = async () => {
-        const url = `http://localhost:5000/api`;
-        const res = await fetch(url);
-        const resBodyJson = await res.json();
-        if (res.status === 200)
-            setResponse(resBodyJson.result);
-    };
 
-    return response ? (
+    if (!modelInited)
+        return (<Loading />);
+    return (
         <span>
-            {response}
+            {postIDs}
         </span>
-    ) : null;
+    )
+
 };
 
 export default RestApiDemo;

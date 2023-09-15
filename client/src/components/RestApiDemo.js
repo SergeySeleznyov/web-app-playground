@@ -26,7 +26,7 @@ const RestApiDemo = () => {
         return (<Loading />)
 
     if (selectedPostID !== null)
-        return (<Post id={selectedPostID} backClick={closePost} />)
+        return (<Post id={selectedPostID} navigateBack={closePost} />)
 
     if (postInfos)
         return (<PostList postInfos={postInfos} onPostClick={onPostClick} />)

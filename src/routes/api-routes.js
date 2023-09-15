@@ -4,31 +4,31 @@ const { Post } = require('../schemas/Post');
 const apiRoute = express.Router();
 
 apiRoute.get('/posts', async (req, res) => {
-    try{
+    try {
         const postsDBO = await Post.find({});
         const posts = postsDBO.map(i => ({
             id: i.id,
             title: i.title,
         }));
-        if(posts) res.send(posts);
+        if (posts) res.send(posts);
         else res.sendStatus(404);
     }
-    catch(err){
+    catch (err) {
         console.log(err);
         res.sendStatus(500);
     }
 });
 
 apiRoute.get('/post/:id', async (req, res) => {
-    try{
+    try {
         const postId = req.params.id;
-        if(!postId)
+        if (!postId)
             throw new Error(`Post id can't be empty.`);
-        const post = await Post.findOne({"id": postId});
-        if(post) res.send(post);
+        const post = await Post.findOne({ "id": postId });
+        if (post) res.send(post);
         else res.sendStatus(404);
     }
-    catch(err){
+    catch (err) {
         console.log(err);
         res.sendStatus(500);
     }

@@ -1,16 +1,14 @@
 
 const express = require('express');
 const { Post } = require('../schemas/Post');
+const { getPostInfos, getPost } = require('../controllers/posts');
 const apiRoute = express.Router();
 
 apiRoute.get('/posts', async (req, res) => {
     try {
-        const postsDBO = await Post.find({});
-        const posts = postsDBO.map(i => ({
-            id: i.id,
-            title: i.title,
-        }));
-        if (posts) res.send(posts);
+        const postInfos = await getPostInfos()
+        if (postInfos) res.send(postInfos);
+
         else res.sendStatus(404);
     }
     catch (err) {
@@ -22,10 +20,10 @@ apiRoute.get('/posts', async (req, res) => {
 apiRoute.get('/post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
-        if (!postId)
-            throw new Error(`Post id can't be empty.`);
-        const post = await Post.findOne({ "id": postId });
+
+        const post = await getPost(postId)
         if (post) res.send(post);
+
         else res.sendStatus(404);
     }
     catch (err) {

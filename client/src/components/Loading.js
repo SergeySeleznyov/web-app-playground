@@ -1,7 +1,7 @@
 const loadingText = 'Loading ...'
 
 const Loading = () => (
-    <div class="loading">
+    <div className="loading">
         {loadingText}
     </div>
 )

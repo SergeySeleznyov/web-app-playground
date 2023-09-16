@@ -3,12 +3,11 @@ import Loading from "./Loading";
 import getPost from "../backend/getPost";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material/Edit';
-import { IconButton, Toolbar, Typography } from '@mui/material';
+import { IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
 
-const Post = ({ id, navigateBack, onEdit, onDelete }) => {
+const PostEdit = ({ id, navigateBack, onSave }) => {
     const [post, setPost] = useState(null);
     useEffect(() => {
         (
@@ -24,7 +23,7 @@ const Post = ({ id, navigateBack, onEdit, onDelete }) => {
 
     return (
         <>
-            <Typography variant="h4" align="left">Blog post #{id}:</Typography>
+            <Typography variant="h4" align="left">Edit blog post #{id}:</Typography>
             <Box
                 sx={{
                     display: 'flex',
@@ -48,24 +47,37 @@ const Post = ({ id, navigateBack, onEdit, onDelete }) => {
                             display='flex'
                             flexGrow={1}
                         >
-                            <Typography
-                                color="textSecondary"
-                                variant="h5"
-                            >
-                                {post.title}
-                            </Typography>
+                            <TextField
+                                id="standard-basic"
+                                variant="standard"
+                                sx={{
+                                    width: '100%',
+                                }}
+                                value={post.title}
+                            />
                         </Box>
 
-                        <IconButton aria-label="edit" align="right" onClick={() => onEdit(post.id)}>
-                            <EditIcon />
+                        <IconButton aria-label="edit" align="right" onClick={() => onSave(post.id)}>
+                            <SaveIcon />
                         </IconButton>
 
-                        <IconButton aria-label="delete" align="right" onClick={() => onDelete(post.id)}>
-                            <DeleteIcon />
-                        </IconButton>
                     </Toolbar>
                     <Toolbar>
-                        {post.content}
+                        <TextField
+                            id="standard-multiline-static"
+                            label="Multiline"
+                            multiline
+                            rows={4}
+                            defaultValue="Default Value"
+                            variant="standard"
+                            InputProps={{
+                                disableUnderline: true,
+                              }}
+                            sx={{
+                                width: '100%',
+                            }}
+                            value={post.content}
+                        />
                     </Toolbar>
                 </Paper>
             </Box>
@@ -73,4 +85,4 @@ const Post = ({ id, navigateBack, onEdit, onDelete }) => {
     )
 }
 
-export default Post
+export default PostEdit

@@ -1,19 +1,61 @@
-const PostList = ({ postInfos, onPostClick }) => (
-    <>
-        <div className="caption">Blog posts:</div>
-        <ul className="blog-post_list">
-            {
-                postInfos.map(postInfo =>
-                    <li
-                        key={postInfo.id}
-                        onClick={() => onPostClick(postInfo.id)}
-                    >
-                        <a className="blog-post_link" href="javascript:void(0)">{postInfo.title}</a>
-                    </li>
-                )
-            }
-        </ul>
-    </>
-)
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton, Toolbar, Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+const PostList = ({ postInfos, onOpen, onEdit, onDelete }) => {
+    return (
+        <>
+            <Typography variant="h4" align="left">Blog posts:</Typography>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    '& > :not(style)': {
+                        m: 1,
+                        width: '100%',
+
+                    },
+                }}
+            >
+                {
+                    postInfos.map(postInfo =>
+                        <Paper elevation={3} key={postInfo.id}>
+                            <Toolbar>
+                                <Box
+                                    display='flex'
+                                    flexGrow={1}
+                                >
+                                    <Typography
+                                        color="textSecondary"
+                                        variant="h5"
+                                        onClick={() => onOpen(postInfo.id)}
+                                        sx={{
+                                            '&:hover': {
+                                                cursor: 'pointer'
+                                            }
+                                        }}
+                                    >
+                                        {postInfo.title}
+                                    </Typography>
+                                </Box>
+
+                                <IconButton aria-label="edit" align="right" onClick={() => onEdit(postInfo.id)}>
+                                    <EditIcon />
+                                </IconButton>
+
+                                <IconButton aria-label="delete" align="right" onClick={() => onDelete(postInfo.id)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Toolbar>
+                        </Paper>
+                    )
+                }
+
+            </Box >
+        </>
+    )
+}
 
 export default PostList

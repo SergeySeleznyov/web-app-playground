@@ -1,6 +1,6 @@
 import { api_url } from "../config";
 
-const requestPost = async (id) => {
+const getPost = async (id) => {
     const url = `${api_url}/post/${id}`;
     const res = await fetch(url);
     const resBodyJson = await res.json();
@@ -9,4 +9,4 @@ const requestPost = async (id) => {
     return resBodyJson;
 }
 
-export default requestPost;
+export default getPost

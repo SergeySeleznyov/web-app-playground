@@ -1,6 +1,6 @@
 import { api_url } from "../config";
 
-const requestPostIDs = async () => {
+const getPostIDs = async () => {
     const url = `${api_url}/posts`;
     const res = await fetch(url);
     const resBodyJson = await res.json();
@@ -9,4 +9,4 @@ const requestPostIDs = async () => {
     return resBodyJson;
 }
 
-export default requestPostIDs;
+export default getPostIDs;

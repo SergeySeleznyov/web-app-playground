@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
-import requestPostIDs from '../backend/requestPostIDs';
+import getPostIDs from '../backend/getPostIDs';
 import PostList from './PostList';
 import Post from './Post';
 
 const RestApiDemo = () => {
     const [postInfos, setPostInfos] = useState(null);
-    const [selectedPostID, setSelectedPostID] = useState(null);
+    const [readPostID, setEditPostID] = useState(null);
 
     useEffect(() => {
         (
             async () => {
-                const postInfos = await requestPostIDs();
+                const postInfos = await getPostIDs();
                 setPostInfos(postInfos);
             }
         )()
     }, []);
 
-    const onPostClick = (postId) => setSelectedPostID(postId);
-    const closePost = () => setSelectedPostID(null);
+    const onPostClick = (postId) => setEditPostID(postId);
+    const closePost = () => setEditPostID(null);
 
     const isModelLoading = () => postInfos !== null;
 
     if (!isModelLoading())
         return (<Loading />)
 
-    if (selectedPostID !== null)
-        return (<Post id={selectedPostID} navigateBack={closePost} />)
+    if (readPostID !== null)
+        return (<Post id={readPostID} navigateBack={closePost} />)
 
     if (postInfos)
         return (<PostList postInfos={postInfos} onPostClick={onPostClick} />)

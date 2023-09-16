@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import requestPost from "../backend/requestPost";
+import getPost from "../backend/getPost";
 
 const Post = ({ id, navigateBack }) => {
     const [post, setPost] = useState(null);
     useEffect(() => {
         (
             async () => {
-                const post = await requestPost(id);
+                const post = await getPost(id);
                 setPost(post);
             }
         )()

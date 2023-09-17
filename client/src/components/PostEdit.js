@@ -85,7 +85,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
                     <Toolbar>
                         <TextField
                             id="standard-multiline-static"
-                            label="Multiline"
+                            label="Blog content"
                             multiline
                             rows={4}
                             variant="standard"

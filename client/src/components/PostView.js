@@ -25,7 +25,12 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
 
     return (
         <>
-            <MainAppToolbar caption={`Blog post #${id}`}></MainAppToolbar>
+            <MainAppToolbar
+                caption={`Blog post #${id}`}
+                showNavigateBack={true}
+                navigateBack={navigateBack}
+            >
+            </MainAppToolbar>
             <Box
                 sx={{
                     display: 'flex',
@@ -38,13 +43,13 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
             >
                 <Paper elevation={3} >
                     <Toolbar >
-                        <IconButton aria-label="edit" align="right" onClick={navigateBack}
+                        {/* <IconButton aria-label="edit" align="right" onClick={navigateBack}
                             sx={{
                                 paddingLeft: 0,
                             }}
                         >
                             <ArrowBackIcon />
-                        </IconButton>
+                        </IconButton> */}
                         <Box
                             display='flex'
                             flexGrow={1}

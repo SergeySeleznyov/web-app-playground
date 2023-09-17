@@ -1,9 +1,10 @@
-import { AppBar, Divider, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Divider, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -35,7 +36,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -45,29 +45,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-
-const MainAppToolbar = ({ caption }) => (
+const MainAppToolbar = ({ caption, showNavigateBack, navigateBack }) => (
     <AppBar position="static">
         <Toolbar>
+            {showNavigateBack ?
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    onClick={navigateBack}
+                >
+                    <IconButton aria-label="edit" align="right"
+                        sx={{
+                            paddingLeft: 0,
+                            color: 'white',
+                        }}
+                    >
+                        <ArrowBackIcon />
+                    </IconButton>
+                </IconButton> : null}
+
             <Typography variant="h6" sx={{ my: 2 }}>
                 {caption}
             </Typography>
+
             <Divider />
-            {/* <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-            >
-                <IconButton aria-label="edit" align="right"
-                    sx={{
-                        paddingLeft: 0,
-                    }}
-                >
-                    <ArrowBackIcon />
-                </IconButton>
-            </IconButton> */}
 
             <Search>
                 <SearchIconWrapper>
@@ -79,12 +82,25 @@ const MainAppToolbar = ({ caption }) => (
                 />
             </Search>
 
+            <Box sx={{ flexGrow: 1 }} />
 
-            {/* <Typography variant="h6" component="div"
-                sx={{ flexGrow: 1 }}>
-                {caption}
-            </Typography> */}
+            <Box sx={{ display: 'flex' }}>
 
+                <IconButton
+                    size="large"
+                    aria-label="Add new blog post"
+                // sx={{ }}
+                >
+                    <IconButton aria-label="edit" align="right"
+                        sx={{
+                            color: "white",
+                        }}
+                    >
+                        <AddCircleOutlineIcon />
+                    </IconButton>
+                </IconButton>
+
+            </Box>
         </Toolbar>
     </AppBar>
 )

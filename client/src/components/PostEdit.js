@@ -43,7 +43,12 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
 
     return (
         <>
-            <MainAppToolbar caption={`Edit blog post #${id}`}></MainAppToolbar>
+            <MainAppToolbar
+                caption={`Edit blog post #${id}`}
+                showNavigateBack={true}
+                navigateBack={navigateBack}
+            >
+            </MainAppToolbar>
             <Box
                 sx={{
                     display: 'flex',
@@ -56,13 +61,13 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
             >
                 <Paper elevation={3} >
                     <Toolbar >
-                        <IconButton aria-label="edit" align="right" onClick={navigateBack}
+                        {/* <IconButton aria-label="edit" align="right" onClick={navigateBack}
                             sx={{
                                 paddingLeft: 0,
                             }}
                         >
                             <ArrowBackIcon />
-                        </IconButton>
+                        </IconButton> */}
                         <Box
                             display='flex'
                             flexGrow={1}

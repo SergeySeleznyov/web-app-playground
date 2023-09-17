@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
+import MainAppToolbar from "./MainAppToolbar";
 
 const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const [post, setPost] = useState(null);
@@ -24,7 +25,7 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
 
     return (
         <>
-            <Typography variant="h4" align="left">Blog post #{id}:</Typography>
+            <MainAppToolbar caption={`Blog post #${id}`}></MainAppToolbar>
             <Box
                 sx={{
                     display: 'flex',

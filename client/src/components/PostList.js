@@ -3,11 +3,12 @@ import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Toolbar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import MainAppToolbar from './MainAppToolbar';
 
 const PostList = ({ postInfos, onOpen, onEdit, onDelete }) => {
     return (
         <>
-            <Typography variant="h4" align="left">Blog posts:</Typography>
+            <MainAppToolbar caption="Blog posts:"></MainAppToolbar>
             <Box
                 sx={{
                     display: 'flex',

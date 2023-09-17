@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import { IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
+import MainAppToolbar from "./MainAppToolbar";
 
 const PostEdit = ({ id, navigateBack, onSave }) => {
     const [title, setTitle] = useState(null);
@@ -42,7 +43,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
 
     return (
         <>
-            <Typography variant="h4" align="left">Edit blog post #{id}:</Typography>
+            <MainAppToolbar caption={`Edit blog post #${id}`}></MainAppToolbar>
             <Box
                 sx={{
                     display: 'flex',

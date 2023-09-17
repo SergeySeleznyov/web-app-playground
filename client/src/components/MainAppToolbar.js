@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import SaveIcon from '@mui/icons-material/Save';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -51,6 +52,7 @@ const MainAppToolbar = ({
     showNavigateBack,
     navigateBack,
     addNew,
+    save
 }) => (
     <AppBar position="static">
         <Toolbar>
@@ -59,7 +61,7 @@ const MainAppToolbar = ({
                     size="large"
                     edge="start"
                     color="inherit"
-                    aria-label="edit"
+                    aria-label="back"
                     onClick={navigateBack}
                 >
                     <ArrowBackIcon />
@@ -94,6 +96,15 @@ const MainAppToolbar = ({
                     onClick={addNew}
                 >
                     <AddCircleOutlineIcon />
+                </IconButton> : null}
+
+                {save ? <IconButton
+                    aria-label="save"
+                    sx={{
+                        color: "white",
+                    }}
+                    onClick={save}>
+                    <SaveIcon />
                 </IconButton> : null}
 
             </Box>

@@ -1,3 +1,4 @@
+const { nanoid } = require("nanoid");
 const PostDTO = require("../model/PostDTO");
 const PostInfoDTO = require("../model/PostInfoDTO");
 const { Post } = require("../schemas/Post");
@@ -40,13 +41,33 @@ const getPost = async (postId) => {
 };
 
 const setPost = async (id, title, content) => {
-    const postDTO = new PostDTO(id, title, content);
-    const postDBO = postDTO.toDBO();
-    postDBO.save();
+    const exists = await Post.exists({ id: id });
+    if (exists) {
+        await Post.updateOne(
+            {
+                id: id
+            },
+            {
+                title: title,
+                content: content
+            }
+        );
+
+    } else {
+        const uniqueId = id ? id : nanoid();
+        const postDTO = new PostDTO(uniqueId, title, content);
+        const postDBO = postDTO.toDBO();
+        await postDBO.save();
+    }
+}
+
+const deletePost = async (id) => {
+    await Post.deleteOne({ id: id });
 }
 
 module.exports = {
     getPostInfos,
     getPost,
     setPost,
+    deletePost,
 };

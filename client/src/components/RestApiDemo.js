@@ -24,8 +24,8 @@ const RestApiDemo = () => {
     const updatePosts = async () => {
         setPostInfos(null);
         const postInfos = await getPostIDs();
-        await sleep(500);
         setPostInfos(postInfos);
+        await sleep(300);
     }
 
     const doOpenPost = (postId) => {
@@ -38,12 +38,12 @@ const RestApiDemo = () => {
     }
     const doDeletePost = async (postId) => {
         closePost();
-        await deletePost(postId);
+        deletePost(postId);
         await updatePosts();
     }
     const doSavePost = async (postId, postTitle, postContent) => {
         closePost();
-        updatePost(postId, postTitle, postContent)
+        updatePost(postId, postTitle, postContent);
         await updatePosts();
     }
     const closePost = () => {

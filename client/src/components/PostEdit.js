@@ -8,18 +8,37 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 
 const PostEdit = ({ id, navigateBack, onSave }) => {
-    const [post, setPost] = useState(null);
+    const [title, setTitle] = useState(null);
+    const [content, setContent] = useState(null);
+
     useEffect(() => {
         (
             async () => {
                 const post = await getPost(id);
-                setPost(post);
+                setTitle(post.title);
+                setContent(post.content);
             }
         )()
     }, []);
 
-    if (post === null)
+    if (title === null && content === null)
         return (<Loading />)
+
+    const doTitleChanged = (e) => {
+        setTitle(e.target.value);
+    }
+
+    const doContentChanged = (e) => {
+        setContent(e.target.value);
+    }
+
+    const doSave = async () => {
+        await onSave(
+            id,
+            title,
+            content
+        );
+    }
 
     return (
         <>
@@ -53,11 +72,12 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
                                 sx={{
                                     width: '100%',
                                 }}
-                                value={post.title}
+                                value={title}
+                                onChange={doTitleChanged}
                             />
                         </Box>
 
-                        <IconButton aria-label="edit" align="right" onClick={() => onSave(post.id)}>
+                        <IconButton aria-label="edit" align="right" onClick={doSave}>
                             <SaveIcon />
                         </IconButton>
 
@@ -68,15 +88,15 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
                             label="Multiline"
                             multiline
                             rows={4}
-                            defaultValue="Default Value"
                             variant="standard"
                             InputProps={{
                                 disableUnderline: true,
-                              }}
+                            }}
                             sx={{
                                 width: '100%',
                             }}
-                            value={post.content}
+                            value={content}
+                            onChange={doContentChanged}
                         />
                     </Toolbar>
                 </Paper>

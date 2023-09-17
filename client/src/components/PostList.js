@@ -41,11 +41,11 @@ const PostList = ({ postInfos, onOpen, onEdit, onDelete }) => {
                                     </Typography>
                                 </Box>
 
-                                <IconButton aria-label="edit" align="right" onClick={() => onEdit(postInfo.id)}>
+                                <IconButton aria-label="edit" align="right" onClick={async () => await onEdit(postInfo.id)}>
                                     <EditIcon />
                                 </IconButton>
 
-                                <IconButton aria-label="delete" align="right" onClick={() => onDelete(postInfo.id)}>
+                                <IconButton aria-label="delete" align="right" onClick={async () => await onDelete(postInfo.id)}>
                                     <DeleteIcon />
                                 </IconButton>
                             </Toolbar>

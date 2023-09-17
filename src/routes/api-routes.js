@@ -1,7 +1,7 @@
 
 const express = require('express');
 const { Post } = require('../schemas/Post');
-const { getPostInfos, getPost, setPost } = require('../controllers/posts');
+const { getPostInfos, getPost, setPost, deletePost } = require('../controllers/posts');
 const PostDTO = require('../model/PostDTO');
 const apiRoute = express.Router();
 
@@ -39,7 +39,21 @@ apiRoute.post('/post', async (req, res) => {
         const title = req.body.title;
         const content = req.body.content;
 
-        setPost(id, title, content);
+        await setPost(id, title, content);
+
+        res.sendStatus(200);
+    }
+    catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+apiRoute.delete('/post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+
+        await deletePost(postId);
 
         res.sendStatus(200);
     }

@@ -56,11 +56,11 @@ const Post = ({ id, navigateBack, onEdit, onDelete }) => {
                             </Typography>
                         </Box>
 
-                        <IconButton aria-label="edit" align="right" onClick={() => onEdit(post.id)}>
+                        <IconButton aria-label="edit" align="right" onClick={async () => await onEdit(post.id)}>
                             <EditIcon />
                         </IconButton>
 
-                        <IconButton aria-label="delete" align="right" onClick={() => onDelete(post.id)}>
+                        <IconButton aria-label="delete" align="right" onClick={async () => await onDelete(post.id)}>
                             <DeleteIcon />
                         </IconButton>
                     </Toolbar>

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
 import getPostIDs from '../backend/getPostIDs';
 import PostList from './PostList';
-import Post from './Post';
+import PostView from './PostView';
 import deletePost from '../backend/deletePost';
 import sleep from '../utils/sleep';
 import PostEdit from './PostEdit';
 import updatePost from '../backend/updatePost';
 
-const RestApiDemo = () => {
+const PostUI = () => {
     const [postInfos, setPostInfos] = useState(null);
     const [readPostID, setReadPostID] = useState(null);
     const [editPostID, setEditPostID] = useState(null);
@@ -67,7 +67,7 @@ const RestApiDemo = () => {
 
     if (readPostID !== null)
         return (
-            <Post id={readPostID}
+            <PostView id={readPostID}
                 navigateBack={closePost}
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
@@ -85,4 +85,4 @@ const RestApiDemo = () => {
     return (<>Error</>);
 };
 
-export default RestApiDemo;
+export default PostUI;

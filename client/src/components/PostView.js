@@ -8,7 +8,7 @@ import { IconButton, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const Post = ({ id, navigateBack, onEdit, onDelete }) => {
+const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const [post, setPost] = useState(null);
     useEffect(() => {
         (
@@ -73,4 +73,4 @@ const Post = ({ id, navigateBack, onEdit, onDelete }) => {
     )
 }
 
-export default Post
+export default PostView

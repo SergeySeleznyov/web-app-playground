@@ -13,10 +13,8 @@ const updatePost = async (id, title, content) => {
         body: JSON.stringify(jsonBody)
     };
     const res = await fetch(url, options);
-    const resBodyJson = await res.json();
     if (res.status !== 200)
         throw new Error(`Failed to update post.`);
-    return resBodyJson;
 }
 
 export default updatePost

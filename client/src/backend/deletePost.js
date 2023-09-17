@@ -6,10 +6,8 @@ const deletePost = async (id) => {
         url,
         { method: 'DELETE' }
     );
-    const resBodyJson = await res.json();
     if (res.status !== 200)
         throw new Error(`Failed to delete post.`);
-    return resBodyJson;
 }
 
 export default deletePost

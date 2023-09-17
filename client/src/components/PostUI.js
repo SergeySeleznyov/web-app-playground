@@ -38,12 +38,12 @@ const PostUI = () => {
     }
     const doDeletePost = async (postId) => {
         closePost();
-        deletePost(postId);
+        await deletePost(postId);
         await updatePosts();
     }
     const doSavePost = async (postId, postTitle, postContent) => {
         closePost();
-        updatePost(postId, postTitle, postContent);
+        await updatePost(postId, postTitle, postContent);
         await updatePosts();
     }
     const closePost = () => {

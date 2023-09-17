@@ -13,10 +13,20 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
     const [title, setTitle] = useState(null);
     const [content, setContent] = useState(null);
 
+    const isNewPost = id === '';
+
     useEffect(() => {
         (
             async () => {
-                const post = await getPost(id);
+                const post = isNewPost ?
+                    {
+                        id: '',
+                        title: '',
+                        content: '',
+                    }
+                    :
+                    await getPost(id);
+
                 await sleep(1000);
                 setTitle(post.title);
                 setContent(post.content);
@@ -40,9 +50,11 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
         );
     }
 
+    const caption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
+
     const LocalAppToolba = () => (
         <MainAppToolbar
-            caption={`Edit blog post #${id}`}
+            caption={caption}
             showNavigateBack={true}
             navigateBack={navigateBack}
         />

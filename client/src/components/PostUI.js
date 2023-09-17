@@ -41,6 +41,10 @@ const PostUI = () => {
         await deletePost(postId);
         await updatePosts();
     }
+    const doAddNew = async () => {
+        closePost();
+        setEditPostID("");
+    }
     const doSavePost = async (postId, postTitle, postContent) => {
         closePost();
         await updatePost(postId, postTitle, postContent);
@@ -80,6 +84,7 @@ const PostUI = () => {
                 onOpen={doOpenPost}
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
+                addNew={doAddNew}
             />)
 
     return (<>Error</>);

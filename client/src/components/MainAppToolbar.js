@@ -50,6 +50,7 @@ const MainAppToolbar = ({
     showSearch,
     showNavigateBack,
     navigateBack,
+    addNew,
 }) => (
     <AppBar position="static">
         <Toolbar>
@@ -84,15 +85,16 @@ const MainAppToolbar = ({
 
             <Box sx={{ display: 'flex' }}>
 
-                <IconButton
+                {addNew ? <IconButton
                     size="large"
                     aria-label="Add new blog post"
                     sx={{
                         color: "white",
                     }}
+                    onClick={addNew}
                 >
                     <AddCircleOutlineIcon />
-                </IconButton>
+                </IconButton> : null}
 
             </Box>
         </Toolbar>

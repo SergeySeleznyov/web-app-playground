@@ -58,17 +58,10 @@ const MainAppToolbar = ({
                     size="large"
                     edge="start"
                     color="inherit"
-                    aria-label="menu"
+                    aria-label="edit"
                     onClick={navigateBack}
                 >
-                    <IconButton aria-label="edit" align="right"
-                        sx={{
-                            paddingLeft: 0,
-                            color: 'white',
-                        }}
-                    >
-                        <ArrowBackIcon />
-                    </IconButton>
+                    <ArrowBackIcon />
                 </IconButton> : null}
 
             <Typography variant="h6" sx={{ my: 2 }}>
@@ -94,15 +87,11 @@ const MainAppToolbar = ({
                 <IconButton
                     size="large"
                     aria-label="Add new blog post"
-                // sx={{ }}
+                    sx={{
+                        color: "white",
+                    }}
                 >
-                    <IconButton aria-label="edit" align="right"
-                        sx={{
-                            color: "white",
-                        }}
-                    >
-                        <AddCircleOutlineIcon />
-                    </IconButton>
+                    <AddCircleOutlineIcon />
                 </IconButton>
 
             </Box>

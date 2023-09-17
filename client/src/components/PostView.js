@@ -53,7 +53,7 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
             >
                 <Paper elevation={3} >
                     <Toolbar >
-                        {/* <IconButton aria-label="edit" align="right" onClick={navigateBack}
+                        {/* <IconButton aria-label="back" onClick={navigateBack}
                             sx={{
                                 paddingLeft: 0,
                             }}
@@ -72,11 +72,11 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
                             </Typography>
                         </Box>
 
-                        <IconButton aria-label="edit" align="right" onClick={async () => await onEdit(post.id)}>
+                        <IconButton aria-label="edit" onClick={async () => await onEdit(post.id)}>
                             <EditIcon />
                         </IconButton>
 
-                        <IconButton aria-label="delete" align="right" onClick={async () => await onDelete(post.id)}>
+                        <IconButton aria-label="delete" onClick={async () => await onDelete(post.id)}>
                             <DeleteIcon />
                         </IconButton>
                     </Toolbar>

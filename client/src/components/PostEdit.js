@@ -57,6 +57,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
             caption={caption}
             showNavigateBack={true}
             navigateBack={navigateBack}
+            save={doSave}
         />
     )
 
@@ -83,7 +84,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
             >
                 <Paper elevation={3} >
                     <Toolbar >
-                        {/* <IconButton aria-label="edit" align="right" onClick={navigateBack}
+                        {/* <IconButton aria-label="back" onClick={navigateBack}
                             sx={{
                                 paddingLeft: 0,
                             }}
@@ -105,9 +106,9 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
                             />
                         </Box>
 
-                        <IconButton aria-label="edit" align="right" onClick={doSave}>
+                        {/* <IconButton aria-label="save" onClick={doSave}>
                             <SaveIcon />
-                        </IconButton>
+                        </IconButton> */}
 
                     </Toolbar>
                     <Toolbar>

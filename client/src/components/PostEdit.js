@@ -7,6 +7,7 @@ import { IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 import MainAppToolbar from "./MainAppToolbar";
+import sleep from "../utils/sleep";
 
 const PostEdit = ({ id, navigateBack, onSave }) => {
     const [title, setTitle] = useState(null);
@@ -16,14 +17,12 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
         (
             async () => {
                 const post = await getPost(id);
+                await sleep(1000);
                 setTitle(post.title);
                 setContent(post.content);
             }
         )()
     }, []);
-
-    if (title === null && content === null)
-        return (<Loading />)
 
     const doTitleChanged = (e) => {
         setTitle(e.target.value);
@@ -41,14 +40,25 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
         );
     }
 
+    const LocalAppToolba = () => (
+        <MainAppToolbar
+            caption={`Edit blog post #${id}`}
+            showNavigateBack={true}
+            navigateBack={navigateBack}
+        />
+    )
+
+    if (title === null && content === null)
+        return (
+            <>
+                <LocalAppToolba />
+                <Loading />
+            </>
+        )
+
     return (
         <>
-            <MainAppToolbar
-                caption={`Edit blog post #${id}`}
-                showNavigateBack={true}
-                navigateBack={navigateBack}
-            >
-            </MainAppToolbar>
+            <LocalAppToolba />
             <Box
                 sx={{
                     display: 'flex',

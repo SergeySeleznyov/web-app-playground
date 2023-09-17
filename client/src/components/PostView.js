@@ -8,6 +8,7 @@ import { IconButton, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MainAppToolbar from "./MainAppToolbar";
+import sleep from "../utils/sleep";
 
 const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const [post, setPost] = useState(null);
@@ -15,22 +16,31 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
         (
             async () => {
                 const post = await getPost(id);
+                await sleep(1000);
                 setPost(post);
             }
         )()
     }, []);
 
+    const LocalAppToolba = () => (
+        <MainAppToolbar
+            caption={`Blog post #${id}`}
+            showNavigateBack={true}
+            navigateBack={navigateBack}
+        ></MainAppToolbar>
+    )
+
     if (post === null)
-        return (<Loading />)
+        return (
+            <>
+                <LocalAppToolba />
+                <Loading />
+            </>
+        )
 
     return (
         <>
-            <MainAppToolbar
-                caption={`Blog post #${id}`}
-                showNavigateBack={true}
-                navigateBack={navigateBack}
-            >
-            </MainAppToolbar>
+            <LocalAppToolba />
             <Box
                 sx={{
                     display: 'flex',

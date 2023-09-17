@@ -8,7 +8,9 @@ import MainAppToolbar from './MainAppToolbar';
 const PostList = ({ postInfos, onOpen, onEdit, onDelete }) => {
     return (
         <>
-            <MainAppToolbar caption="Blog posts:"></MainAppToolbar>
+            <MainAppToolbar 
+                caption="Blog posts:"
+                showSearch={true} />
             <Box
                 sx={{
                     display: 'flex',

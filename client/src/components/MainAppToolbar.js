@@ -45,7 +45,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const MainAppToolbar = ({ caption, showNavigateBack, navigateBack }) => (
+const MainAppToolbar = ({
+    caption,
+    showSearch,
+    showNavigateBack,
+    navigateBack,
+}) => (
     <AppBar position="static">
         <Toolbar>
             {showNavigateBack ?
@@ -72,7 +77,7 @@ const MainAppToolbar = ({ caption, showNavigateBack, navigateBack }) => (
 
             <Divider />
 
-            <Search>
+            {showSearch ? <Search>
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
@@ -80,7 +85,7 @@ const MainAppToolbar = ({ caption, showNavigateBack, navigateBack }) => (
                     placeholder="Search…"
                     inputProps={{ 'aria-label': 'search' }}
                 />
-            </Search>
+            </Search> : null}
 
             <Box sx={{ flexGrow: 1 }} />
 

@@ -3,6 +3,8 @@ const express = require('express');
 const { Post } = require('../schemas/Post');
 const { getPostInfos, getPost, setPost, deletePost } = require('../controllers/posts');
 const PostDTO = require('../model/PostDTO');
+const { index, search } = require('../elastic-search/elastic-search-dal');
+const { nanoid } = require('nanoid');
 const apiRoute = express.Router();
 
 apiRoute.get('/posts', async (req, res) => {
@@ -22,7 +24,7 @@ apiRoute.get('/post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
 
-        const post = await getPost(postId)
+        const post = await getPost(postId);
         if (post) res.send(post);
 
         else res.sendStatus(404);
@@ -39,7 +41,11 @@ apiRoute.post('/post', async (req, res) => {
         const title = req.body.title;
         const content = req.body.content;
 
-        await setPost(id, title, content);
+        const uniqueId = id ? id : nanoid();
+
+        await setPost(uniqueId, title, content);
+
+        await index(uniqueId, title, content);
 
         res.sendStatus(200);
     }
@@ -60,6 +66,23 @@ apiRoute.delete('/post/:id', async (req, res) => {
     catch (err) {
         console.log(err);
         res.sendStatus(500);
+    }
+});
+
+apiRoute.get('/search/:text', async (req, res) => {
+    try {
+        const text = req.params.text;
+
+        const searchResult = await search(text);
+        if(!searchResult) throw new Error(`Empty elastic search response (${searchResult})`)
+
+        res.send(searchResult);
+        res.sendStatus(200);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500);
+        res.send(err.message);
     }
 });
 

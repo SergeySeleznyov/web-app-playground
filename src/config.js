@@ -11,7 +11,14 @@ const mongodb = {
     database_name: isTest ? '' : process.env.MONGODB_CONNECTION_DATABASE_NAME,
 }
 
+const elasticsearch = {
+    url: isTest ? '' : process.env.ELASTIC_SEARCH_URL,
+    login: isTest ? '' : process.env.ELASTIC_SEARCH_LOGIN,
+    password: isTest ? '' : process.env.ELASTIC_SEARCH_PASSWD,
+}
+
 module.exports = {
     port,
     mongodb,
+    elasticsearch,
 }

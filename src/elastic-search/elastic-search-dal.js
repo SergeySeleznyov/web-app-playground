@@ -34,16 +34,15 @@ const index = async (id, title, content) => {
 }
 
 const search = async (text) => {
-    const { body } = await client.search({
-        index: indexName,
-        body: {
-            query: {
-                match: { quote: text }
-            }
+    const document = {
+        // index: indexName, 
+        query: {
+            match: { content: text }
         }
-    })
-    console.log(body?.hits?.hits)
-    return body?.hits?.hits;
+    };
+    const response = await client.search(document);
+    console.log(response?.hits?.hits)
+    return response?.hits?.hits;
 }
 
 module.exports = {

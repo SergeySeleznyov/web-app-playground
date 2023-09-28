@@ -10,9 +10,10 @@ const apiRoute = express.Router();
 apiRoute.get('/posts', async (req, res) => {
     try {
         const postInfos = await getPostInfos()
-        if (postInfos) res.send(postInfos);
-
-        else res.sendStatus(404);
+        if (postInfos)
+            res.send(postInfos);
+        else
+            res.sendStatus(404);
     }
     catch (err) {
         console.log(err);
@@ -25,9 +26,10 @@ apiRoute.get('/post/:id', async (req, res) => {
         const postId = req.params.id;
 
         const post = await getPost(postId);
-        if (post) res.send(post);
-
-        else res.sendStatus(404);
+        if (post)
+            res.send(post);
+        else
+            res.sendStatus(404);
     }
     catch (err) {
         console.log(err);
@@ -69,15 +71,15 @@ apiRoute.delete('/post/:id', async (req, res) => {
     }
 });
 
-apiRoute.get('/search/:text', async (req, res) => {
+apiRoute.post('/search/', async (req, res) => {
     try {
-        const text = req.params.text;
+        // const text = req.params.text; // GET
+        const text = req.body.text;
 
         const searchResult = await search(text);
-        if(!searchResult) throw new Error(`Empty elastic search response (${searchResult})`)
+        if (!searchResult) throw new Error(`Empty elastic search response (${searchResult})`)
 
         res.send(searchResult);
-        res.sendStatus(200);
     }
     catch (err) {
         console.log(err);

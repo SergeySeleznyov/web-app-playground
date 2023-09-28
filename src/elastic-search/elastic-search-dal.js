@@ -18,7 +18,7 @@ const indexName = 'blog-index';
 
 const index = async (id, title, content) => {
     const document = {
-        id:id,
+        id: id,
         index: indexName,
         body: {
             title,
@@ -35,14 +35,35 @@ const index = async (id, title, content) => {
 
 const search = async (text) => {
     const document = {
-        // index: indexName, 
+        index: indexName,
+        allow_partial_search_results: true,
         query: {
-            match: { content: text }
+            match_phrase: { content: text }
+        },
+        // fields: [
+        //     "title^1",
+        //     "content^2"
+        // ],
+        highlight: {
+            type: "plain", //'plain' | 'fvh' | 'unified'
+            max_analyzed_offset: 10000000,
+            number_of_fragments: 1,
+            fragmenter: "simple", //"simple", "span"
+            fragment_size: 200,
+            // phrase_limit: 256, // Controls the number of matching phrases in a document that are considered.
+            pre_tags: ["<highlight>"],
+            post_tags: ["</highlight>"],
+            encoder: 'html', // 'default' | 'html'
+            fields: {
+                content: {},
+                title: {}
+            },
+
         }
     };
     const response = await client.search(document);
-    console.log(response?.hits?.hits)
-    return response?.hits?.hits;
+    return response?.hits?.hits.map(i => { i._source.content = ''; return i });
+    // return response;
 }
 
 module.exports = {

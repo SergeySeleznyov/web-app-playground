@@ -7,11 +7,13 @@ import deletePost from '../backend/deletePost';
 import sleep from '../utils/sleep';
 import PostEdit from './PostEdit';
 import updatePost from '../backend/updatePost';
+import SearchResults from './SearchResults';
 
 const PostUI = () => {
     const [postInfos, setPostInfos] = useState(null);
     const [readPostID, setReadPostID] = useState(null);
     const [editPostID, setEditPostID] = useState(null);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         (
@@ -55,6 +57,10 @@ const PostUI = () => {
         setEditPostID(null);
     }
 
+    const onSearchChanged = (value) => {
+        setSearchText(value);
+    }
+
     const isModelLoading = () => postInfos === null;
 
     if (isModelLoading())
@@ -76,6 +82,15 @@ const PostUI = () => {
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
             />)
+    if (searchText)
+        return (
+            <SearchResults
+                postInfos={postInfos}
+                onOpen={doOpenPost}
+                searchText={searchText}
+                onSearchChanged={onSearchChanged}
+            />
+        )
 
     if (postInfos)
         return (
@@ -85,6 +100,7 @@ const PostUI = () => {
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
                 addNew={doAddNew}
+                onSearchChanged={onSearchChanged}
             />)
 
     return (<>Error</>);

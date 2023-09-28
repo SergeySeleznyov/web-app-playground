@@ -53,64 +53,69 @@ const MainAppToolbar = ({
     showNavigateBack,
     navigateBack,
     addNew,
-    save
-}) => (
-    <AppBar position="static">
-        <Toolbar>
-            {showNavigateBack ?
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="back"
-                    onClick={navigateBack}
-                >
-                    <ArrowBackIcon />
-                </IconButton> : null}
+    save,
+    onSearchChanged
+}) => {
+    const onSearchChange = (e) => onSearchChanged(e.target.value);
+    return (
+        <AppBar position="static">
+            <Toolbar>
+                {showNavigateBack ?
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="back"
+                        onClick={navigateBack}
+                    >
+                        <ArrowBackIcon />
+                    </IconButton> : null}
 
-            <Typography variant="h6" sx={{ my: 2 }}>
-                {caption}
-            </Typography>
+                <Typography variant="h6" sx={{ my: 2 }}>
+                    {caption}
+                </Typography>
 
-            <Divider />
+                <Divider />
 
-            {showSearch ? <Search>
-                <SearchIconWrapper>
-                    <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                    placeholder="Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                />
-            </Search> : null}
+                {showSearch ? <Search>
+                    <SearchIconWrapper>
+                        <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                        placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
+                        onChange={onSearchChange}
+                    />
+                </Search> : null}
 
-            <Box sx={{ flexGrow: 1 }} />
+                <Box sx={{ flexGrow: 1 }} />
 
-            <Box sx={{ display: 'flex' }}>
+                <Box sx={{ display: 'flex' }}>
 
-                {addNew ? <IconButton
-                    size="large"
-                    aria-label="Add new blog post"
-                    sx={{
-                        color: "white",
-                    }}
-                    onClick={addNew}
-                >
-                    <AddCircleOutlineIcon />
-                </IconButton> : null}
+                    {addNew ? <IconButton
+                        size="large"
+                        aria-label="Add new blog post"
+                        sx={{
+                            color: "white",
+                        }}
+                        onClick={addNew}
+                    >
+                        <AddCircleOutlineIcon />
+                    </IconButton> : null}
 
-                {save ? <IconButton
-                    aria-label="save"
-                    sx={{
-                        color: "white",
-                    }}
-                    onClick={save}>
-                    <SaveIcon />
-                </IconButton> : null}
+                    {save ? <IconButton
+                        aria-label="save"
+                        sx={{
+                            color: "white",
+                        }}
+                        onClick={save}>
+                        <SaveIcon />
+                    </IconButton> : null}
 
-            </Box>
-        </Toolbar>
-    </AppBar>
-)
+                </Box>
+            </Toolbar>
+        </AppBar>
+    )
+}
 
 export default MainAppToolbar;

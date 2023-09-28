@@ -50,10 +50,10 @@ const search = async (text) => {
             max_analyzed_offset: 10000000,
             number_of_fragments: 1,
             fragmenter: "simple", //"simple", "span"
-            fragment_size: 200,
+            fragment_size: 256,
             // phrase_limit: 256, // Controls the number of matching phrases in a document that are considered.
-            pre_tags: ["<highlight>"],
-            post_tags: ["</highlight>"],
+            // pre_tags: ["<em>"],
+            // post_tags: ["</em>"],
             encoder: 'html', // 'default' | 'html'
             fields: {
                 content: {},

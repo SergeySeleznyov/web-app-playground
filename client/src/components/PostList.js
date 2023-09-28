@@ -5,13 +5,14 @@ import { IconButton, Toolbar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MainAppToolbar from './MainAppToolbar';
 
-const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew }) => {
+const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchChanged }) => {
     return (
         <>
             <MainAppToolbar
                 caption="Blog posts"
                 showSearch={true}
                 addNew={addNew}
+                onSearchChanged={onSearchChanged}
             />
             <Box
                 sx={{

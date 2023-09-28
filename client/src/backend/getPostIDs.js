@@ -1,5 +1,6 @@
 import { api_url } from "../config";
 
+// TODO rename -> getPostInfos
 const getPostIDs = async () => {
     const url = `${api_url}/posts`;
     const res = await fetch(url);

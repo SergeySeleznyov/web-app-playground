@@ -8,11 +8,11 @@ import sleep from '../utils/sleep';
 import PostEdit from './PostEdit';
 import updatePost from '../backend/updatePost';
 import SearchResults from './SearchResults';
-import MainAppToolbar2 from './MainAppToolbar2';
+import MainAppToolbar from './MainAppToolbar';
 
 const PostUI = () => (
     <>
-        <MainAppToolbar2 />
+        <MainAppToolbar />
         <PostViewSwither />
     </>
 )

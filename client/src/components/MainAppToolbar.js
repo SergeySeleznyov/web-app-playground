@@ -49,7 +49,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const MainAppToolbar2 = () => {
+const MainAppToolbar = () => {
     const [searchText, setSearchText] = useState(""); // TODO move to useAppBar?
     const { caption, searchTextChanged, navigateBack, addNew, save } = useAppBar();
 
@@ -129,4 +129,4 @@ const MainAppToolbar2 = () => {
     )
 }
 
-export default MainAppToolbar2;
+export default MainAppToolbar;

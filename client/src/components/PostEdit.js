@@ -16,7 +16,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
 
     const isNewPost = id === '';
     const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
-    const { setCaption } = useAppBar(AppBarCaption, false);
+    const { setCaption } = useAppBar(AppBarCaption, false, true);
 
     useEffect(() => {
         setCaption(AppBarCaption);

@@ -12,14 +12,14 @@ import useAppBar from '../hooks/useAppBar';
 import MainAppToolbar from './MainAppToolbar';
 
 const PostUI = () => {
-    const { caption, showSearch } = useAppBar();
+    const { caption, showSearch, showNavigateBack } = useAppBar();
 
     return (
         <>
             <MainAppToolbar
                 caption={caption}
                 showSearch={showSearch}
-                // showNavigateBack={true}
+                showNavigateBack={showNavigateBack}
                 // navigateBack={navigateBack}
                 // save={doSave}
             />
@@ -76,6 +76,7 @@ const PostUIWrapper = () => {
     const closePost = () => {
         setReadPostID(null);
         setEditPostID(null);
+        setSearchText("");
     }
 
     const onSearchChanged = (value) => {
@@ -110,6 +111,7 @@ const PostUIWrapper = () => {
                 onOpen={doOpenPost}
                 searchText={searchText}
                 onSearchChanged={onSearchChanged}
+                navigateBack={closePost}
             />
         )
 

@@ -13,9 +13,9 @@ import useAppBar from "../hooks/useAppBar";
 
 const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const [post, setPost] = useState(null);
-    
+
     const AppBarCaption = `Blog post #${id}`;
-    useAppBar(AppBarCaption, false);
+    useAppBar(AppBarCaption, false, true);
 
     useEffect(() => {
         (

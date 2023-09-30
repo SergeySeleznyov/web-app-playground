@@ -15,7 +15,7 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const [post, setPost] = useState(null);
 
     const AppBarCaption = `Blog post #${id}`;
-    useAppBar(AppBarCaption, false, true);
+    useAppBar(AppBarCaption, false, navigateBack);
 
     useEffect(() => {
         (
@@ -30,7 +30,6 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const LocalAppToolba = () => (
         <MainAppToolbar
             caption={AppBarCaption}
-            showNavigateBack={true}
             navigateBack={navigateBack}
         ></MainAppToolbar>
     )

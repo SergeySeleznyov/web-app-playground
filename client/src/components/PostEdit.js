@@ -16,7 +16,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
 
     const isNewPost = id === '';
     const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
-    const { setCaption } = useAppBar(AppBarCaption, false, true);
+    const { setCaption } = useAppBar(AppBarCaption, false, navigateBack);
 
     useEffect(() => {
         setCaption(AppBarCaption);
@@ -60,7 +60,6 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
     const LocalAppToolba = () => (
         <MainAppToolbar
             caption={AppBarCaption}
-            showNavigateBack={true}
             navigateBack={navigateBack}
             save={doSave}
         />

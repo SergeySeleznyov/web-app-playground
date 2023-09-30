@@ -9,7 +9,7 @@ const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged, navigat
     const [searchResults, setSearchResults] = useState(null);
 
     const AppBarCaption = `Search results for: "${searchText}"`;
-    const { setCaption } = useAppBar(AppBarCaption, true, true);
+    const { setCaption } = useAppBar(AppBarCaption, true, navigateBack);
 
     useEffect(() => {
         setCaption(AppBarCaption);
@@ -40,7 +40,6 @@ const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged, navigat
                 showSearch={true}
                 searhText={searchText}
                 onSearchChanged={onSearchChanged}
-                showNavigateBack={true}
                 navigateBack={navigateBack}
             />
             <Box

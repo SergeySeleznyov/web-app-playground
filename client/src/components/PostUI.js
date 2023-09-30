@@ -8,28 +8,16 @@ import sleep from '../utils/sleep';
 import PostEdit from './PostEdit';
 import updatePost from '../backend/updatePost';
 import SearchResults from './SearchResults';
-import useAppBar from '../hooks/useAppBar';
-import MainAppToolbar from './MainAppToolbar';
+import MainAppToolbar2 from './MainAppToolbar2';
 
-const PostUI = () => {
-    const { caption, showSearch, showNavigateBack } = useAppBar();
+const PostUI = () => (
+    <>
+        <MainAppToolbar2 />
+        <PostViewSwither />
+    </>
+)
 
-    return (
-        <>
-            <MainAppToolbar
-                caption={caption}
-                showSearch={showSearch}
-                showNavigateBack={showNavigateBack}
-                // navigateBack={navigateBack}
-                // save={doSave}
-            />
-            <PostUIWrapper />
-        </>
-    )
-
-}
-
-const PostUIWrapper = () => {
+const PostViewSwither = () => {
 
     const [postInfos, setPostInfos] = useState(null);
     const [readPostID, setReadPostID] = useState(null);
@@ -83,6 +71,8 @@ const PostUIWrapper = () => {
         setSearchText(value);
     }
 
+    const navigateBack = () => closePost();
+
     const isModelLoading = () => postInfos === null;
 
     if (isModelLoading())
@@ -92,7 +82,7 @@ const PostUIWrapper = () => {
         return (
             <PostEdit
                 id={editPostID}
-                navigateBack={closePost}
+                navigateBack={navigateBack}
                 onSave={doSavePost}
             />
         )
@@ -100,7 +90,7 @@ const PostUIWrapper = () => {
     if (readPostID !== null)
         return (
             <PostView id={readPostID}
-                navigateBack={closePost}
+                navigateBack={navigateBack}
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
             />)
@@ -111,7 +101,7 @@ const PostUIWrapper = () => {
                 onOpen={doOpenPost}
                 searchText={searchText}
                 onSearchChanged={onSearchChanged}
-                navigateBack={closePost}
+                navigateBack={navigateBack}
             />
         )
 

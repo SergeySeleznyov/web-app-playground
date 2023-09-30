@@ -4,41 +4,41 @@ const EventEmitter = require('eventemitter3');
 const eventNames = {
     setCaption: "setCaption",
     setShowSearch: "setShowSearch",
-    setShowNavigateBack: "setShowNavigateBack",
+    setNavigateBack: "setNavigateBack",
 }
 
 var captionChanged = new EventEmitter();
 
 const setCaption = (value) => captionChanged.emit(eventNames.setCaption, value);
 const setShowSearch = (value) => captionChanged.emit(eventNames.setShowSearch, value);
-const setShowNavigateBack = (value) => captionChanged.emit(eventNames.setShowNavigateBack, value);
+const setNavigateBack = (value) => captionChanged.emit(eventNames.setNavigateBack, value);
 
-const useAppBar = (_caption, _showSearch, _showNavigateBack) => {
+const useAppBar = (_caption, _showSearch, _navigateBack) => {
     const [caption, setCaptionCore] = useState(_caption ?? "Blogs");
     const [showSearch, setShowSearchCore] = useState(!!_showSearch);
-    const [showNavigateBack, setShowNavigateBackCore] = useState(!!_showNavigateBack);
+    const [navigateBack, setNavigateBackCore] = useState(null);
 
-    const OnSetCaption = (value) => setCaptionCore(value);
-    const OnSetShowSearch = (value) => setShowSearchCore(value);
-    const OnShowNavigateBack = (value) => setShowNavigateBackCore(value);
+    const OnSetCaptionChanged = (value) => setCaptionCore(value);
+    const OnSetShowSearchChanged = (value) => setShowSearchCore(value);
+    const OnNavigateBackChanged = (value) => setNavigateBackCore(value);
 
     useEffect(() => {
-        captionChanged.on(eventNames.setCaption, OnSetCaption);
-        captionChanged.on(eventNames.setShowSearch, OnSetShowSearch);
-        captionChanged.on(eventNames.setShowNavigateBack, OnShowNavigateBack);
+        captionChanged.on(eventNames.setCaption, OnSetCaptionChanged);
+        captionChanged.on(eventNames.setShowSearch, OnSetShowSearchChanged);
+        captionChanged.on(eventNames.setNavigateBack, OnNavigateBackChanged);
 
         setCaption(_caption);
         setShowSearch(_showSearch);
-        setShowNavigateBack(_showNavigateBack);
+        setNavigateBack(() => _navigateBack);
 
         return () => {
-            captionChanged.removeListener(eventNames.setCaption, OnSetCaption);
-            captionChanged.removeListener(eventNames.setShowSearch, OnSetShowSearch);
-            captionChanged.removeListener(eventNames.setShowNavigateBack, OnShowNavigateBack);
+            captionChanged.removeListener(eventNames.setCaption, OnSetCaptionChanged);
+            captionChanged.removeListener(eventNames.setShowSearch, OnSetShowSearchChanged);
+            captionChanged.removeListener(eventNames.setNavigateBack, OnNavigateBackChanged);
         }
     }, [])
 
-    return { caption, setCaption, showSearch, setShowSearch, showNavigateBack, setShowNavigateBack };
+    return { caption, setCaption, showSearch, setShowSearch, navigateBack };
 }
 
 export default useAppBar;

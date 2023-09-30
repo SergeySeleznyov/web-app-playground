@@ -6,6 +6,7 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from '@mui/icons-material/Save';
+import useAppBar from "../hooks/useAppBar";
 
 // TODO Apply theme
 const Search = styled('div')(({ theme }) => ({
@@ -47,19 +48,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const MainAppToolbar = ({
-    caption,
-    showSearch,
-    navigateBack,
+const MainAppToolbar2 = ({
     addNew,
     save,
     onSearchChanged
 }) => {
+    const { caption, showSearch, navigateBack } = useAppBar();
+
     const onSearchChange = (e) => onSearchChanged(e.target.value);
     return (
         <AppBar position="static">
             <Toolbar>
-                {navigateBack ?
+                {!!navigateBack ?
                     <IconButton
                         size="large"
                         edge="start"
@@ -117,4 +117,4 @@ const MainAppToolbar = ({
     )
 }
 
-export default MainAppToolbar;
+export default MainAppToolbar2;

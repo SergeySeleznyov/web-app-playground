@@ -15,7 +15,7 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const [post, setPost] = useState(null);
 
     const AppBarCaption = `Blog post #${id}`;
-    useAppBar(AppBarCaption, false, navigateBack);
+    useAppBar(AppBarCaption, null, navigateBack);
 
     useEffect(() => {
         (

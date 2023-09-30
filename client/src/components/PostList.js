@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 const AppBarCaption = "Blog posts";
 
 const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchChanged }) => {
-    useAppBar(AppBarCaption, true, null);
+    useAppBar(AppBarCaption, onSearchChanged, null);
     
     return (
         <>

@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import search from '../backend/search';
 import useAppBar from '../hooks/useAppBar';
 
+// TODO rename onSearchChanged => onSearchTextChanged
 const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged, navigateBack }) => {
     const [searchResults, setSearchResults] = useState(null);
 
     const AppBarCaption = `Search results for: "${searchText}"`;
-    const { setCaption } = useAppBar(AppBarCaption, true, navigateBack);
+    const { setCaption } = useAppBar(AppBarCaption, onSearchChanged, navigateBack);
 
     useEffect(() => {
         setCaption(AppBarCaption);

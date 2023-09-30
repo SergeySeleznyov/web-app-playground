@@ -7,6 +7,7 @@ import InputBase from '@mui/material/InputBase';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from '@mui/icons-material/Save';
 import useAppBar from "../hooks/useAppBar";
+import { useState } from "react";
 
 // TODO Apply theme
 const Search = styled('div')(({ theme }) => ({
@@ -49,13 +50,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const MainAppToolbar2 = ({
-    addNew,
-    save,
-    onSearchChanged
+    addNew, // TODO remove me
+    save,   // TODO remove me
 }) => {
-    const { caption, showSearch, navigateBack } = useAppBar();
+    const [searchText, setSearchText] = useState(""); // INFO move to useAppBar?
+    const { caption, searchTextChanged, navigateBack } = useAppBar();
 
-    const onSearchChange = (e) => onSearchChanged(e.target.value);
+    const onNavigateBack = () => {
+        navigateBack();
+        onSearchTextValueChanged("");
+    }
+    const onSearchTextChanged = (e) => {
+        const value = e.target.value;
+        onSearchTextValueChanged(value);
+    }
+    const onSearchTextValueChanged = (value) => {
+        setSearchText(value);
+        if (searchTextChanged)
+            searchTextChanged(value);
+    }
+
     return (
         <AppBar position="static">
             <Toolbar>
@@ -65,7 +79,7 @@ const MainAppToolbar2 = ({
                         edge="start"
                         color="inherit"
                         aria-label="back"
-                        onClick={navigateBack}
+                        onClick={onNavigateBack}
                     >
                         <ArrowBackIcon />
                     </IconButton> : null}
@@ -76,14 +90,15 @@ const MainAppToolbar2 = ({
 
                 <Divider />
 
-                {showSearch ? <Search>
+                {searchTextChanged ? <Search>
                     <SearchIconWrapper>
                         <SearchIcon />
                     </SearchIconWrapper>
                     <StyledInputBase
                         placeholder="Search…"
                         inputProps={{ 'aria-label': 'search' }}
-                        onChange={onSearchChange}
+                        value={searchText}
+                        onChange={onSearchTextChanged}
                     />
                 </Search> : null}
 

@@ -5,12 +5,11 @@ import { useEffect, useState } from 'react';
 import search from '../backend/search';
 import useAppBar from '../hooks/useAppBar';
 
-// TODO rename onSearchChanged => onSearchTextChanged
-const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged, navigateBack }) => {
+const SearchResults = ({ postInfos, onOpen, searchText, onSearchTextChanged, navigateBack }) => {
     const [searchResults, setSearchResults] = useState(null);
 
     const AppBarCaption = `Search results for: "${searchText}"`;
-    const { setCaption } = useAppBar(AppBarCaption, onSearchChanged, navigateBack);
+    const { setCaption } = useAppBar(AppBarCaption, onSearchTextChanged, navigateBack);
 
     useEffect(() => {
         setCaption(AppBarCaption);
@@ -39,7 +38,7 @@ const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged, navigat
             <MainAppToolbar
                 caption={AppBarCaption}
                 searhText={searchText}
-                onSearchChanged={onSearchChanged}
+                onSearchTextChanged={onSearchTextChanged}
                 navigateBack={navigateBack}
             />
             <Box

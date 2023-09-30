@@ -52,9 +52,9 @@ const MainAppToolbar = ({
     navigateBack,
     addNew,
     save,
-    onSearchChanged
+    onSearchTextChanged
 }) => {
-    const onSearchChange = (e) => onSearchChanged(e.target.value);
+    const onSearchChange = (e) => onSearchTextChanged(e.target.value);
     return (
         <AppBar position="static">
             <Toolbar>
@@ -75,7 +75,7 @@ const MainAppToolbar = ({
 
                 <Divider />
 
-                {onSearchChanged ? <Search>
+                {onSearchTextChanged ? <Search>
                     <SearchIconWrapper>
                         <SearchIcon />
                     </SearchIconWrapper>

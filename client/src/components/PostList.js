@@ -9,15 +9,15 @@ import { useEffect } from 'react';
 
 const AppBarCaption = "Blog posts";
 
-const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchChanged }) => {
-    useAppBar(AppBarCaption, onSearchChanged, null);
+const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChanged }) => {
+    useAppBar(AppBarCaption, onSearchTextChanged, null);
     
     return (
         <>
             <MainAppToolbar
                 caption={AppBarCaption}
                 addNew={addNew}
-                onSearchChanged={onSearchChanged}
+                onSearchTextChanged={onSearchTextChanged}
             />
             <Box
                 sx={{

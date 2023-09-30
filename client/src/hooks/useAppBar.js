@@ -15,7 +15,7 @@ const setNavigateBack = (value) => captionChanged.emit(eventNames.setNavigateBac
 
 const useAppBar = (_caption, _onSearchTextChanged, _navigateBack) => {
     const [caption, setCaptionCore] = useState(_caption ?? "Blogs");
-    const [searchTextChanged, setSearchTextChangedCore] = useState(null); // Здесь хранится делегат, который нам передали
+    const [searchTextChanged, setSearchTextChangedCore] = useState(null);
     const [navigateBack, setNavigateBackCore] = useState(null);
 
     const OnSetCaptionChanged = (value) => setCaptionCore(value);

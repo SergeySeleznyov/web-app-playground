@@ -67,7 +67,7 @@ const PostViewSwither = () => {
         setSearchText("");
     }
 
-    const onSearchChanged = (value) => {
+    const onSearchTextChanged = (value) => {
         setSearchText(value);
     }
 
@@ -100,7 +100,7 @@ const PostViewSwither = () => {
                 postInfos={postInfos}
                 onOpen={doOpenPost}
                 searchText={searchText}
-                onSearchChanged={onSearchChanged}
+                onSearchTextChanged={onSearchTextChanged}
                 navigateBack={navigateBack}
             />
         )
@@ -113,7 +113,7 @@ const PostViewSwither = () => {
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
                 addNew={doAddNew}
-                onSearchChanged={onSearchChanged}
+                onSearchTextChanged={onSearchTextChanged}
             />)
 
     return (<>Error</>);

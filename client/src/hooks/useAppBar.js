@@ -1,29 +1,34 @@
 import { useEffect, useState } from "react";
 const EventEmitter = require('eventemitter3');
 
-var captionChanged = new EventEmitter();
-const setCaption = (value) => {
-    // console.log(` =========== setCaption(${value})`);
-    captionChanged.emit('setCaption', value);
+const eventNames = {
+    setCaption : "setCaption",
+    setShowSearch : "setShowSearch",
 }
+
+var captionChanged = new EventEmitter();
+
+const setCaption = (value) => captionChanged.emit(eventNames.setCaption, value);
+const setShowSearch = (value) => captionChanged.emit(eventNames.setShowSearch, value);
 
 const useAppBar = () => {
     const [caption, setCaptionCore] = useState('Blogs');
+    const [showSearch, setShowSearchCore] = useState('Blogs');
 
-    const OnSetCaption = (value) => {
-        // console.log(` =========== OnSetCaption(${value})`);
-        setCaptionCore(value);
-    }
+    const OnSetCaption = (value) => setCaptionCore(value);
+    const OnSetShowSearch = (value) => setShowSearchCore(value);
 
     useEffect(() => {
-        captionChanged.on('setCaption', OnSetCaption);
+        captionChanged.on(eventNames.setCaption, OnSetCaption);
+        captionChanged.on(eventNames.setShowSearch, OnSetShowSearch);
 
         return () => {
-            captionChanged.removeListener('setCaption', OnSetCaption);
+            captionChanged.removeListener(eventNames.setCaption, OnSetCaption);
+            captionChanged.removeListener(eventNames.setShowSearch, OnSetShowSearch);
         }
     }, [])
 
-    return { caption, setCaption };
+    return { caption, setCaption, showSearch, setShowSearch };
 }
 
 export default useAppBar;

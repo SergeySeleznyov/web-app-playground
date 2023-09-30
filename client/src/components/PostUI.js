@@ -12,12 +12,13 @@ import useAppBar from '../hooks/useAppBar';
 import MainAppToolbar from './MainAppToolbar';
 
 const PostUI = () => {
-    const { caption, setCaption } = useAppBar();
+    const { caption, showSearch } = useAppBar();
 
     return (
         <>
             <MainAppToolbar
                 caption={caption}
+                showSearch={showSearch}
                 // showNavigateBack={true}
                 // navigateBack={navigateBack}
                 // save={doSave}

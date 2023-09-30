@@ -10,10 +10,11 @@ import { useEffect } from 'react';
 const captionText = "Blog posts";
 
 const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchChanged }) => {
-    const { caption, setCaption } = useAppBar();
+    const { caption, setCaption, setShowSearch } = useAppBar();
     
     useEffect(() => {
         setCaption(captionText);
+        setShowSearch(true);
     }, [])
     
     return (

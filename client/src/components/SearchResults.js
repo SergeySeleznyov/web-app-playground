@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
-import { Card, CardContent, CardHeader, IconButton, Toolbar, Typography, css, styled } from '@mui/material';
+import { Card, CardContent, CardHeader, css, styled } from '@mui/material';
 import { useEffect, useState } from 'react';
 import search from '../backend/search';
 import useAppBar from '../hooks/useAppBar';
 
-const SearchResults = ({ postInfos, onOpen, searchText, onSearchTextChanged, navigateBack }) => {
+const SearchResults = ({ searchText, onSearchTextChanged, navigateBack }) => {
     const [searchResults, setSearchResults] = useState(null);
 
     const AppBarCaption = `Search results for: "${searchText}"`;
@@ -28,7 +28,6 @@ const SearchResults = ({ postInfos, onOpen, searchText, onSearchTextChanged, nav
             fontStyle: 'italic',
             fontWeight: 'bold',
             backgroundColor: 'yellow',
-            // borderBottom: '10px solid yellow',
         }
     }));
 

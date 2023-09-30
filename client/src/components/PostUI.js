@@ -18,7 +18,6 @@ const PostUI = () => (
 )
 
 const PostViewSwither = () => {
-
     const [postInfos, setPostInfos] = useState(null);
     const [readPostID, setReadPostID] = useState(null);
     const [editPostID, setEditPostID] = useState(null);
@@ -97,8 +96,6 @@ const PostViewSwither = () => {
     if (searchText)
         return (
             <SearchResults
-                postInfos={postInfos}
-                onOpen={doOpenPost}
                 searchText={searchText}
                 onSearchTextChanged={onSearchTextChanged}
                 navigateBack={navigateBack}

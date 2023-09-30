@@ -1,5 +1,14 @@
 import Box from '@mui/material/Box';
-import { LinearProgress, Typography } from '@mui/material';
+import { LinearProgress, Typography, css, styled } from '@mui/material';
+
+
+const CenterBox = styled(Box)(({ theme }) => css({
+    display: 'flex',
+    justifyContent: "center",
+    alignItems: "center",
+    width: '100%',
+    m: 4,
+}));
 
 const Loading = () => (
     <Box
@@ -7,22 +16,13 @@ const Loading = () => (
             m: 4,
         }}
     >
-        <Box
-            sx={{
-                display: 'flex',
-                justifyContent: "center",
-                alignItems: "center",
-                width: '100%',
-                m: 2,
-            }}
-        >
+        <CenterBox>
             <Typography
                 color="textSecondary"
             >
                 Loading...
             </Typography>
-
-        </Box>
+        </CenterBox>
         <LinearProgress sx={{
             width: '100%',
             height: '4px',

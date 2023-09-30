@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Toolbar, Typography } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import sleep from "../utils/sleep";
 import useAppBar from "../hooks/useAppBar";
@@ -42,13 +41,6 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
         >
             <Paper elevation={3} >
                 <Toolbar >
-                    {/* <IconButton aria-label="back" onClick={navigateBack}
-                            sx={{
-                                paddingLeft: 0,
-                            }}
-                        >
-                            <ArrowBackIcon />
-                        </IconButton> */}
                     <Box
                         display='flex'
                         flexGrow={1}

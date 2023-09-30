@@ -3,9 +3,7 @@ import Loading from "./Loading";
 import getPost from "../backend/getPost";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { IconButton, TextField, Toolbar, Typography } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SaveIcon from '@mui/icons-material/Save';
+import { TextField, Toolbar } from '@mui/material';
 import sleep from "../utils/sleep";
 import useAppBar from "../hooks/useAppBar";
 
@@ -72,13 +70,6 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
         >
             <Paper elevation={3} >
                 <Toolbar >
-                    {/* <IconButton aria-label="back" onClick={navigateBack}
-                            sx={{
-                                paddingLeft: 0,
-                            }}
-                        >
-                            <ArrowBackIcon />
-                        </IconButton> */}
                     <Box
                         display='flex'
                         flexGrow={1}
@@ -93,11 +84,6 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
                             onChange={doTitleChanged}
                         />
                     </Box>
-
-                    {/* <IconButton aria-label="save" onClick={doSave}>
-                            <SaveIcon />
-                        </IconButton> */}
-
                 </Toolbar>
                 <Toolbar>
                     <TextField

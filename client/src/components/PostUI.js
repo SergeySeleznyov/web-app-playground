@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
-import getPostIDs from '../backend/getPostIDs';
+import getPostInfos from '../backend/getPostInfos';
 import PostList from './PostList';
 import PostView from './PostView';
 import deletePost from '../backend/deletePost';
@@ -34,7 +34,7 @@ const PostViewSwither = () => {
 
     const updatePosts = async () => {
         setPostInfos(null);
-        const postInfos = await getPostIDs();
+        const postInfos = await getPostInfos();
         setPostInfos(postInfos);
         await sleep(300);
     }

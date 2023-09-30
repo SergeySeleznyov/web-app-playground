@@ -1,7 +1,7 @@
 import { api_url } from "../config";
 
 // TODO rename -> getPostInfos
-const getPostIDs = async () => {
+const getPostInfos = async () => {
     const url = `${api_url}/posts`;
     const res = await fetch(url);
     const resBodyJson = await res.json();
@@ -10,4 +10,4 @@ const getPostIDs = async () => {
     return resBodyJson;
 }
 
-export default getPostIDs;
+export default getPostInfos;

@@ -16,7 +16,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
 
     const isNewPost = id === '';
     const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
-    const { setCaption } = useAppBar(AppBarCaption, null, navigateBack);
+    const { setCaption } = useAppBar(AppBarCaption, null, navigateBack, null, doSave);
 
     useEffect(() => {
         setCaption(AppBarCaption);
@@ -49,7 +49,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
         setContent(e.target.value);
     }
 
-    const doSave = async () => {
+    async function doSave() {
         await onSave(
             id,
             title,

@@ -6,7 +6,6 @@ import Paper from '@mui/material/Paper';
 import { IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
-import MainAppToolbar from "./MainAppToolbar";
 import sleep from "../utils/sleep";
 import useAppBar from "../hooks/useAppBar";
 
@@ -57,84 +56,68 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
         );
     }
 
-    const LocalAppToolba = () => (
-        <MainAppToolbar
-            caption={AppBarCaption}
-            navigateBack={navigateBack}
-            save={doSave}
-        />
-    )
-
     if (title === null && content === null)
-        return (
-            <>
-                <LocalAppToolba />
-                <Loading />
-            </>
-        )
+        return (<Loading />)
 
     return (
-        <>
-            <LocalAppToolba />
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    '& > :not(style)': {
-                        m: 1,
-                        width: '100%',
-                    },
-                }}
-            >
-                <Paper elevation={3} >
-                    <Toolbar >
-                        {/* <IconButton aria-label="back" onClick={navigateBack}
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                '& > :not(style)': {
+                    m: 1,
+                    width: '100%',
+                },
+            }}
+        >
+            <Paper elevation={3} >
+                <Toolbar >
+                    {/* <IconButton aria-label="back" onClick={navigateBack}
                             sx={{
                                 paddingLeft: 0,
                             }}
                         >
                             <ArrowBackIcon />
                         </IconButton> */}
-                        <Box
-                            display='flex'
-                            flexGrow={1}
-                        >
-                            <TextField
-                                id="standard-basic"
-                                variant="standard"
-                                sx={{
-                                    width: '100%',
-                                }}
-                                value={title}
-                                onChange={doTitleChanged}
-                            />
-                        </Box>
-
-                        {/* <IconButton aria-label="save" onClick={doSave}>
-                            <SaveIcon />
-                        </IconButton> */}
-
-                    </Toolbar>
-                    <Toolbar>
+                    <Box
+                        display='flex'
+                        flexGrow={1}
+                    >
                         <TextField
-                            id="standard-multiline-static"
-                            label="Blog content"
-                            multiline
-                            rows={4}
+                            id="standard-basic"
                             variant="standard"
-                            InputProps={{
-                                disableUnderline: true,
-                            }}
                             sx={{
                                 width: '100%',
                             }}
-                            value={content}
-                            onChange={doContentChanged}
+                            value={title}
+                            onChange={doTitleChanged}
                         />
-                    </Toolbar>
-                </Paper>
-            </Box>
-        </>
+                    </Box>
+
+                    {/* <IconButton aria-label="save" onClick={doSave}>
+                            <SaveIcon />
+                        </IconButton> */}
+
+                </Toolbar>
+                <Toolbar>
+                    <TextField
+                        id="standard-multiline-static"
+                        label="Blog content"
+                        multiline
+                        rows={4}
+                        variant="standard"
+                        InputProps={{
+                            disableUnderline: true,
+                        }}
+                        sx={{
+                            width: '100%',
+                        }}
+                        value={content}
+                        onChange={doContentChanged}
+                    />
+                </Toolbar>
+            </Paper>
+        </Box>
     )
 }
 

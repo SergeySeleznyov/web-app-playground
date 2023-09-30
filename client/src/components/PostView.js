@@ -9,9 +9,18 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MainAppToolbar from "./MainAppToolbar";
 import sleep from "../utils/sleep";
+import useAppBar from "../hooks/useAppBar";
 
 const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     const [post, setPost] = useState(null);
+    const { setCaption } = useAppBar();
+    
+    const AppBarCaption = `Blog post #${id}`;
+
+    useEffect(() => {
+        setCaption(AppBarCaption);
+    }, [id])
+
     useEffect(() => {
         (
             async () => {
@@ -24,7 +33,7 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
 
     const LocalAppToolba = () => (
         <MainAppToolbar
-            caption={`Blog post #${id}`}
+            caption={AppBarCaption}
             showNavigateBack={true}
             navigateBack={navigateBack}
         ></MainAppToolbar>

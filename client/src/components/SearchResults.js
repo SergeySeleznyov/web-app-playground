@@ -3,9 +3,17 @@ import { Card, CardContent, CardHeader, IconButton, Toolbar, Typography, css, st
 import MainAppToolbar from './MainAppToolbar';
 import { useEffect, useState } from 'react';
 import search from '../backend/search';
+import useAppBar from '../hooks/useAppBar';
 
 const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged }) => {
     const [searchResults, setSearchResults] = useState(null);
+    const { setCaption } = useAppBar();
+
+    const AppBarCaption = `Search results for: "${searchText}"`;
+
+    useEffect(() => {
+        setCaption(AppBarCaption);
+    }, [searchText])
 
     useEffect(() => {
         const updateSearchResult = async () => {
@@ -28,7 +36,7 @@ const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged }) => {
     return (
         <>
             <MainAppToolbar
-                caption="Search results"
+                caption={AppBarCaption}
                 showSearch={true}
                 searhText={searchText}
                 onSearchChanged={onSearchChanged}

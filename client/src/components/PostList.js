@@ -4,12 +4,22 @@ import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Toolbar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MainAppToolbar from './MainAppToolbar';
+import useAppBar from '../hooks/useAppBar';
+import { useEffect } from 'react';
+
+const captionText = "Blog posts";
 
 const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchChanged }) => {
+    const { caption, setCaption } = useAppBar();
+    
+    useEffect(() => {
+        setCaption(captionText);
+    }, [])
+    
     return (
         <>
             <MainAppToolbar
-                caption="Blog posts"
+                caption={captionText}
                 showSearch={true}
                 addNew={addNew}
                 onSearchChanged={onSearchChanged}

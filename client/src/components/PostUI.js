@@ -8,8 +8,28 @@ import sleep from '../utils/sleep';
 import PostEdit from './PostEdit';
 import updatePost from '../backend/updatePost';
 import SearchResults from './SearchResults';
+import useAppBar from '../hooks/useAppBar';
+import MainAppToolbar from './MainAppToolbar';
 
 const PostUI = () => {
+    const { caption, setCaption } = useAppBar();
+
+    return (
+        <>
+            <MainAppToolbar
+                caption={caption}
+                // showNavigateBack={true}
+                // navigateBack={navigateBack}
+                // save={doSave}
+            />
+            <PostUIWrapper />
+        </>
+    )
+
+}
+
+const PostUIWrapper = () => {
+
     const [postInfos, setPostInfos] = useState(null);
     const [readPostID, setReadPostID] = useState(null);
     const [editPostID, setEditPostID] = useState(null);

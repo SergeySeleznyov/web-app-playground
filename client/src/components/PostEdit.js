@@ -8,12 +8,19 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 import MainAppToolbar from "./MainAppToolbar";
 import sleep from "../utils/sleep";
+import useAppBar from "../hooks/useAppBar";
 
 const PostEdit = ({ id, navigateBack, onSave }) => {
     const [title, setTitle] = useState(null);
     const [content, setContent] = useState(null);
+    const { setCaption } = useAppBar();
 
     const isNewPost = id === '';
+    const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
+
+    useEffect(() => {
+        setCaption(AppBarCaption);
+    }, [id])
 
     useEffect(() => {
         (
@@ -32,7 +39,7 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
                 setContent(post.content);
             }
         )()
-    }, []);
+    }, [id]);
 
     const doTitleChanged = (e) => {
         setTitle(e.target.value);
@@ -50,11 +57,9 @@ const PostEdit = ({ id, navigateBack, onSave }) => {
         );
     }
 
-    const caption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
-
     const LocalAppToolba = () => (
         <MainAppToolbar
-            caption={caption}
+            caption={AppBarCaption}
             showNavigateBack={true}
             navigateBack={navigateBack}
             save={doSave}

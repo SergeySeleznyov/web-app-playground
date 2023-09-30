@@ -16,7 +16,6 @@ const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchChanged
         <>
             <MainAppToolbar
                 caption={AppBarCaption}
-                showSearch={true}
                 addNew={addNew}
                 onSearchChanged={onSearchChanged}
             />

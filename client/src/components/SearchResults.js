@@ -37,7 +37,6 @@ const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged, navigat
         <>
             <MainAppToolbar
                 caption={AppBarCaption}
-                showSearch={true}
                 searhText={searchText}
                 onSearchChanged={onSearchChanged}
                 navigateBack={navigateBack}

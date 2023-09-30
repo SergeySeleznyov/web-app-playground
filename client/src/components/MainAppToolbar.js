@@ -49,7 +49,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const MainAppToolbar = ({
     caption,
-    showSearch,
     navigateBack,
     addNew,
     save,
@@ -76,7 +75,7 @@ const MainAppToolbar = ({
 
                 <Divider />
 
-                {showSearch ? <Search>
+                {onSearchChanged ? <Search>
                     <SearchIconWrapper>
                         <SearchIcon />
                     </SearchIconWrapper>

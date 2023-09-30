@@ -25,10 +25,7 @@ const index = async (id, title, content) => {
             content,
         }
     };
-    const options = {
-        // id
-    };
-    const response = await client.index(document, options);
+    const response = await client.index(document);
     console.log(` Elastic Search index response=${JSON.stringify(response)}`);
     return response;
 }
@@ -64,7 +61,6 @@ const search = async (text) => {
     };
     const response = await client.search(document);
     return response?.hits?.hits.map(i => { i._source.content = ''; return i });
-    // return response;
 }
 
 module.exports = {

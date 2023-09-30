@@ -50,11 +50,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const MainAppToolbar2 = ({
-    addNew, // TODO remove me
     save,   // TODO remove me
 }) => {
-    const [searchText, setSearchText] = useState(""); // INFO move to useAppBar?
-    const { caption, searchTextChanged, navigateBack } = useAppBar();
+    const [searchText, setSearchText] = useState(""); // TODO move to useAppBar?
+    const { caption, searchTextChanged, navigateBack, addNew } = useAppBar();
 
     const onNavigateBack = () => {
         navigateBack();
@@ -73,7 +72,7 @@ const MainAppToolbar2 = ({
     return (
         <AppBar position="static">
             <Toolbar>
-                {!!navigateBack ?
+                {navigateBack ?
                     <IconButton
                         size="large"
                         edge="start"

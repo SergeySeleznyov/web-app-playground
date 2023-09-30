@@ -7,9 +7,9 @@ import useAppBar from '../hooks/useAppBar';
 
 const SearchResults = ({ postInfos, onOpen, searchText, onSearchChanged }) => {
     const [searchResults, setSearchResults] = useState(null);
-    const { setCaption } = useAppBar();
-
+    
     const AppBarCaption = `Search results for: "${searchText}"`;
+    const { setCaption } = useAppBar(AppBarCaption, true);
 
     useEffect(() => {
         setCaption(AppBarCaption);

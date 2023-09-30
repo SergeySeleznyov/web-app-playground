@@ -13,10 +13,10 @@ import useAppBar from "../hooks/useAppBar";
 const PostEdit = ({ id, navigateBack, onSave }) => {
     const [title, setTitle] = useState(null);
     const [content, setContent] = useState(null);
-    const { setCaption } = useAppBar();
 
     const isNewPost = id === '';
     const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
+    const { setCaption } = useAppBar(AppBarCaption, false);
 
     useEffect(() => {
         setCaption(AppBarCaption);

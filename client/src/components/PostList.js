@@ -7,20 +7,15 @@ import MainAppToolbar from './MainAppToolbar';
 import useAppBar from '../hooks/useAppBar';
 import { useEffect } from 'react';
 
-const captionText = "Blog posts";
+const AppBarCaption = "Blog posts";
 
 const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchChanged }) => {
-    const { caption, setCaption, setShowSearch } = useAppBar();
-    
-    useEffect(() => {
-        setCaption(captionText);
-        setShowSearch(true);
-    }, [])
+    useAppBar(AppBarCaption, true);
     
     return (
         <>
             <MainAppToolbar
-                caption={captionText}
+                caption={AppBarCaption}
                 showSearch={true}
                 addNew={addNew}
                 onSearchChanged={onSearchChanged}

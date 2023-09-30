@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import { Card, CardContent, CardHeader, IconButton, Toolbar, Typography, css, styled } from '@mui/material';
-import MainAppToolbar from './MainAppToolbar';
 import { useEffect, useState } from 'react';
 import search from '../backend/search';
 import useAppBar from '../hooks/useAppBar';
@@ -34,40 +33,32 @@ const SearchResults = ({ postInfos, onOpen, searchText, onSearchTextChanged, nav
     }));
 
     return (
-        <>
-            <MainAppToolbar
-                caption={AppBarCaption}
-                searhText={searchText}
-                onSearchTextChanged={onSearchTextChanged}
-                navigateBack={navigateBack}
-            />
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    '& > :not(style)': {
-                        m: 1,
-                        width: '100%',
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                '& > :not(style)': {
+                    m: 1,
+                    width: '100%',
 
-                    },
-                }}
-            >
-                {
-                    searchResults?.map((searchResult, index) =>
-                        <StyledCard key={searchResult._id}>
-                            <CardHeader title={searchResult._source.title}>
-                            </CardHeader>
-                            <CardContent 
-                                dangerouslySetInnerHTML={{
-                                    __html: `...${searchResult.highlight.content}...`
-                                }}
-                                >
-                            </CardContent >
-                        </StyledCard>
-                    )
-                }
-            </Box >
-        </>
+                },
+            }}
+        >
+            {
+                searchResults?.map((searchResult, index) =>
+                    <StyledCard key={searchResult._id}>
+                        <CardHeader title={searchResult._source.title}>
+                        </CardHeader>
+                        <CardContent
+                            dangerouslySetInnerHTML={{
+                                __html: `...${searchResult.highlight.content}...`
+                            }}
+                        >
+                        </CardContent >
+                    </StyledCard>
+                )
+            }
+        </Box >
     )
 }
 

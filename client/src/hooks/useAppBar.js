@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from 'react';
 const EventEmitter = require('eventemitter3');
 
 const eventNames = {
-    setCaption: "setCaption",
-    setSearchTextChanged: "setSearchTextChanged",
-    setNavigateBack: "setNavigateBack",
-    addNew: "addNew",
-    save: "save",
-}
+    setCaption: 'setCaption',
+    setSearchTextChanged: 'setSearchTextChanged',
+    setNavigateBack: 'setNavigateBack',
+    addNew: 'addNew',
+    save: 'save',
+};
 
-var captionChanged = new EventEmitter();
+const captionChanged = new EventEmitter();
 
 const setCaption = (value) => captionChanged.emit(eventNames.setCaption, value);
 const setSearchTextChanged = (value) => captionChanged.emit(eventNames.setSearchTextChanged, value);
@@ -18,7 +18,7 @@ const setAddNew = (value) => captionChanged.emit(eventNames.addNew, value);
 const setSave = (value) => captionChanged.emit(eventNames.save, value);
 
 const useAppBar = (_caption, _onSearchTextChanged, _navigateBack, _addNew, _save) => {
-    const [caption, setCaptionCore] = useState(_caption ?? "Blogs");
+    const [caption, setCaptionCore] = useState(_caption ?? 'Blogs');
     const [searchTextChanged, setSearchTextChangedCore] = useState(null);
     const [navigateBack, setNavigateBackCore] = useState(null);
     const [addNew, setAddNewCore] = useState(null);
@@ -49,10 +49,10 @@ const useAppBar = (_caption, _onSearchTextChanged, _navigateBack, _addNew, _save
             captionChanged.removeListener(eventNames.setNavigateBack, OnNavigateBackChanged);
             captionChanged.removeListener(eventNames.addNew, OnAddNewChanged);
             captionChanged.removeListener(eventNames.save, OnSaveChanged);
-        }
-    }, [])
+        };
+    }, []);
 
-    return { caption, setCaption, searchTextChanged, navigateBack, addNew, save };
-}
+    return {caption, setCaption, searchTextChanged, navigateBack, addNew, save};
+};
 
 export default useAppBar;

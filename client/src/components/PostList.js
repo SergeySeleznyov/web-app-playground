@@ -1,21 +1,21 @@
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton, Toolbar, Typography } from '@mui/material';
+import {IconButton, Toolbar, Typography} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useAppBar from '../hooks/useAppBar';
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
-const AppBarCaption = "Blog posts";
+const AppBarCaption = 'Blog posts';
 
-const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChanged }) => {
+const PostList = ({postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChanged}) => {
     useAppBar(AppBarCaption, onSearchTextChanged, null, addNew);
 
     return (
         <Box
             sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
+                'display': 'flex',
+                'flexWrap': 'wrap',
                 '& > :not(style)': {
                     m: 1,
                     width: '100%',
@@ -24,7 +24,7 @@ const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextCha
             }}
         >
             {
-                postInfos.map(postInfo =>
+                postInfos.map((postInfo) =>
                     <Paper elevation={3} key={postInfo.id}>
                         <Toolbar>
                             <Box
@@ -37,8 +37,8 @@ const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextCha
                                     onClick={() => onOpen(postInfo.id)}
                                     sx={{
                                         '&:hover': {
-                                            cursor: 'pointer'
-                                        }
+                                            cursor: 'pointer',
+                                        },
                                     }}
                                 >
                                     {postInfo.title}
@@ -53,12 +53,12 @@ const PostList = ({ postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextCha
                                 <DeleteIcon />
                             </IconButton>
                         </Toolbar>
-                    </Paper>
+                    </Paper>,
                 )
             }
 
         </Box >
-    )
-}
+    );
+};
 
-export default PostList
+export default PostList;

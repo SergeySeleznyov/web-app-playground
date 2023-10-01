@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Loading from './Loading';
 import getPostInfos from '../backend/getPostInfos';
 import PostList from './PostList';
@@ -15,20 +15,20 @@ const PostUI = () => (
         <MainAppToolbar />
         <PostViewSwither />
     </>
-)
+);
 
 const PostViewSwither = () => {
     const [postInfos, setPostInfos] = useState(null);
     const [readPostID, setReadPostID] = useState(null);
     const [editPostID, setEditPostID] = useState(null);
-    const [searchText, setSearchText] = useState("");
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         (
             async () => {
                 await updatePosts();
             }
-        )()
+        )();
     }, []);
 
     const updatePosts = async () => {
@@ -36,73 +36,77 @@ const PostViewSwither = () => {
         const postInfos = await getPostInfos();
         setPostInfos(postInfos);
         await sleep(300);
-    }
+    };
 
     const doOpenPost = (postId) => {
         closePost();
         setReadPostID(postId);
-    }
+    };
     const doEditPost = (postId) => {
         closePost();
         setEditPostID(postId);
-    }
+    };
     const doDeletePost = async (postId) => {
         closePost();
         await deletePost(postId);
         await updatePosts();
-    }
+    };
     const doAddNew = async () => {
         closePost();
-        setEditPostID("");
-    }
+        setEditPostID('');
+    };
     const doSavePost = async (postId, postTitle, postContent) => {
         closePost();
         await updatePost(postId, postTitle, postContent);
         await updatePosts();
-    }
+    };
     const closePost = () => {
         setReadPostID(null);
         setEditPostID(null);
-        setSearchText("");
-    }
+        setSearchText('');
+    };
 
     const onSearchTextChanged = (value) => {
         setSearchText(value);
-    }
+    };
 
     const navigateBack = () => closePost();
 
     const isModelLoading = () => postInfos === null;
 
-    if (isModelLoading())
-        return (<Loading />)
+    if (isModelLoading()) {
+        return (<Loading />);
+    }
 
-    if (editPostID !== null)
+    if (editPostID !== null) {
         return (
             <PostEdit
                 id={editPostID}
                 navigateBack={navigateBack}
                 onSave={doSavePost}
             />
-        )
+        );
+    }
 
-    if (readPostID !== null)
+    if (readPostID !== null) {
         return (
             <PostView id={readPostID}
                 navigateBack={navigateBack}
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
-            />)
-    if (searchText)
+            />);
+    }
+    if (searchText) {
         return (
             <SearchResults
                 searchText={searchText}
                 onSearchTextChanged={onSearchTextChanged}
                 navigateBack={navigateBack}
             />
-        )
+        );
+    }
 
-    if (postInfos)
+    if (postInfos) {
         return (
             <PostList
                 postInfos={postInfos}
@@ -111,7 +115,8 @@ const PostViewSwither = () => {
                 onDelete={doDeletePost}
                 addNew={doAddNew}
                 onSearchTextChanged={onSearchTextChanged}
-            />)
+            />);
+    }
 
     return (<>Error</>);
 };

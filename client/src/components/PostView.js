@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import Loading from "./Loading";
-import getPost from "../backend/getPost";
+import {useEffect, useState} from 'react';
+import Loading from './Loading';
+import getPost from '../backend/getPost';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton, Toolbar, Typography } from '@mui/material';
+import {IconButton, Toolbar, Typography} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import sleep from "../utils/sleep";
-import useAppBar from "../hooks/useAppBar";
+import sleep from '../utils/sleep';
+import useAppBar from '../hooks/useAppBar';
 
-const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
+const PostView = ({id, navigateBack, onEdit, onDelete}) => {
     const [post, setPost] = useState(null);
 
     const AppBarCaption = `Blog post #${id}`;
@@ -22,17 +22,18 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
                 await sleep(1000);
                 setPost(post);
             }
-        )()
+        )();
     }, []);
 
-    if (post === null)
-        return (<Loading />)
+    if (post === null) {
+        return (<Loading />);
+    }
 
     return (
         <Box
             sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
+                'display': 'flex',
+                'flexWrap': 'wrap',
                 '& > :not(style)': {
                     m: 1,
                     width: '100%',
@@ -66,7 +67,7 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
                 </Toolbar>
             </Paper>
         </Box>
-    )
-}
+    );
+};
 
-export default PostView
+export default PostView;

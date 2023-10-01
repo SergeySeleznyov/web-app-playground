@@ -1,41 +1,41 @@
 import Box from '@mui/material/Box';
-import { Card, CardContent, CardHeader, css, styled } from '@mui/material';
-import { useEffect, useState } from 'react';
+import {Card, CardContent, CardHeader, css, styled} from '@mui/material';
+import {useEffect, useState} from 'react';
 import search from '../backend/search';
 import useAppBar from '../hooks/useAppBar';
 
-const SearchResults = ({ searchText, onSearchTextChanged, navigateBack }) => {
+const SearchResults = ({searchText, onSearchTextChanged, navigateBack}) => {
     const [searchResults, setSearchResults] = useState(null);
 
     const AppBarCaption = `Search results for: "${searchText}"`;
-    const { setCaption } = useAppBar(AppBarCaption, onSearchTextChanged, navigateBack);
+    const {setCaption} = useAppBar(AppBarCaption, onSearchTextChanged, navigateBack);
 
     useEffect(() => {
         setCaption(AppBarCaption);
-    }, [searchText])
+    }, [searchText]);
 
     useEffect(() => {
         const updateSearchResult = async () => {
             const searchResults = await search(searchText);
             setSearchResults(searchResults);
-        }
+        };
         updateSearchResult();
-    }, [searchText])
+    }, [searchText]);
 
     // TODO Apply theme
-    const StyledCard = styled(Card)(({ theme }) => css({
+    const StyledCard = styled(Card)(({theme}) => css({
         '& em': {
             fontStyle: 'italic',
             fontWeight: 'bold',
             backgroundColor: 'yellow',
-        }
+        },
     }));
 
     return (
         <Box
             sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
+                'display': 'flex',
+                'flexWrap': 'wrap',
                 '& > :not(style)': {
                     m: 1,
                     width: '100%',
@@ -50,15 +50,15 @@ const SearchResults = ({ searchText, onSearchTextChanged, navigateBack }) => {
                         </CardHeader>
                         <CardContent
                             dangerouslySetInnerHTML={{
-                                __html: `...${searchResult.highlight.content}...`
+                                __html: `...${searchResult.highlight.content}...`,
                             }}
                         >
                         </CardContent >
-                    </StyledCard>
+                    </StyledCard>,
                 )
             }
         </Box >
-    )
-}
+    );
+};
 
-export default SearchResults
+export default SearchResults;

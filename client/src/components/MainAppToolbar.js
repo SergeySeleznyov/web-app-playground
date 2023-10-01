@@ -49,7 +49,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 }));
 
 const MainAppToolbar = () => {
-    const [searchText, setSearchText] = useState(''); // TODO move to useAppBar?
+    const [searchText, setSearchText] = useState('');
     const {caption, searchTextChanged, navigateBack, addNew, save} = useAppBar();
 
     const onNavigateBack = () => {

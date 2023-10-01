@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 const app = new express();
 const apiRoute = require('./routes/api-routes');
 const cors = require('cors');
-const { connectToDataBase, disconnectFromDatabse } = require("./app-mongodb");
-const config = require("./config");
+const {connectToDataBase, disconnectFromDatabse} = require('./app-mongodb');
+const config = require('./config');
 require('dotenv').config();
 
 app.use(cors());
@@ -25,8 +25,8 @@ app.use('/api', apiRoute);
 })();
 
 // Wait fot (ctrl-c)
-process.on("SIGINT", async() => {
+process.on('SIGINT', async () => {
     await disconnectFromDatabse();
-    console.log("The app was stopped.");
+    console.log('The app was stopped.');
     process.exit();
 });

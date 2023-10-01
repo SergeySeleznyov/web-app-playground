@@ -10,7 +10,9 @@
     "clean:server": "rimraf html",
     "clean:client": "cd client && npm run clean",
     "build": "npm run clean:server && cd client && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src",
+    "lint:fix": "npm run lint -- --fix"
   },
   "author": "",
   "license": "ISC",

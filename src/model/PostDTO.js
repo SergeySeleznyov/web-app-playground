@@ -1,12 +1,14 @@
-const { Post } = require("../schemas/Post");
-const PostInfoDTO = require("./PostInfoDTO");
+const {Post} = require('../schemas/Post');
+const PostInfoDTO = require('./PostInfoDTO');
 
 class PostDTO extends PostInfoDTO {
-    #_content = "";
-    get content() { return this.#_content; }
+    #_content = '';
+    get content() {
+        return this.#_content;
+    }
 
     constructor(id, title, content) {
-        super(id, title)
+        super(id, title);
         this.#_content = content;
     }
 
@@ -15,7 +17,7 @@ class PostDTO extends PostInfoDTO {
             id: this.id,
             title: this.title,
             content: this.content,
-        }
+        };
     }
 
     toDBO() {

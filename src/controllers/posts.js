@@ -1,68 +1,65 @@
-const { nanoid } = require("nanoid");
-const PostDTO = require("../model/PostDTO");
-const PostInfoDTO = require("../model/PostInfoDTO");
-const { Post } = require("../schemas/Post");
+const PostDTO = require('../model/PostDTO');
+const PostInfoDTO = require('../model/PostInfoDTO');
+const {Post} = require('../schemas/Post');
 
 const getPostInfos = async () => {
     try {
         const postsDBO = await Post.find({});
-        const postInfos = postsDBO.map(i => new PostInfoDTO(
+        const postInfos = postsDBO.map((i) => new PostInfoDTO(
             i.id,
             i.title,
         ));
         return postInfos;
-    }
-    catch (innerError) {
+    } catch (innerError) {
         const errorMessage = `getPostInfos controller: ${innerError.message}`;
         console.log(errorMessage);
 
-        const e = new Error(errorMessage, { cause: innerError });
+        const e = new Error(errorMessage, {cause: innerError});
         throw e;
     }
 };
 
 const getPost = async (postId) => {
     try {
-        if (!postId)
+        if (!postId) {
             throw new Error(`Post id can't be empty.`);
+        }
 
-        const postDBO = await Post.findOne({ "id": postId });
+        const postDBO = await Post.findOne({'id': postId});
         const postDTO = new PostDTO(postDBO.id, postDBO.title, postDBO.content);
 
         return postDTO;
-    }
-    catch (innerError) {
+    } catch (innerError) {
         const errorMessage = `getPost controller: ${innerError.message}`;
         console.log(errorMessage);
 
-        const e = new Error(errorMessage, { cause: innerError });
+        const e = new Error(errorMessage, {cause: innerError});
         throw e;
     }
 };
 
 const setPost = async (id, title, content) => {
-    const exists = await Post.exists({ id: id });
+    const exists = await Post.exists({id: id});
     if (exists) {
         await Post.updateOne(
             {
-                id: id
+                id: id,
             },
             {
                 title: title,
-                content: content
-            }
+                content: content,
+            },
         );
-
     } else {
         const postDTO = new PostDTO(id, title, content);
         const postDBO = postDTO.toDBO();
         await postDBO.save();
     }
-}
+};
 
 const deletePost = async (id) => {
-    await Post.deleteOne({ id: id });
-}
+    await Post.deleteOne({id: id});
+};
 
 module.exports = {
     getPostInfos,

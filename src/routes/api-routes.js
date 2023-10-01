@@ -1,21 +1,23 @@
 
 const express = require('express');
-const { Post } = require('../schemas/Post');
-const { getPostInfos, getPost, setPost, deletePost } = require('../controllers/posts');
-const PostDTO = require('../model/PostDTO');
-const { index, search } = require('../elastic-search/elastic-search-dal');
-const { nanoid } = require('nanoid');
+const {index, search} = require('../elastic-search/elastic-search-dal');
+const {nanoid} = require('nanoid');
 const apiRoute = express.Router();
+const {
+    getPostInfos,
+    getPost,
+    setPost,
+    deletePost} = require('../controllers/posts');
 
 apiRoute.get('/posts', async (req, res) => {
     try {
-        const postInfos = await getPostInfos()
-        if (postInfos)
+        const postInfos = await getPostInfos();
+        if (postInfos) {
             res.send(postInfos);
-        else
+        } else {
             res.sendStatus(404);
-    }
-    catch (err) {
+        }
+    } catch (err) {
         console.log(err);
         res.sendStatus(500);
     }
@@ -26,12 +28,12 @@ apiRoute.get('/post/:id', async (req, res) => {
         const postId = req.params.id;
 
         const post = await getPost(postId);
-        if (post)
+        if (post) {
             res.send(post);
-        else
+        } else {
             res.sendStatus(404);
-    }
-    catch (err) {
+        }
+    } catch (err) {
         console.log(err);
         res.sendStatus(500);
     }
@@ -50,8 +52,7 @@ apiRoute.post('/post', async (req, res) => {
         await index(uniqueId, title, content);
 
         res.sendStatus(200);
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
         res.sendStatus(500);
     }
@@ -64,8 +65,7 @@ apiRoute.delete('/post/:id', async (req, res) => {
         await deletePost(postId);
 
         res.sendStatus(200);
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
         res.sendStatus(500);
     }
@@ -77,11 +77,12 @@ apiRoute.post('/search/', async (req, res) => {
         const text = req.body.text;
 
         const searchResult = await search(text);
-        if (!searchResult) throw new Error(`Empty elastic search response (${searchResult})`)
+        if (!searchResult) {
+            throw new Error(`Empty elastic search response (${searchResult})`);
+        }
 
         res.send(searchResult);
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
         res.status(500);
         res.send(err.message);

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Loading from './Loading';
 import getPost from '../backend/getPost';
 import Box from '@mui/material/Box';
@@ -8,6 +8,7 @@ import {IconButton, Toolbar, Typography} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import sleep from '../utils/sleep';
 import useAppBar from '../hooks/useAppBar';
+import PropTypes from 'prop-types';
 
 const PostView = ({id, navigateBack, onEdit, onDelete}) => {
     const [post, setPost] = useState(null);
@@ -68,6 +69,13 @@ const PostView = ({id, navigateBack, onEdit, onDelete}) => {
             </Paper>
         </Box>
     );
+};
+
+PostView.propTypes = {
+    id: PropTypes.string.isRequired,
+    navigateBack: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
 };
 
 export default PostView;

@@ -1,5 +1,5 @@
+import React, {useState} from 'react';
 import {AppBar, Box, Divider, IconButton, Toolbar, Typography} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import {styled, alpha} from '@mui/material/styles';
@@ -7,7 +7,6 @@ import InputBase from '@mui/material/InputBase';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from '@mui/icons-material/Save';
 import useAppBar from '../hooks/useAppBar';
-import {useState} from 'react';
 
 // TODO Apply theme
 const Search = styled('div')(({theme}) => ({

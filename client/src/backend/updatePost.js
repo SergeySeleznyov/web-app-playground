@@ -1,7 +1,7 @@
-import {api_url} from '../config';
+import {apiUrl} from '../config';
 
 const updatePost = async (id, title, content) => {
-    const url = `${api_url}/post`;
+    const url = `${apiUrl}/post`;
     const jsonBody = {
         id,
         title,

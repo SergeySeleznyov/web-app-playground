@@ -1,7 +1,7 @@
-import {api_url} from '../config';
+import {apiUrl} from '../config';
 
 const search = async (text) => {
-    const url = `${api_url}/search`;
+    const url = `${apiUrl}/search`;
     const jsonBody = {
         text: text,
     };

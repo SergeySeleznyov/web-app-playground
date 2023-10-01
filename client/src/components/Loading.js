@@ -1,6 +1,6 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import {LinearProgress, Typography, css, styled} from '@mui/material';
-
 
 const CenterBox = styled(Box)(({theme}) => css({
     display: 'flex',

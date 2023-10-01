@@ -1,10 +1,11 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import {IconButton, Toolbar, Typography} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useAppBar from '../hooks/useAppBar';
-import {useEffect} from 'react';
+import PropTypes from 'prop-types';
 
 const AppBarCaption = 'Blog posts';
 
@@ -59,6 +60,15 @@ const PostList = ({postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChan
 
         </Box >
     );
+};
+
+PostList.propTypes = {
+    postInfos: PropTypes.object.isRequired,
+    onOpen: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    addNew: PropTypes.func.isRequired,
+    onSearchTextChanged: PropTypes.func.isRequired,
 };
 
 export default PostList;

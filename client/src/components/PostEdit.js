@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Loading from './Loading';
 import getPost from '../backend/getPost';
 import Box from '@mui/material/Box';
@@ -46,6 +46,7 @@ const PostEdit = ({id, navigateBack, onSave}) => {
         setContent(e.target.value);
     };
 
+    /** Delegate to save document.*/
     async function doSave() {
         await onSave(
             id,

@@ -1,8 +1,9 @@
+import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import {Card, CardContent, CardHeader, css, styled} from '@mui/material';
-import {useEffect, useState} from 'react';
 import search from '../backend/search';
 import useAppBar from '../hooks/useAppBar';
+import PropTypes from 'prop-types';
 
 const SearchResults = ({searchText, onSearchTextChanged, navigateBack}) => {
     const [searchResults, setSearchResults] = useState(null);
@@ -59,6 +60,12 @@ const SearchResults = ({searchText, onSearchTextChanged, navigateBack}) => {
             }
         </Box >
     );
+};
+
+SearchResults.propTypes = {
+    searchText: PropTypes.string.isRequired,
+    onSearchTextChanged: PropTypes.func.isRequired,
+    navigateBack: PropTypes.func.isRequired,
 };
 
 export default SearchResults;

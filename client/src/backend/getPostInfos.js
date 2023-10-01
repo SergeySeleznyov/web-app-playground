@@ -1,8 +1,8 @@
-import {api_url} from '../config';
+import {apiUrl} from '../config';
 
 // TODO rename -> getPostInfos
 const getPostInfos = async () => {
-    const url = `${api_url}/posts`;
+    const url = `${apiUrl}/posts`;
     const res = await fetch(url);
     const resBodyJson = await res.json();
     if (res.status !== 200) {

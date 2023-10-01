@@ -1,7 +1,7 @@
-import {api_url} from '../config';
+import {apiUrl} from '../config';
 
 const getPost = async (id) => {
-    const url = `${api_url}/post/${id}`;
+    const url = `${apiUrl}/post/${id}`;
     const res = await fetch(url);
     const resBodyJson = await res.json();
     if (res.status !== 200) {

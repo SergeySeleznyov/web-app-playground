@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import {TextField, Toolbar} from '@mui/material';
 import sleep from '../utils/sleep';
 import useAppBar from '../hooks/useAppBar';
+import PropTypes from 'prop-types';
 
 const PostEdit = ({id, navigateBack, onSave}) => {
     const [title, setTitle] = useState(null);
@@ -105,6 +106,12 @@ const PostEdit = ({id, navigateBack, onSave}) => {
             </Paper>
         </Box>
     );
+};
+
+PostEdit.propTypes = {
+    id: PropTypes.string.isRequired,
+    navigateBack: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
 };
 
 export default PostEdit;

@@ -1,14 +1,14 @@
 
 const express = require('express');
-const { index, search } = require('../elastic-search/elastic-search-dal');
-const { nanoid } = require('nanoid');
+const {index, search} = require('../elastic-search/elastic-search-dal');
+const {nanoid} = require('nanoid');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();
 const {
     getPostInfos,
     getPost,
     setPost,
-    deletePost } = require('../controllers/posts');
+    deletePost} = require('../controllers/posts');
 
 apiRoute.get('/posts', async (req, res) => {
     try {

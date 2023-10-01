@@ -2,6 +2,7 @@
 const express = require('express');
 const {index, search} = require('../elastic-search/elastic-search-dal');
 const {nanoid} = require('nanoid');
+// eslint-disable-next-line new-cap
 const apiRoute = express.Router();
 const {
     getPostInfos,

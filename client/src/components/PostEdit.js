@@ -1,3 +1,4 @@
+// @ts-check
 import React, {useEffect, useState} from 'react';
 import Loading from './Loading';
 import getPost from '../backend/getPost';
@@ -7,10 +8,15 @@ import {TextField, Toolbar} from '@mui/material';
 import sleep from '../utils/sleep';
 import useAppBar from '../hooks/useAppBar';
 import PropTypes from 'prop-types';
+import Post from '../model/Post';
 
+// TODO use jsdocs
 const PostEdit = ({id, navigateBack, onSave}) => {
-    const [title, setTitle] = useState(null);
-    const [content, setContent] = useState(null);
+    /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>]} */
+    const [title, setTitle] = /** @type {?string} */ useState(/** @type {?string} */(null));
+
+    /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>]} */
+    const [content, setContent] = useState(/** @type {?string} */(null));
 
     const isNewPost = id === '';
     const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
@@ -24,11 +30,7 @@ const PostEdit = ({id, navigateBack, onSave}) => {
         (
             async () => {
                 const post = isNewPost ?
-                    {
-                        id: '',
-                        title: '',
-                        content: '',
-                    } :
+                    new Post() :
                     await getPost(id);
 
                 await sleep(1000);

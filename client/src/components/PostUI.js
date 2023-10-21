@@ -1,3 +1,4 @@
+// @ts-check
 import React, {useEffect, useState} from 'react';
 import Loading from './Loading';
 import getPostInfos from '../backend/getPostInfos';
@@ -10,6 +11,11 @@ import updatePost from '../backend/updatePost';
 import SearchResults from './SearchResults';
 import MainAppToolbar from './MainAppToolbar';
 
+/**
+ * The general post UI component
+ * @Component
+ * @return {React.ReactElement}
+*/
 const PostUI = () => (
     <>
         <MainAppToolbar />
@@ -17,10 +23,20 @@ const PostUI = () => (
     </>
 );
 
+/**
+ * The special component implements switch views
+ * @Component
+ * @return {React.ReactElement}
+*/
 const PostViewSwither = () => {
+    // TODO use jsdocs
+    // TODO create postInfos class
     const [postInfos, setPostInfos] = useState(null);
-    const [readPostID, setReadPostID] = useState(null);
-    const [editPostID, setEditPostID] = useState(null);
+    /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>>]} */
+    const [readPostID, setReadPostID] = useState(/** @type {?string} */(null));
+    /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>>]} */
+    const [editPostID, setEditPostID] = useState(/** @type {?string} */(null));
+    /** @type {[string, import('react').Dispatch<import('react').SetStateAction<string>>]} */
     const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
@@ -53,7 +69,7 @@ const PostViewSwither = () => {
     };
     const doAddNew = async () => {
         closePost();
-        setEditPostID('');
+        setEditPostID(null);
     };
     const doSavePost = async (postId, postTitle, postContent) => {
         closePost();

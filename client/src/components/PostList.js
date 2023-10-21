@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -9,6 +10,7 @@ import PropTypes from 'prop-types';
 
 const AppBarCaption = 'Blog posts';
 
+// TODO use jsdocs
 const PostList = ({postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChanged}) => {
     useAppBar(AppBarCaption, onSearchTextChanged, null, addNew);
 

@@ -19,48 +19,45 @@ const setNavigateBack = (value) => event.emit(eventNames.setNavigateBack, value)
 const setAddNew = (value) => event.emit(eventNames.addNew, value);
 const setSave = (value) => event.emit(eventNames.save, value);
 
-/**
- * The callback
- * @callback TextChangedNotifyCallback
- * @param {string} value
- */
-
-/**
- * The method with string arg
- * @callback TextMethod
- * @param {string} value
- */
-
-/**
- * The callback
- * @callback VoidNotifyCallback
- */
+/** @typedef {import('../utils/types').TextMethod} TextMethod */
+/** @typedef {import('../utils/types').TextCallback} TextCallback */
+/** @typedef {import('../utils/types').VoidNotifyCallback} VoidNotifyCallback */
+/** @typedef {import('../utils/types').TextChangedNotifyCallback} TextChangedNotifyCallback */
 
 /**
  * @typedef {Object} AppBarHook
  * @property {string} caption The caption
- * @property {(TextMethod)} setCaption The searchTextChanged
- * @property {(TextChangedNotifyCallback|null)} searchTextChanged The searchTextChanged
- * @property {(VoidNotifyCallback|null)} navigateBack The searchTextChanged
- * @property {(VoidNotifyCallback|null)} addNew The searchTextChanged
- * @property {(VoidNotifyCallback|null)} save The searchTextChanged
+ * @property {TextMethod} setCaption The setCaption method
+ * @property {?TextChangedNotifyCallback} searchTextChanged The searchTextChanged method
+ * @property {?VoidNotifyCallback} navigateBack The navigateBack method
+ * @property {?VoidNotifyCallback} addNew The addNew method
+ * @property {?VoidNotifyCallback} save The save method
  */
 
 /**
  * Custom useAppBar hook
  * @param {string} [initialCaption=""]
- * @param {(TextChangedNotifyCallback|null)} [onSearchTextChanged=null] Search text changed
- * @param {(VoidNotifyCallback|null)} [onNavigateBack=null] Navigate back
- * @param {(VoidNotifyCallback|null)} [onAddNew=null] Add new
- * @param {(VoidNotifyCallback|null)} [onSave=null] Save
+ * @param {?TextChangedNotifyCallback} [onSearchTextChanged=null] Search text changed
+ * @param {?VoidNotifyCallback} [onNavigateBack=null] Navigate back
+ * @param {?VoidNotifyCallback} [onAddNew=null] Add new
+ * @param {?VoidNotifyCallback} [onSave=null] Save
  * @return {AppBarHook} The AppBarHook
  */
 const useAppBar = (initialCaption, onSearchTextChanged, onNavigateBack, onAddNew, onSave) => {
+    /** @type {[string, import('react').Dispatch<import('react').SetStateAction<string>]} */
     const [caption, setCaptionCore] = useState(initialCaption ?? 'Blogs');
-    const [searchTextChanged, setSearchTextChangedCore] = useState(null);
-    const [navigateBack, setNavigateBackCore] = useState(null);
-    const [addNew, setAddNewCore] = useState(null);
-    const [save, setSaveCore] = useState(null);
+
+    /** @type {[?TextMethod, import('react').Dispatch<import('react').SetStateAction<?TextMethod>]} */
+    const [searchTextChanged, setSearchTextChangedCore] = useState(/** @type {?TextMethod} */(null));
+
+    /** @type {[?VoidNotifyCallback, import('react').Dispatch<import('react').SetStateAction<?VoidNotifyCallback>]} */
+    const [navigateBack, setNavigateBackCore] = useState(/** @type {?VoidNotifyCallback} */(null));
+
+    /** @type {[?VoidNotifyCallback, import('react').Dispatch<import('react').SetStateAction<?VoidNotifyCallback>]} */
+    const [addNew, setAddNewCore] = useState(/** @type {?VoidNotifyCallback} */(null));
+
+    /** @type {[?VoidNotifyCallback, import('react').Dispatch<import('react').SetStateAction<?VoidNotifyCallback>]} */
+    const [save, setSaveCore] = useState(/** @type {?VoidNotifyCallback} */(null));
 
     const handleSetCaptionChanged = (value) => setCaptionCore(value);
     const handleSetSearchTextChanged = (value) => setSearchTextChangedCore(value);

@@ -1,5 +1,12 @@
+// @ts-check
 import {apiUrl} from '../config';
+import SearchResult from '../model/SearchResult';
 
+/**
+ * Searches Posts that contains the {@link text}
+ * @param {string} text
+ * @return {Promise<SearchResult[]>}
+ */
 const search = async (text) => {
     const url = `${apiUrl}/search`;
     const jsonBody = {
@@ -15,7 +22,8 @@ const search = async (text) => {
     if (res.status !== 200) {
         throw new Error(`Failed to get posts.`);
     }
-    return resBodyJson;
+    const searchResults = resBodyJson.map((i) => new SearchResult(i._id, i._source.title, i.highlight.content));
+    return searchResults;
 };
 
 export default search;

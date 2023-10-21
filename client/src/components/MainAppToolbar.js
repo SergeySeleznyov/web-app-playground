@@ -49,6 +49,11 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
     },
 }));
 
+/**
+ * The MainAppToolbar component
+ * @Component
+ * @return {React.ReactElement}
+ */
 const MainAppToolbar = () => {
     const [searchText, setSearchText] = useState('');
     const {caption, searchTextChanged, navigateBack, addNew, save} = useAppBar();

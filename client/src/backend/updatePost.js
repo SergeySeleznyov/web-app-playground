@@ -1,5 +1,13 @@
+// @ts-check
 import {apiUrl} from '../config';
 
+/**
+ * Updates post by its id.
+ * @param {string} id - The id of the post to load.
+ * @param {string} title - The title of the post to load.
+ * @param {string} content - The content of the post to load.
+ * @return {Promise<void>}
+ */
 const updatePost = async (id, title, content) => {
     const url = `${apiUrl}/post`;
     const jsonBody = {

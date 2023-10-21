@@ -47,16 +47,16 @@ const setSave = (value) => event.emit(eventNames.save, value);
  */
 
 /**
- * Returns state of the AppBar
- * @param {string} [_caption=""]
- * @param {(TextChangedNotifyCallback|null)} [_onSearchTextChanged=null] Search text changed
- * @param {(VoidNotifyCallback|null)} [_navigateBack=null] Navigate back
- * @param {(VoidNotifyCallback|null)} [_addNew=null] Add new
- * @param {(VoidNotifyCallback|null)} [_save=null] Save
+ * Custom useAppBar hook
+ * @param {string} [initialCaption=""]
+ * @param {(TextChangedNotifyCallback|null)} [onSearchTextChanged=null] Search text changed
+ * @param {(VoidNotifyCallback|null)} [onNavigateBack=null] Navigate back
+ * @param {(VoidNotifyCallback|null)} [onAddNew=null] Add new
+ * @param {(VoidNotifyCallback|null)} [onSave=null] Save
  * @return {AppBarHook} The AppBarHook
  */
-const useAppBar = (_caption, _onSearchTextChanged, _navigateBack, _addNew, _save) => {
-    const [caption, setCaptionCore] = useState(_caption ?? 'Blogs');
+const useAppBar = (initialCaption, onSearchTextChanged, onNavigateBack, onAddNew, onSave) => {
+    const [caption, setCaptionCore] = useState(initialCaption ?? 'Blogs');
     const [searchTextChanged, setSearchTextChangedCore] = useState(null);
     const [navigateBack, setNavigateBackCore] = useState(null);
     const [addNew, setAddNewCore] = useState(null);
@@ -75,11 +75,11 @@ const useAppBar = (_caption, _onSearchTextChanged, _navigateBack, _addNew, _save
         event.on(eventNames.addNew, handleAddNewChanged);
         event.on(eventNames.save, handleSaveChanged);
 
-        setCaption(_caption);
-        setSearchTextChanged(() => _onSearchTextChanged);
-        setNavigateBack(() => _navigateBack);
-        setAddNew(() => _addNew);
-        setSave(() => _save);
+        setCaption(initialCaption);
+        setSearchTextChanged(() => onSearchTextChanged);
+        setNavigateBack(() => onNavigateBack);
+        setAddNew(() => onAddNew);
+        setSave(() => onSave);
 
         return () => {
             event.removeListener(eventNames.setCaption, handleSetCaptionChanged);

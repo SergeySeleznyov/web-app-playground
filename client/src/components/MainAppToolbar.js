@@ -1,3 +1,4 @@
+// @ts-check
 import React, {useState} from 'react';
 import {AppBar, Box, Divider, IconButton, Toolbar, Typography} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -52,14 +53,17 @@ const MainAppToolbar = () => {
     const [searchText, setSearchText] = useState('');
     const {caption, searchTextChanged, navigateBack, addNew, save} = useAppBar();
 
-    const onNavigateBack = () => {
-        navigateBack();
+    const handleNavigateBackClick = () => {
+        navigateBack?.();
         onSearchTextValueChanged('');
     };
-    const onSearchTextChanged = (e) => {
+    const handleSearchTextChanged = (e) => {
         const value = e.target.value;
         onSearchTextValueChanged(value);
     };
+    const handleAddNewClick = () => addNew?.();
+    const handleSaveClick = () => save?.();
+
     const onSearchTextValueChanged = (value) => {
         setSearchText(value);
         if (searchTextChanged) {
@@ -76,7 +80,7 @@ const MainAppToolbar = () => {
                         edge="start"
                         color="inherit"
                         aria-label="back"
-                        onClick={onNavigateBack}
+                        onClick={handleNavigateBackClick}
                     >
                         <ArrowBackIcon />
                     </IconButton> : null}
@@ -95,7 +99,7 @@ const MainAppToolbar = () => {
                         placeholder="Search…"
                         inputProps={{'aria-label': 'search'}}
                         value={searchText}
-                        onChange={onSearchTextChanged}
+                        onChange={handleSearchTextChanged}
                     />
                 </Search> : null}
 
@@ -109,7 +113,7 @@ const MainAppToolbar = () => {
                         sx={{
                             color: 'white',
                         }}
-                        onClick={addNew}
+                        onClick={handleAddNewClick}
                     >
                         <AddCircleOutlineIcon />
                     </IconButton> : null}
@@ -119,7 +123,7 @@ const MainAppToolbar = () => {
                         sx={{
                             color: 'white',
                         }}
-                        onClick={save}>
+                        onClick={handleSaveClick}>
                         <SaveIcon />
                     </IconButton> : null}
 

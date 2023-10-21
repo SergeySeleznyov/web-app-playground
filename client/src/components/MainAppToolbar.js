@@ -10,6 +10,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import useAppBar from '../hooks/useAppBar';
 
 // TODO Apply theme
+// TODO Use Box instead of div?
+// TODO Use classnames and labels
 const Search = styled('div')(({theme}) => ({
     'position': 'relative',
     'borderRadius': theme.shape.borderRadius,

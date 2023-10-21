@@ -62,18 +62,18 @@ const useAppBar = (_caption, _onSearchTextChanged, _navigateBack, _addNew, _save
     const [addNew, setAddNewCore] = useState(null);
     const [save, setSaveCore] = useState(null);
 
-    const OnSetCaptionChanged = (value) => setCaptionCore(value);
-    const OnSetSearchTextChanged = (value) => setSearchTextChangedCore(value);
-    const OnNavigateBackChanged = (value) => setNavigateBackCore(value);
-    const OnAddNewChanged = (value) => setAddNewCore(value);
-    const OnSaveChanged = (value) => setSaveCore(value);
+    const handleSetCaptionChanged = (value) => setCaptionCore(value);
+    const handleSetSearchTextChanged = (value) => setSearchTextChangedCore(value);
+    const handleNavigateBackChanged = (value) => setNavigateBackCore(value);
+    const handleAddNewChanged = (value) => setAddNewCore(value);
+    const handleSaveChanged = (value) => setSaveCore(value);
 
     useEffect(() => {
-        event.on(eventNames.setCaption, OnSetCaptionChanged);
-        event.on(eventNames.setSearchTextChanged, OnSetSearchTextChanged);
-        event.on(eventNames.setNavigateBack, OnNavigateBackChanged);
-        event.on(eventNames.addNew, OnAddNewChanged);
-        event.on(eventNames.save, OnSaveChanged);
+        event.on(eventNames.setCaption, handleSetCaptionChanged);
+        event.on(eventNames.setSearchTextChanged, handleSetSearchTextChanged);
+        event.on(eventNames.setNavigateBack, handleNavigateBackChanged);
+        event.on(eventNames.addNew, handleAddNewChanged);
+        event.on(eventNames.save, handleSaveChanged);
 
         setCaption(_caption);
         setSearchTextChanged(() => _onSearchTextChanged);
@@ -82,11 +82,11 @@ const useAppBar = (_caption, _onSearchTextChanged, _navigateBack, _addNew, _save
         setSave(() => _save);
 
         return () => {
-            event.removeListener(eventNames.setCaption, OnSetCaptionChanged);
-            event.removeListener(eventNames.setSearchTextChanged, OnSetSearchTextChanged);
-            event.removeListener(eventNames.setNavigateBack, OnNavigateBackChanged);
-            event.removeListener(eventNames.addNew, OnAddNewChanged);
-            event.removeListener(eventNames.save, OnSaveChanged);
+            event.removeListener(eventNames.setCaption, handleSetCaptionChanged);
+            event.removeListener(eventNames.setSearchTextChanged, handleSetSearchTextChanged);
+            event.removeListener(eventNames.setNavigateBack, handleNavigateBackChanged);
+            event.removeListener(eventNames.addNew, handleAddNewChanged);
+            event.removeListener(eventNames.save, handleSaveChanged);
         };
     }, []);
 

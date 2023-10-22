@@ -1,16 +1,8 @@
 // @ts-check
 import React from 'react';
 import Box from '@mui/material/Box';
-import {LinearProgress, Typography, css, styled} from '@mui/material';
-
-// TODO extract CenterBox component
-const CenterBox = styled(Box)(({theme}) => css({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    m: 4,
-}));
+import {LinearProgress, Typography} from '@mui/material';
+import CenterBox from './CenterBox';
 
 /**
  * The Loading component

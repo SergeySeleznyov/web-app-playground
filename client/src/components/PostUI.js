@@ -70,7 +70,7 @@ const PostViewSwither = () => {
     };
     const doAddNew = async () => {
         closePost();
-        setEditPostID(null);
+        setEditPostID('');
     };
     const doSavePost = async (postId, postTitle, postContent) => {
         closePost();

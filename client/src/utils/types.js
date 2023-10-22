@@ -7,6 +7,7 @@
  * @exports TextMethod
  * @exports TextCallback
  * @exports VoidNotifyCallback
+ * @exports PostSaveCallback
  */
 
 /**
@@ -25,6 +26,14 @@
  * The method with string arg
  * @callback TextCallback
  * @param {string} value
+ */
+
+/**
+ * The method with string arg
+ * @callback PostSaveCallback
+ * @param {string} id
+ * @param {string} title
+ * @param {string} content
  */
 
 /**

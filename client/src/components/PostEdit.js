@@ -10,13 +10,25 @@ import useAppBar from '../hooks/useAppBar';
 import PropTypes from 'prop-types';
 import Post from '../model/Post';
 
-// TODO use jsdocs
-const PostEdit = ({id, navigateBack, onSave}) => {
-    /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>]} */
-    const [title, setTitle] = /** @type {?string} */ useState(/** @type {?string} */(null));
+/** @typedef {import('../utils/types').VoidNotifyCallback} VoidNotifyCallback */
+/** @typedef {import('../utils/types').TextCallback} TextCallback */
+/** @typedef {import('../utils/types').PostSaveCallback} PostSaveCallback */
 
-    /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>]} */
-    const [content, setContent] = useState(/** @type {?string} */(null));
+/**
+ * View of post editing
+ * @Component
+ * @param {Object} params - params
+ * @param {string} params.id The id of the {@link Post} to read
+ * @param {VoidNotifyCallback} params.navigateBack The navigateBack
+ * @param {PostSaveCallback} params.onSave The onSave
+  * @return {React.ReactElement}
+*/
+const PostEdit = ({id, navigateBack, onSave}) => {
+    /** @type {[string, import('react').Dispatch<import('react').SetStateAction<string>>]} */
+    const [title, setTitle] = /** @type {?string} */ useState(/** @type {string} */(''));
+
+    /** @type {[string, import('react').Dispatch<import('react').SetStateAction<string>>]} */
+    const [content, setContent] = useState(/** @type {string} */(''));
 
     const isNewPost = id === '';
     const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;

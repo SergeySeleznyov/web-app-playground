@@ -11,6 +11,8 @@ import updatePost from '../backend/updatePost';
 import SearchResults from './SearchResults';
 import MainAppToolbar from './MainAppToolbar';
 
+/** @typedef {import('../model/PostInfo').default} PostInfo */
+
 /**
  * The general post UI component
  * @Component
@@ -29,9 +31,8 @@ const PostUI = () => (
  * @return {React.ReactElement}
 */
 const PostViewSwither = () => {
-    // TODO use jsdocs
-    // TODO create postInfos class
-    const [postInfos, setPostInfos] = useState(null);
+    /** @type {[?PostInfo[], import('react').Dispatch<import('react').SetStateAction<?PostInfo[]>>]} */
+    const [postInfos, setPostInfos] = useState(/** @type {?PostInfo[]} */(null));
     /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>>]} */
     const [readPostID, setReadPostID] = useState(/** @type {?string} */(null));
     /** @type {[?string, import('react').Dispatch<import('react').SetStateAction<?string>>]} */

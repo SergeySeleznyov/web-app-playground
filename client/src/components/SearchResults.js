@@ -39,7 +39,9 @@ const SearchResults = ({searchText, onSearchTextChanged, navigateBack}) => {
     }, [searchText]);
 
     // TODO Apply theme
-    const StyledCard = styled(Card)(({theme}) => css({
+    const SearchResultCard = styled(Card, {
+        name: 'search-result-card',
+    })(({theme}) => css({
         '& em': {
             fontStyle: 'italic',
             fontWeight: 'bold',
@@ -55,13 +57,12 @@ const SearchResults = ({searchText, onSearchTextChanged, navigateBack}) => {
                 '& > :not(style)': {
                     m: 1,
                     width: '100%',
-
                 },
             }}
         >
             {
                 searchResults?.map((searchResult, index) =>
-                    <StyledCard key={searchResult.id}>
+                    <SearchResultCard key={searchResult.id}>
                         <CardHeader title={searchResult.title}>
                         </CardHeader>
                         <CardContent
@@ -70,7 +71,7 @@ const SearchResults = ({searchText, onSearchTextChanged, navigateBack}) => {
                             }}
                         >
                         </CardContent >
-                    </StyledCard>,
+                    </SearchResultCard>,
                 )
             }
         </Box >

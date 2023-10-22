@@ -10,9 +10,10 @@ import SaveIcon from '@mui/icons-material/Save';
 import useAppBar from '../hooks/useAppBar';
 
 // TODO Apply theme
-// TODO Use Box instead of div?
 // TODO Use classnames and labels
-const Search = styled('div')(({theme}) => ({
+const Search = styled(Box, {
+    name: 'search-box',
+})(({theme}) => ({
     'position': 'relative',
     'borderRadius': theme.shape.borderRadius,
     'backgroundColor': alpha(theme.palette.common.white, 0.15),
@@ -28,7 +29,9 @@ const Search = styled('div')(({theme}) => ({
     },
 }));
 
-const SearchIconWrapper = styled('div')(({theme}) => ({
+const SearchIconWrapper = styled(Box, {
+    name: 'search-box-wrapper',
+})(({theme}) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -38,7 +41,9 @@ const SearchIconWrapper = styled('div')(({theme}) => ({
     justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({theme}) => ({
+const StyledInputBase = styled(InputBase, {
+    name: 'search-box-InputBase',
+})(({theme}) => ({
     'color': 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),

@@ -1,7 +1,11 @@
 // @ts-check
 import {apiUrl} from '../config';
+import PostInfo from '../model/PostInfo';
 
-// TODO jsdoc
+/**
+ * Loads infos about all the posts.
+  * @return {Promise<PostInfo[]>}
+ */
 const getPostInfos = async () => {
     const url = `${apiUrl}/posts`;
     const res = await fetch(url);
@@ -9,7 +13,8 @@ const getPostInfos = async () => {
     if (res.status !== 200) {
         throw new Error(`Failed to get posts.`);
     }
-    return resBodyJson;
+    const postInfos = resBodyJson.map((i) => new PostInfo(i.id, i.title));
+    return postInfos;
 };
 
 export default getPostInfos;

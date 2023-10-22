@@ -1,7 +1,6 @@
 // @ts-check
 import {apiUrl} from '../config';
-
-/** @typedef {import('../model/Post').default} Post */
+import Post from '../model/Post';
 
 /**
  * Loads post by its id.
@@ -15,7 +14,8 @@ const getPost = async (id) => {
     if (res.status !== 200) {
         throw new Error(`Failed to send post.`);
     }
-    return resBodyJson;
+    const post = new Post(resBodyJson.id, resBodyJson.title, resBodyJson.content);
+    return post;
 };
 
 export default getPost;

@@ -8,9 +8,9 @@ import InputBase from '@mui/material/InputBase';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from '@mui/icons-material/Save';
 import useAppBar from '../hooks/useAppBar';
+import {ThemeSwitcher} from './ThemeSwitcher';
 
 // TODO Apply theme
-// TODO Use classnames and labels
 const Search = styled(Box, {
     name: 'search-box',
 })(({theme}) => ({
@@ -138,6 +138,8 @@ const MainAppToolbar = () => {
                         onClick={handleSaveClick}>
                         <SaveIcon />
                     </IconButton> : null}
+
+                    <ThemeSwitcher />
 
                 </Box>
             </Toolbar>

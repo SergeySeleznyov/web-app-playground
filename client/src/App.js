@@ -10,8 +10,8 @@ import theme from './theme';
 function App() {
     return (
         <div className="App">
-            <CssBaseline />
             <ThemeProvider theme={theme}>
+                <CssBaseline />
                 <PostUI />
             </ThemeProvider>
         </div>

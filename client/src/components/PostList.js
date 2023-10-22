@@ -10,7 +10,23 @@ import PropTypes from 'prop-types';
 
 const AppBarCaption = 'Blog posts';
 
-// TODO use jsdocs
+/** @typedef {import('../model/PostInfo').default} PostInfo */
+/** @typedef {import('../model/Post').default} Post */
+/** @typedef {import('../utils/types').TextCallback} TextCallback */
+/** @typedef {import('../utils/types').VoidNotifyCallback} VoidNotifyCallback */
+
+/**
+ * View of post editing
+ * @Component
+ * @param {Object} params - params
+ * @param {PostInfo[]} params.postInfos The array of the {@link PostInfo} to list.
+ * @param {TextCallback} params.onOpen The onOpen callback to open a {@link Post} specified by the id argument.
+ * @param {TextCallback} params.onEdit The onEdit callback to edit a {@link Post} specified by the id argument.
+ * @param {TextCallback} params.onDelete The onDelete callback to delete a {@link Post} specified by the id argument.
+ * @param {VoidNotifyCallback} params.addNew The addNew callback to open editing a new {@link Post}.
+ * @param {TextCallback} params.onSearchTextChanged The onSearchTextChanged callback to search a {@link Post}.
+  * @return {React.ReactElement}
+*/
 const PostList = ({postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChanged}) => {
     useAppBar(AppBarCaption, onSearchTextChanged, null, addNew);
 

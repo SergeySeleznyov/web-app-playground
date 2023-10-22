@@ -19,7 +19,7 @@ import PropTypes from 'prop-types';
  * View of post reading
  * @Component
  * @param {Object} params - params
- * @param {string} params.id The id of the Post to read
+ * @param {string} params.id The id of the {@link Post} to read
  * @param {VoidNotifyCallback} params.navigateBack The navigateBack
  * @param {TextCallback} params.onEdit The onEdit
  * @param {TextCallback} params.onDelete TonDelete

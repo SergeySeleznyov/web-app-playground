@@ -81,7 +81,7 @@ const PostList = ({postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChan
 };
 
 PostList.propTypes = {
-    postInfos: PropTypes.object.isRequired,
+    postInfos: PropTypes.array.isRequired,
     onOpen: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,

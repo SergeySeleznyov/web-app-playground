@@ -1,26 +1,13 @@
 // @ts-check
 /** @module Post */
 
-/** Class representing a post.*/
-class Post {
-    #id = /** @type {string} */ ('');
-    /**
-     * Get the id of the post.
-     * @return {string} The id of the post.
-     */
-    get id() {
-        return this.#id;
-    }
+import PostInfo from './PostInfo';
 
-    #title = /** @type {string} */ ('');
-    /**
-     * Get the title of the post.
-     * @return {string} The title of the post.
-     */
-    get title() {
-        return this.#title;
-    }
-
+/**
+ * Class representing a post.
+  @extends PostInfo
+ */
+class Post extends PostInfo {
     #content = /** @type {string} */ ('');
     /**
      * Get the content of the post.
@@ -38,8 +25,7 @@ class Post {
      * @param {string} content - The content of the post.
      */
     constructor(id = '', title = '', content = '') {
-        this.#id = id;
-        this.#title = title;
+        super(id, title);
         this.#content = content;
     }
 }

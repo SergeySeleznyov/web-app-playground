@@ -2,7 +2,6 @@
 import {apiUrl} from '../config';
 
 // TODO jsdoc
-// TODO create type PostInfo and PostInfos
 const getPostInfos = async () => {
     const url = `${apiUrl}/posts`;
     const res = await fetch(url);

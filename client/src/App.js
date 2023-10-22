@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import PostUI from './components/PostUI';
 import {CssBaseline, ThemeProvider} from '@mui/material';
-import theme from './theme';
+import theme from './themeA';
 
 /** Main App component.
 * @return {Component} Render asd asd

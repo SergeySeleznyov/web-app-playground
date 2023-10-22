@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import PostUI from './components/PostUI';
+import {CssBaseline, ThemeProvider} from '@mui/material';
+import theme from './theme';
 
 /** Main App component.
 * @return {Component} Render asd asd
@@ -8,7 +10,10 @@ import PostUI from './components/PostUI';
 function App() {
     return (
         <div className="App">
-            <PostUI></PostUI>
+            <CssBaseline />
+            <ThemeProvider theme={theme}>
+                <PostUI />
+            </ThemeProvider>
         </div>
     );
 }

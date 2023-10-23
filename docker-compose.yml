@@ -2,6 +2,26 @@ version: "3.7"
 
 services:
 
+  elasticsearch:
+    # https://hub.docker.com/_/elasticsearch/
+    image: elasticsearch:8.9.2
+    container_name: elasticsearch
+    hostname: elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false # Disable ssl requirement for requests
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.4  
+        aliases:
+          - elasticsearch
+
   mongo:
     # https://hub.docker.com/_/mongo
     image: mongo:6.0.8

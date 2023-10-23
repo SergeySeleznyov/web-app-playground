@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+
+  mongo:
+    # https://hub.docker.com/_/mongo
+    image: mongo:6.0.8
+    container_name: mongo
+    hostname: mongo
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin # TODO Change it
+      - MONGO_INITDB_ROOT_PASSWORD=pass  # TODO Change it
+      - MONGO_INITDB_DATABASE=auth
+    ports:
+      - 27017:27017
+    volumes:
+    - ./mongo-data:/data/db
+    - ./mongo-config:/data/configdb # use form the metadata for a sharded cluster
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.2  
+        aliases:
+          - mongo
+
+  mongo-express:
+    profiles:
+      - dev
+    # https://hub.docker.com/_/mongo-express
+    depends_on:
+      - mongo
+    image: mongo-express:1.0.0-alpha.4
+    container_name: mongo-express
+    hostname: mongo-express
+    restart: unless-stopped # Required because it may restart several times before connect to ready database
+    ports:
+      - 8720:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin # TODO Change it
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass  # TODO Change it
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:pass@mongo:35.10.0.2/  # TODO Change it
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.3      
+        aliases:
+          - mongo-express
+
+networks:
+  network_35_10_0_0_16:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 35.10.0.0/16

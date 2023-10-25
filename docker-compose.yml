@@ -2,6 +2,26 @@ version: "3.7"
 
 services:
 
+  rabbitmq:
+    # image: rabbitmq:3.1
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: unless-stopped
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+    ports:
+      - 5672:5672
+      - 15672:15672 # For rabbitmq-management only
+    volumes:
+      - ./rabbitmq-data/:/var/lib/rabbitmq/mnesia/'
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.5
+        aliases:
+          - rabbitmq
+
   elasticsearch:
     # https://hub.docker.com/_/elasticsearch/
     image: elasticsearch:8.9.2

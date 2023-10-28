@@ -15,6 +15,8 @@ const AppBarCaption = 'Blog posts';
 /** @typedef {import('../utils/types').TextCallback} TextCallback */
 /** @typedef {import('../utils/types').VoidNotifyCallback} VoidNotifyCallback */
 
+// TODO rename addNew=> onAddNew
+
 /**
  * View of post editing
  * @Component

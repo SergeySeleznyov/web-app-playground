@@ -39,7 +39,7 @@ const search = async (text) => {
     return response;
 };
 const searchQuery = async (query) => {
-    const document = {
+    const searchRequest = {
         index: indexName,
         allow_partial_search_results: true,
         query: query,
@@ -68,7 +68,7 @@ const searchQuery = async (query) => {
 
         },
     };
-    const response = await client.search(document);
+    const response = await client.search(searchRequest);
     return response?.hits?.hits.map((i) => {
         i._source.content = ''; return i;
     });

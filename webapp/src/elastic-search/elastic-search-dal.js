@@ -39,6 +39,7 @@ const getAllIndexedDocumentInfos = async () => {
     return result;
 };
 const getIndexedDocumentInfos = async (query) => {
+    const MAX_SEARCH_RESULT_SIZE = '10000';
     const searchRequest = {
         index: indexName,
         query: query,
@@ -46,6 +47,7 @@ const getIndexedDocumentInfos = async (query) => {
             'id',
             'title',
         ],
+        size: MAX_SEARCH_RESULT_SIZE,
     };
     const response = await client.search(searchRequest);
     const result = response?.hits?.hits.map((res) => ({

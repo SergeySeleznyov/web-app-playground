@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase, {
  */
 const MainAppToolbar = () => {
     const [searchText, setSearchText] = useState('');
-    const {caption, searchTextChanged, navigateBack, addNew, save} = useAppBar();
+    const {caption, searchTextChanged, navigateBack, addNew, onSave, saveVisible} = useAppBar();
 
     const handleNavigateBackClick = () => {
         navigateBack?.();
@@ -74,7 +74,7 @@ const MainAppToolbar = () => {
         onSearchTextValueChanged(value);
     };
     const handleAddNewClick = () => addNew?.();
-    const handleSaveClick = () => save?.();
+    const handleSaveClick = () => onSave?.();
 
     const onSearchTextValueChanged = (value) => {
         setSearchText(value);
@@ -130,7 +130,7 @@ const MainAppToolbar = () => {
                         <AddCircleOutlineIcon />
                     </IconButton> : null}
 
-                    {save ? <IconButton
+                    {saveVisible ? <IconButton
                         aria-label="save"
                         sx={{
                             color: 'white',

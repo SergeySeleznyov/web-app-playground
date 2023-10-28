@@ -5,7 +5,6 @@ import getPost from '../backend/getPost';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import {TextField, Toolbar} from '@mui/material';
-import sleep from '../utils/sleep';
 import useAppBar from '../hooks/useAppBar';
 import PropTypes from 'prop-types';
 import Post from '../model/Post';
@@ -45,7 +44,6 @@ const PostEdit = ({id, navigateBack, onSave}) => {
                     new Post() :
                     await getPost(id);
 
-                await sleep(1000);
                 setTitle(post.title);
                 setContent(post.content);
             }

@@ -9,6 +9,10 @@ const {
     getPost,
     setPost,
     deletePost} = require('../controllers/posts');
+const {sendMessage} = require('../app-rabbitmq');
+const RabbitMQMessage = require('../model/RabbitMQMessage');
+const RabbitMQCommand = require('../model/RabbitMQCommand');
+const {elasticsearch} = require('../config');
 
 apiRoute.get('/posts', async (req, res) => {
     try {
@@ -18,9 +22,14 @@ apiRoute.get('/posts', async (req, res) => {
         } else {
             res.sendStatus(404);
         }
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
+    } catch (innerError) {
+        const errorMessage = `Error during a list of Posts getting: ${innerError.message}`;
+        const error = new Error(errorMessage, {cause: innerError});
+        console.error(error.message);
+
+        // res.sendStatus(500);
+        res.status(500);
+        res.send(errorMessage);
     }
 });
 
@@ -34,9 +43,14 @@ apiRoute.get('/post/:id', async (req, res) => {
         } else {
             res.sendStatus(404);
         }
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
+    } catch (innerError) {
+        const errorMessage = `Error during a Post getting: ${innerError.message}`;
+        const error = new Error(errorMessage, {cause: innerError});
+        console.error(error.message);
+
+        // res.sendStatus(500);
+        res.status(500);
+        res.send(errorMessage);
     }
 });
 
@@ -50,31 +64,60 @@ apiRoute.post('/post', async (req, res) => {
 
         await setPost(uniqueId, title, content);
 
-        await index(uniqueId, title, content);
+        if (elasticsearch.enable) {
+            if (elasticsearch.local) {
+                await index(uniqueId, title, content);
+            } else {
+                const message = new RabbitMQMessage(id, RabbitMQCommand.INDEX);
+                await sendMessage(message);
+            }
+        }
 
         res.sendStatus(200);
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
+    } catch (innerError) {
+        const errorMessage = `Error during a Post posting: ${innerError.message}`;
+        const error = new Error(errorMessage, {cause: innerError});
+        console.error(error.message);
+
+        // res.sendStatus(500);
+        res.status(500);
+        res.send(errorMessage);
     }
 });
 
 apiRoute.delete('/post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
+        if (!postId) {
+            throw new Error(`Post id is not specified`);
+        } // TODO look for validation
 
         await deletePost(postId);
 
+        if (elasticsearch.enable) {
+            if (elasticsearch.local) {
+                // await index(uniqueId, title, content);
+                // TODO implement immediate index delete
+            } else {
+                const message = new RabbitMQMessage(postId, RabbitMQCommand.DELETE);
+                await sendMessage(message);
+            }
+        }
+
         res.sendStatus(200);
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
+    } catch (innerError) {
+        const errorMessage = `Error during a Post deleting: ${innerError.message}`;
+        const error = new Error(errorMessage, {cause: innerError});
+        console.error(error.message);
+
+        // res.sendStatus(500);
+        res.status(500);
+        res.send(errorMessage);
     }
 });
 
 apiRoute.post('/search/', async (req, res) => {
     try {
-        // const text = req.params.text; // GET
         const text = req.body.text;
 
         const searchResult = await search(text);
@@ -83,10 +126,13 @@ apiRoute.post('/search/', async (req, res) => {
         }
 
         res.send(searchResult);
-    } catch (err) {
-        console.log(err);
+    } catch (innerError) {
+        const errorMessage = `Error during a searching: ${innerError.message}`;
+        const error = new Error(errorMessage, {cause: innerError});
+        console.error(error.message);
+
         res.status(500);
-        res.send(err.message);
+        res.send(errorMessage);
     }
 });
 

@@ -85,6 +85,7 @@ const useAppBar = (initialCaption, onSearchTextChanged, onNavigateBack, onAddNew
             event.removeListener(eventNames.addNew, handleAddNewChanged);
             event.removeListener(eventNames.save, handleSaveChanged);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return {caption, setCaption, searchTextChanged, navigateBack, addNew, save};

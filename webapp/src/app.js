@@ -2,6 +2,7 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const app = new express();
 const apiRoute = require('./routes/api-routes');
+const adminRoute = require('./routes/api-admin-routes');
 const cors = require('cors');
 const {connectToDataBase, disconnectFromDatabse} = require('./app-mongodb');
 const config = require('./config');
@@ -13,6 +14,7 @@ app.use(express.static('html'));
 
 app.use(express.json({limit: '50mb'}));
 app.use('/api', apiRoute);
+app.use('/admin', adminRoute);
 
 (async () => {
     try {

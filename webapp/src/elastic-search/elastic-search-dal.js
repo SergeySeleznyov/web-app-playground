@@ -30,6 +30,30 @@ const index = async (id, title, content) => {
     return response;
 };
 
+const getAllIndexedDocumentInfos = async () => {
+    const queryAllDocuments = {
+        match_all: {},
+    };
+    const result = await getIndexedDocumentInfos(queryAllDocuments);
+    console.log(` Elastic Search count response=${JSON.stringify(result)}`);
+    return result;
+};
+const getIndexedDocumentInfos = async (query) => {
+    const searchRequest = {
+        index: indexName,
+        query: query,
+        fields: [
+            'id',
+            'title',
+        ],
+    };
+    const response = await client.search(searchRequest);
+    const result = response?.hits?.hits.map((res) => ({
+        'id': res._id,
+        'title': res.fields['title'].join(','),
+    }));
+    return result;
+};
 const search = async (text) => {
     const query = {
         // match_phrase: { content: text } // Nearly whole phrase
@@ -73,4 +97,5 @@ const searchQuery = async (query) => {
 module.exports = {
     index,
     search,
+    getAllIndexedDocumentInfos,
 };

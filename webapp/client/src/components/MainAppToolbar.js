@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase, {
  */
 const MainAppToolbar = () => {
     const [searchText, setSearchText] = useState('');
-    const {caption, searchTextChanged, navigateBack, addNew, onSave, saveVisible} = useAppBar();
+    const {caption, searchTextChanged, navigateBack, addNew, handleSave, saveVisible} = useAppBar();
 
     const handleNavigateBackClick = () => {
         navigateBack?.();
@@ -74,7 +74,7 @@ const MainAppToolbar = () => {
         onSearchTextValueChanged(value);
     };
     const handleAddNewClick = () => addNew?.();
-    const handleSaveClick = () => onSave?.();
+    const handleSaveClick = () => handleSave?.();
 
     const onSearchTextValueChanged = (value) => {
         setSearchText(value);

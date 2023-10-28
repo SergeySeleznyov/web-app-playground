@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.static('html'));
 
 app.use(express.json({limit: '50mb'}));
+// TODO /api/public & /api/admin/ ?
 app.use('/api', apiRoute);
 app.use('/admin', adminRoute);
 

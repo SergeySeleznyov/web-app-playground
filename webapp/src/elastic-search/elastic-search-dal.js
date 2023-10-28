@@ -43,10 +43,6 @@ const searchQuery = async (query) => {
         index: indexName,
         allow_partial_search_results: true,
         query: query,
-        // query: {
-        //     // match_phrase: { content: text } // Nearly whole phrase
-        //     match: {content: text},
-        // },
         // fields: [
         //     "title^1",
         //     "content^2"

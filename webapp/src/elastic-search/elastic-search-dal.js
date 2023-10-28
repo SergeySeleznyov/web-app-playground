@@ -35,7 +35,6 @@ const getAllIndexedDocumentInfos = async () => {
         match_all: {},
     };
     const result = await getIndexedDocumentInfos(queryAllDocuments);
-    console.log(` Elastic Search count response=${JSON.stringify(result)}`);
     return result;
 };
 const getIndexedDocumentInfos = async (query) => {
@@ -52,7 +51,7 @@ const getIndexedDocumentInfos = async (query) => {
     const response = await client.search(searchRequest);
     const result = response?.hits?.hits.map((res) => ({
         'id': res._id,
-        'title': res.fields['title'].join(','),
+        'title': res.fields?.['title']?.join(','),
     }));
     return result;
 };
@@ -96,8 +95,31 @@ const searchQuery = async (query) => {
     });
 };
 
+const deleteDocument = async (id) => {
+    const deleteRequest = {
+        index: indexName,
+        id: id,
+    };
+
+    let result = 'Not executed.';
+    try {
+        const response = await client.delete(deleteRequest);
+        result = response.result;
+    } catch (innerError) {
+        console.error(innerError);
+        const innerMessage = JSON.parse(innerError.message);
+        const innerResult = innerMessage.result;
+        const error = new Error(innerResult, {cause: innerError});
+        throw error;
+    }
+
+    console.log(`Indexed document (id=${id}) deleting: ${JSON.stringify(result)}`);
+    return result;
+};
+
 module.exports = {
     index,
     search,
     getAllIndexedDocumentInfos,
+    deleteDocument,
 };

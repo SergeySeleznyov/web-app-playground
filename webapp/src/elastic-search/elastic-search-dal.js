@@ -31,13 +31,22 @@ const index = async (id, title, content) => {
 };
 
 const search = async (text) => {
+    const query = {
+        // match_phrase: { content: text } // Nearly whole phrase
+        match: {content: text},
+    };
+    const response = await searchQuery(query);
+    return response;
+};
+const searchQuery = async (query) => {
     const document = {
         index: indexName,
         allow_partial_search_results: true,
-        query: {
-            // match_phrase: { content: text } // Nearly whole phrase
-            match: {content: text},
-        },
+        query: query,
+        // query: {
+        //     // match_phrase: { content: text } // Nearly whole phrase
+        //     match: {content: text},
+        // },
         // fields: [
         //     "title^1",
         //     "content^2"

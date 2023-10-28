@@ -1,6 +1,6 @@
 
 const express = require('express');
-const {index, search} = require('../elastic-search/elastic-search-dal');
+const {index, search, deleteDocument: esDeleteDocument} = require('../elastic-search/elastic-search-dal');
 const {nanoid} = require('nanoid');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();
@@ -96,8 +96,7 @@ apiRoute.delete('/post/:id', async (req, res) => {
 
         if (elasticsearch.enable) {
             if (elasticsearch.local) {
-                // await index(uniqueId, title, content);
-                // TODO implement immediate index delete
+                await esDeleteDocument(postId);
             } else {
                 const message = new RabbitMQMessage(postId, RabbitMQCommand.DELETE);
                 await sendMessage(message);

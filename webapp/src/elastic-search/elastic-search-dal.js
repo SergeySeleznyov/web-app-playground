@@ -15,7 +15,7 @@ client.info()
     .catch((error) => console.error(`Elastic Search connection error: ${error}`));
 
 const indexName = 'blog-index';
-
+// TODO Rename to IndexDocument
 const index = async (id, title, content) => {
     const document = {
         id: id,

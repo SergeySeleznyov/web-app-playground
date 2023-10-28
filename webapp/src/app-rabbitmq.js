@@ -2,14 +2,14 @@
 
 // const { amqplain } = require("amqplib/lib/credentials");
 const amqplib = require('amqplib');
+const config = require('./config');
 
 // /** @typedef {require('./model/RabbitMQCommand').default} RabbitMQCommand */
 /** @typedef {import('./model/RabbitMQMessage')} RabbitMQMessage */
 
-// TODO move to .env
-const connectionString = 'amqp://localhost';
-const queueName = 'nodejs-react-mongo-demo';
-const channelReopenTimeout = 1000;
+const connectionString = config.rabbitmq.connection_string;
+const queueName = config.rabbitmq.queue_name;
+const channelReopenTimeout = config.rabbitmq.channelReopenTimeout;
 
 let channel = null;
 

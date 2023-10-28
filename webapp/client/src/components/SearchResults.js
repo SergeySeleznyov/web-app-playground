@@ -5,6 +5,7 @@ import {Card, CardContent, CardHeader, css, styled} from '@mui/material';
 import search from '../backend/search';
 import useAppBar from '../hooks/useAppBar';
 import PropTypes from 'prop-types';
+import CenterBox from './CenterBox';
 
 /** @typedef {import('../model/SearchResult').default} SearchResult */
 /** @typedef {import('../utils/types').VoidNotifyCallback} VoidNotifyCallback */
@@ -60,6 +61,14 @@ const SearchResults = ({searchText, onSearchTextChanged, navigateBack}) => {
                 },
             }}
         >
+            {
+                (searchResults?.length === 0) &&
+                <CenterBox sx={{
+                    'height': '100px',
+                }}>
+                    No document found.
+                </CenterBox>
+            }
             {
                 searchResults?.map((searchResult, index) =>
                     <SearchResultCard key={searchResult.id}>

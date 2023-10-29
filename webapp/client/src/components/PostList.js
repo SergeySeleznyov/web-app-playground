@@ -15,8 +15,6 @@ const AppBarCaption = 'Blog posts';
 /** @typedef {import('../utils/types').TextCallback} TextCallback */
 /** @typedef {import('../utils/types').VoidNotifyCallback} VoidNotifyCallback */
 
-// TODO rename addNew=> onAddNew
-
 /**
  * View of post editing
  * @Component
@@ -25,12 +23,12 @@ const AppBarCaption = 'Blog posts';
  * @param {TextCallback} params.onOpen The onOpen callback to open a {@link Post} specified by the id argument.
  * @param {TextCallback} params.onEdit The onEdit callback to edit a {@link Post} specified by the id argument.
  * @param {TextCallback} params.onDelete The onDelete callback to delete a {@link Post} specified by the id argument.
- * @param {VoidNotifyCallback} params.addNew The addNew callback to open editing a new {@link Post}.
+ * @param {VoidNotifyCallback} params.onAddNew The addNew callback to open editing a new {@link Post}.
  * @param {TextCallback} params.onSearchTextChanged The onSearchTextChanged callback to search a {@link Post}.
   * @return {React.ReactElement}
 */
-const PostList = ({postInfos, onOpen, onEdit, onDelete, addNew, onSearchTextChanged}) => {
-    useAppBar(AppBarCaption, onSearchTextChanged, null, addNew);
+const PostList = ({postInfos, onOpen, onEdit, onDelete, onAddNew, onSearchTextChanged}) => {
+    useAppBar(AppBarCaption, onSearchTextChanged, null, onAddNew);
 
     return (
         <Box
@@ -87,7 +85,7 @@ PostList.propTypes = {
     onOpen: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    addNew: PropTypes.func.isRequired,
+    onAddNew: PropTypes.func.isRequired,
     onSearchTextChanged: PropTypes.func.isRequired,
 };
 

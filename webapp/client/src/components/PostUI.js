@@ -130,7 +130,7 @@ const PostViewSwither = () => {
                 onOpen={doOpenPost}
                 onEdit={doEditPost}
                 onDelete={doDeletePost}
-                addNew={doAddNew}
+                onAddNew={doAddNew}
                 onSearchTextChanged={onSearchTextChanged}
             />);
     }

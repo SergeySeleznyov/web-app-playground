@@ -14,11 +14,11 @@ apiRoute.get('/es-index', async (req, res) => {
         let result = '';
 
         if (elasticsearch.enable) {
-            if (elasticsearch.local) {
-                result = await esGetIndexedDocument();
-            } else {
-                // TODO implement
-            }
+            // if (elasticsearch.local) {
+            result = await esGetIndexedDocument();
+            // } else {
+            // TODO implement
+            // }
         }
 
 
@@ -47,11 +47,11 @@ apiRoute.delete('/es-delete-document/:id', async (req, res) => {
         } // TODO look for validation
 
         if (elasticsearch.enable) {
-            if (elasticsearch.local) {
-                result = await esDeleteDocument(postId);
-            } else {
-                // TODO implement
-            }
+            // if (elasticsearch.local) {
+            result = await esDeleteDocument(postId);
+            // } else {
+            // TODO implement
+            // }
         }
         res.status(200);
         res.send(result);

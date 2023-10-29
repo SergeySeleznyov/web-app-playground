@@ -1,6 +1,24 @@
 
 const express = require('express');
-const {index, search, deleteDocument: esDeleteDocument} = require('../../../shared/src/elastic-search-dal');
+const {elasticsearch} = require('../config');
+const {Client} = require('@elastic/elasticsearch');
+const client = new Client({
+    node: elasticsearch.url,
+    auth: {
+        username: elasticsearch.login,
+        password: elasticsearch.password,
+    },
+});
+client.info()
+    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
+    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+module.exports.esClient = client;
+const {
+    index,
+    search,
+    deleteDocument: esDeleteDocument,
+} = require('../../../shared/src/elastic-search-dal');
+
 const {nanoid} = require('nanoid');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();
@@ -12,7 +30,6 @@ const {
 const {sendMessage} = require('../app-rabbitmq');
 const RabbitMQMessage = require('../../../shared/src/model/RabbitMQMessage');
 const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
-const {elasticsearch} = require('../config');
 
 apiRoute.get('/posts', async (req, res) => {
     try {

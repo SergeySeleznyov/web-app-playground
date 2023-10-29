@@ -1,6 +1,18 @@
 
 const express = require('express');
 const {elasticsearch} = require('../config');
+const {Client} = require('@elastic/elasticsearch');
+const client = new Client({
+    node: elasticsearch.url,
+    auth: {
+        username: elasticsearch.login,
+        password: elasticsearch.password,
+    },
+});
+client.info()
+    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
+    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+module.exports.esClient = client;
 const {
     getAllIndexedDocumentInfos: esGetIndexedDocument,
     deleteDocument: esDeleteDocument,

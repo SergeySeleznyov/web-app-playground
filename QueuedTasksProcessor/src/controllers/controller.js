@@ -4,6 +4,19 @@ const mongoose = require('mongoose');
 module.exports.mongoose = mongoose;
 const {Post: PostMongoDBScheme} = require('../../../shared/src/schemas/Post');
 
+const {elasticsearch} = require('../config');
+const {Client} = require('@elastic/elasticsearch');
+const client = new Client({
+    node: elasticsearch.url,
+    auth: {
+        username: elasticsearch.login,
+        password: elasticsearch.password,
+    },
+});
+client.info()
+    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
+    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+module.exports.esClient = client;
 const {
     index,
     deleteDocument: esDeleteDocument,

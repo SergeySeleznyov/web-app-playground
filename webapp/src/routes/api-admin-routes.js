@@ -1,5 +1,7 @@
-
 const express = require('express');
+// eslint-disable-next-line new-cap
+const apiRoute = express.Router();
+
 const {elasticsearch} = require('../config');
 const {Client} = require('@elastic/elasticsearch');
 const client = new Client({
@@ -17,9 +19,6 @@ const {
     getAllIndexedDocumentInfos: esGetIndexedDocument,
     deleteDocument: esDeleteDocument,
 } = require('../../../shared/src/elastic-search-dal');
-
-// eslint-disable-next-line new-cap
-const apiRoute = express.Router();
 
 apiRoute.get('/es-index', async (req, res) => {
     try {

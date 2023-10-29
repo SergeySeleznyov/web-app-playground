@@ -1,5 +1,8 @@
-
 const express = require('express');
+// eslint-disable-next-line new-cap
+const apiRoute = express.Router();
+const {nanoid} = require('nanoid');
+
 const {elasticsearch} = require('../config');
 const {Client} = require('@elastic/elasticsearch');
 const client = new Client({
@@ -19,9 +22,6 @@ const {
     deleteDocument: esDeleteDocument,
 } = require('../../../shared/src/elastic-search-dal');
 
-const {nanoid} = require('nanoid');
-// eslint-disable-next-line new-cap
-const apiRoute = express.Router();
 const {
     getPostInfos,
     getPost,

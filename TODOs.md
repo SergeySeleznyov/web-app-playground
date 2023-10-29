@@ -9,7 +9,7 @@
 [x] Add docker-compose with mongodb
 [x] Add docker-compose with ElasticSearch
 [X] Add RabbitMQ
-[ ] Add propTypes
+[x] Add propTypes
 [ ] Add logging (Winston?)
 [ ] Add Admin view
     [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB

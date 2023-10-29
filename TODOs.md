@@ -15,6 +15,7 @@
 [ ] Add logging (Winston?)
 [ ] Add Admin view
     [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB
+    [ ] Add Admin view - Add react route lib
 [ ] Add jSDOC for backend
 [ ] Refactor routings - move more codes to controller
 [ ] Share types among back and front
@@ -29,3 +30,6 @@
 [ ] Use MUI Theme everywhere
 [ ] Rewrite on Typescript?
 [ ] Dockerize all sub-projects
+[ ] Find a way to use for ML
+[ ] Use Consul or analogue
+[ ] Share setting with Zookeeper?

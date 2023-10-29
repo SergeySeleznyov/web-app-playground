@@ -33,3 +33,4 @@
 [ ] Find a way to use for ML
 [ ] Use Consul or analogue
 [ ] Share setting with Zookeeper?
+[ ] Move to github

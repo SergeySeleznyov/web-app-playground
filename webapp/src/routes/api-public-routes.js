@@ -10,8 +10,8 @@ const {
     setPost,
     deletePost} = require('../controllers/posts');
 const {sendMessage} = require('../app-rabbitmq');
-const RabbitMQMessage = require('../../../shared/src/RabbitMQMessage');
-const RabbitMQCommand = require('../../../shared/src/RabbitMQCommand');
+const RabbitMQMessage = require('../../../shared/src/model/RabbitMQMessage');
+const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 const {elasticsearch} = require('../config');
 
 apiRoute.get('/posts', async (req, res) => {

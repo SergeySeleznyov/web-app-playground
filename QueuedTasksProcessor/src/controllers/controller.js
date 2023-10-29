@@ -1,4 +1,4 @@
-const RabbitMQCommand = require('../../../shared/src/RabbitMQCommand');
+const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 
 const mongoose = require('mongoose');
 module.exports.mongoose = mongoose;

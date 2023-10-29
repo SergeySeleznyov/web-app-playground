@@ -3,7 +3,7 @@
 const EventEmitter = require('node:events');
 const amqplib = require('amqplib');
 const config = require('./config');
-const RabbitMQMessage = require('../../shared/src/RabbitMQMessage');
+const RabbitMQMessage = require('../../shared/src/model/RabbitMQMessage');
 
 // /** @typedef {require('./model/RabbitMQCommand').default} RabbitMQCommand */
 // /** @typedef {import('./model/RabbitMQMessage')} RabbitMQMessage */

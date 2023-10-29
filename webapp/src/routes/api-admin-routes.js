@@ -22,17 +22,7 @@ const {
 
 apiRoute.get('/es-index', async (req, res) => {
     try {
-        let result = '';
-
-        if (elasticsearch.enable) {
-            // if (elasticsearch.local) {
-            result = await esGetIndexedDocument();
-            // } else {
-            // TODO implement
-            // }
-        }
-
-
+        const result = await esGetIndexedDocument();
         if (result) {
             res.send(result);
         } else {
@@ -50,20 +40,13 @@ apiRoute.get('/es-index', async (req, res) => {
 });
 
 apiRoute.delete('/es-delete-document/:id', async (req, res) => {
-    let result = '';
     try {
         const postId = req.params.id;
         if (!postId) {
             throw new Error(`Post id is not specified`);
         } // TODO look for validation
 
-        if (elasticsearch.enable) {
-            // if (elasticsearch.local) {
-            result = await esDeleteDocument(postId);
-            // } else {
-            // TODO implement
-            // }
-        }
+        const result = await esDeleteDocument(postId);
         res.status(200);
         res.send(result);
     } catch (innerError) {

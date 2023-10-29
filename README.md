@@ -1,8 +1,8 @@
 # Node-React-Mongo-ElasticSearch-RabbitMQ demo-app-playground
 
-# Start
+## Start
 
-## Set up the settings
+### Set up the settings
 
 Find the settings in the file specified: 
 
@@ -13,13 +13,13 @@ Fill out the connection settings for the integration with:
 * ElasticSearch
 * RabbitMQ
 
-## Start docker containers
+### Start docker containers
 
 ```sh
 $ up.cmd
 ```
 
-## Start WebApp
+### Start WebApp
 
 ```sh
 $ cd webapp
@@ -27,7 +27,7 @@ $ npm ci
 $ npm run start:dev
 ```
 
-### (Optional) Separate run client and server
+#### (Optional) Separate run client and server
 
 In 'JavaScript Debug Terminal':
 

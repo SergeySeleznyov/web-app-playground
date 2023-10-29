@@ -1,8 +1,8 @@
 const esClient = module.parent.exports.esClient;
 
-const indexName = 'blog-index';
-// TODO Rename to IndexDocument
-const index = async (id, title, content) => {
+const indexName = 'blog-index'; // TODO move to .env
+
+const indexDocument = async (id, title, content) => {
     const document = {
         id: id,
         index: indexName,
@@ -104,7 +104,7 @@ const deleteDocument = async (id) => {
 };
 
 module.exports = {
-    index,
+    indexDocument,
     search,
     getAllIndexedDocumentInfos,
     deleteDocument,

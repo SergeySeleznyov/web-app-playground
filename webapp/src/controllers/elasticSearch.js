@@ -16,15 +16,15 @@ client.info()
     .catch((error) => console.error(`Elastic Search connection error: ${error}`));
 module.exports.esClient = client;
 const {
-    index,
-    search,
+    indexDocument: esIndexDocument,
+    search: esSearch,
     deleteDocument: esDeleteDocument,
 } = require('../../../shared/src/elastic-search-dal');
 
 const indexDocument = async (uniqueId, title, content) => {
     if (elasticsearch.enable) {
         if (elasticsearch.local) {
-            await index(uniqueId, title, content);
+            await esIndexDocument(uniqueId, title, content);
         } else {
             const message = new RabbitMQMessage(uniqueId, RabbitMQCommand.INDEX);
             const jsonMessage = JSON.stringify(message);
@@ -46,7 +46,7 @@ const deleteDocument = async (postId) => {
 };
 
 const searchDocuments = async (text) => {
-    return search(text);
+    return esSearch(text);
 };
 
 module.exports = {

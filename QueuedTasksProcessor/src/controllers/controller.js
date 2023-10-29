@@ -18,7 +18,7 @@ client.info()
     .catch((error) => console.error(`Elastic Search connection error: ${error}`));
 module.exports.esClient = client;
 const {
-    index,
+    indexDocument: esIndexDocument,
     deleteDocument: esDeleteDocument,
 } = require('../../../shared/src/elastic-search-dal');
 
@@ -45,7 +45,7 @@ const dispatchCommand = async (message) => {
 const indexDocument = async (postId) => {
     try {
         const postDBO = await PostMongoDBScheme.findOne({'id': postId});
-        await index(postDBO.id, postDBO.title, postDBO.content);
+        await esIndexDocument(postDBO.id, postDBO.title, postDBO.content);
     } catch (innerError) {
         const errorMessage = `Error during a document indexing: ${innerError.message}`;
         const error = new Error(errorMessage, {cause: innerError});

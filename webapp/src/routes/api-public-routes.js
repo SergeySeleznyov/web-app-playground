@@ -68,8 +68,9 @@ apiRoute.post('/post', async (req, res) => {
             if (elasticsearch.local) {
                 await index(uniqueId, title, content);
             } else {
-                const message = new RabbitMQMessage(id, RabbitMQCommand.INDEX);
-                await sendMessage(message);
+                const message = new RabbitMQMessage(uniqueId, RabbitMQCommand.INDEX);
+                const jsonMessage = JSON.stringify(message);
+                await sendMessage(jsonMessage);
             }
         }
 
@@ -99,7 +100,8 @@ apiRoute.delete('/post/:id', async (req, res) => {
                 await esDeleteDocument(postId);
             } else {
                 const message = new RabbitMQMessage(postId, RabbitMQCommand.DELETE);
-                await sendMessage(message);
+                const jsonMessage = JSON.stringify(message);
+                await sendMessage(jsonMessage);
             }
         }
 

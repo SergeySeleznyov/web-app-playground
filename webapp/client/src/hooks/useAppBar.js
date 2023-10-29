@@ -62,16 +62,16 @@ const SharedAppBarState = {
  * @return {AppBarHook} The AppBarHook
  */
 const useAppBar = (initialCaption, onSearchTextChanged, onNavigateBack, onAddNew, onSave) => {
-    /** @type {[string, import('react').Dispatch<import('react').SetStateAction<string>]} */
+    /** @type {[string, import('react').Dispatch<import('react').SetStateAction<string>>]} */
     const [caption, setCaptionCore] = useState(initialCaption ?? 'Blogs');
 
-    /** @type {[?TextMethod, import('react').Dispatch<import('react').SetStateAction<?TextMethod>]} */
+    /** @type {[?TextMethod, import('react').Dispatch<import('react').SetStateAction<?TextMethod>>]} */
     const [searchTextChanged, setSearchTextChangedCore] = useState(/** @type {?TextMethod} */(null));
 
-    /** @type {[?VoidNotifyCallback, import('react').Dispatch<import('react').SetStateAction<?VoidNotifyCallback>]} */
+    /** @type {[?VoidNotifyCallback, import('react').Dispatch<import('react').SetStateAction<?VoidNotifyCallback>>]} */
     const [navigateBack, setNavigateBackCore] = useState(/** @type {?VoidNotifyCallback} */(null));
 
-    /** @type {[?VoidNotifyCallback, import('react').Dispatch<import('react').SetStateAction<?VoidNotifyCallback>]} */
+    /** @type {[?VoidNotifyCallback, import('react').Dispatch<import('react').SetStateAction<?VoidNotifyCallback>>]} */
     const [addNew, setAddNewCore] = useState(/** @type {?VoidNotifyCallback} */(null));
 
     // TODO Rewrite all other state in the manner of saveVisible

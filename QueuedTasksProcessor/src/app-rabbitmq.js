@@ -41,7 +41,7 @@ const createRabbitMQChannel = async (connectionString) => {
 
         _channel.prefetch(1);
         _channel.consume(queueName, function(msg) {
-            const jsonString = msg?.content?.toString() || '';
+            const jsonString = JSON.parse(msg?.content?.toString() || '');
             console.log(`RabbitMQ received message: ${jsonString}`);
             const rabbitMQMessage = RabbitMQMessage.fromString(jsonString);
             eventEmitter.emit(eventName, rabbitMQMessage);

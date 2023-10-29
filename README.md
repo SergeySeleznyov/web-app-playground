@@ -44,3 +44,13 @@ $ cd webapp
 $ npm ci
 $ npm run client:dev
 ```
+
+## Sub-projectes
+
+### WebApp
+
+The front-end and back-end parts of the main web application.
+
+### QueuedTasksProcessor
+
+Consumes the messages from the (RabbitMQ based) queue and processed the messages as tasks.

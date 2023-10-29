@@ -11,6 +11,7 @@
 [X] Add RabbitMQ
 [x] Add propTypes
 [ ] Add logging (Winston?)
+[ ] Use lerna: https://lerna.js.org/
 [ ] Add Admin view
     [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB
     [ ] Add Admin view - Add react route lib

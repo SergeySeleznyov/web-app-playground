@@ -16,7 +16,7 @@
     [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB
     [ ] Add Admin view - Add react route lib
 [ ] Add jSDOC for backend
-[ ] Refactor routings - move more codes to controller
+[x] Refactor routings - move more codes to controller
 [ ] Share types among back and front
     [ ] Solve problem with CommonJS vs ES6 modules
 [ ] Add react route lib

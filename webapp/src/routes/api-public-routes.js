@@ -3,37 +3,13 @@ const express = require('express');
 const apiRoute = express.Router();
 const {nanoid} = require('nanoid');
 
-const {elasticsearch} = require('../config');
-const {Client} = require('@elastic/elasticsearch');
-const client = new Client({
-    node: elasticsearch.url,
-    auth: {
-        username: elasticsearch.login,
-        password: elasticsearch.password,
-    },
-});
-client.info()
-    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
-    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
-module.exports.esClient = client;
-const {
-    index,
-    search,
-    deleteDocument: esDeleteDocument,
-} = require('../../../shared/src/elastic-search-dal');
+const postController = require('../controllers/posts');
 
-const {
-    getPostInfos,
-    getPost,
-    setPost,
-    deletePost} = require('../controllers/posts');
-const {sendMessage} = require('../app-rabbitmq');
-const RabbitMQMessage = require('../../../shared/src/model/RabbitMQMessage');
-const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
+const elasticSearchController = require('../controllers/elasticSearch');
 
 apiRoute.get('/posts', async (req, res) => {
     try {
-        const postInfos = await getPostInfos();
+        const postInfos = await postController.getPostInfos();
         if (postInfos) {
             res.send(postInfos);
         } else {
@@ -54,7 +30,7 @@ apiRoute.get('/post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
 
-        const post = await getPost(postId);
+        const post = await postController.getPost(postId);
         if (post) {
             res.send(post);
         } else {
@@ -79,17 +55,9 @@ apiRoute.post('/post', async (req, res) => {
 
         const uniqueId = id ? id : nanoid();
 
-        await setPost(uniqueId, title, content);
+        await postController.setPost(uniqueId, title, content);
 
-        if (elasticsearch.enable) {
-            if (elasticsearch.local) {
-                await index(uniqueId, title, content);
-            } else {
-                const message = new RabbitMQMessage(uniqueId, RabbitMQCommand.INDEX);
-                const jsonMessage = JSON.stringify(message);
-                await sendMessage(jsonMessage);
-            }
-        }
+        await elasticSearchController.indexDocument(uniqueId, title, content);
 
         res.sendStatus(200);
     } catch (innerError) {
@@ -110,17 +78,9 @@ apiRoute.delete('/post/:id', async (req, res) => {
             throw new Error(`Post id is not specified`);
         } // TODO look for validation
 
-        await deletePost(postId);
+        await postController.deletePost(postId);
 
-        if (elasticsearch.enable) {
-            if (elasticsearch.local) {
-                await esDeleteDocument(postId);
-            } else {
-                const message = new RabbitMQMessage(postId, RabbitMQCommand.DELETE);
-                const jsonMessage = JSON.stringify(message);
-                await sendMessage(jsonMessage);
-            }
-        }
+        await elasticSearchController.deleteDocument(postId);
 
         res.sendStatus(200);
     } catch (innerError) {
@@ -138,7 +98,7 @@ apiRoute.post('/search/', async (req, res) => {
     try {
         const text = req.body.text;
 
-        const searchResult = await search(text);
+        const searchResult = await elasticSearchController.searchDocuments(text);
         if (!searchResult) {
             throw new Error(`Empty elastic search response (${searchResult})`);
         }

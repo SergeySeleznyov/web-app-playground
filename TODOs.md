@@ -8,32 +8,33 @@
 [x] Add JSDocs
 [x] Add docker-compose with mongodb
 [x] Add docker-compose with ElasticSearch
-[X] Add RabbitMQ
+[x] Add RabbitMQ
 [x] Add propTypes
 [ ] Add logging (Winston?)
-[ ] Use lerna: https://lerna.js.org/
+    [ ] ELK - general logging
 [ ] Add Admin view
     [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB
     [ ] Add Admin view - Add react route lib
 [ ] Add jSDOC for backend
-[x] Refactor routings - move more codes to controller
 [ ] Share types among back and front
     [ ] Solve problem with CommonJS vs ES6 modules
-[ ] Add react route lib
 [ ] Sentry - Exception logging
-[ ] ELK - general logging
 [ ] Metrics monitoring - prometheus
 [ ] Usage/High Load simulation (using what?)
 [ ] Add history api
 [ ] Add Kafka?
-[ ] Add CI/GITLAB
 [ ] Rewrite Worker on Go?
-[ ] Add jest-tests
-[ ] Add Quartz?
+[ ] CI
+    [ ] Add jest-tests
+    [ ] Add GITLAB/CI
 [ ] Use MUI Theme everywhere
 [ ] Rewrite on Typescript?
 [ ] Dockerize all sub-projects
 [ ] Find a way to use for ML
 [ ] Use Consul or analogue
 [ ] Share setting with Zookeeper?
+[ ] Add MongoDB cluster
+[ ] Add load balancer (fabio/traefik/caddy)
 [ ] Move to github
+[ ] Add Quartz?
+[ ] Use lerna: https://lerna.js.org/

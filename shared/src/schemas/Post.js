@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = module.parent.exports.mongoose;
 const Schema = mongoose.Schema;
 
 const postScheme = new Schema({

@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+module.exports.mongoose = mongoose;
 const {Post} = require('../../../shared/src/schemas/Post');
 const PostInfoDTO = require('./PostInfoDTO');
 
@@ -44,4 +46,7 @@ class PostDTO extends PostInfoDTO {
     }
 }
 
-module.exports = PostDTO;
+module.exports = {
+    ...module.exports,
+    PostDTO,
+};

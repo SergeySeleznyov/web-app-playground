@@ -1,5 +1,9 @@
 const RabbitMQCommand = require('../../../shared/src/RabbitMQCommand');
+
+const mongoose = require('mongoose');
+module.exports.mongoose = mongoose;
 const {Post: PostMongoDBScheme} = require('../../../shared/src/schemas/Post');
+
 const {
     index,
     deleteDocument: esDeleteDocument,
@@ -47,4 +51,7 @@ const deleteDocument = async (postId) => {
     console.log(`Indexed document(${postId}) has been successfuly deleted.`);
 };
 
-module.exports = dispatchCommand;
+module.exports = {
+    ...module.exports,
+    dispatchCommand,
+};

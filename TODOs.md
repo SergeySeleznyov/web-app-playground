@@ -22,7 +22,7 @@
     [ ] Solve problem with CommonJS vs ES6 modules
 [ ] Add react route lib
 [ ] Add history api
-[ ] Add Kaffka?
+[ ] Add Kafka?
 [ ] Add CI/GITLAB
 [ ] Rewrite Worker on Go?
 [ ] Add jest-tests

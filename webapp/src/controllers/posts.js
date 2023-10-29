@@ -1,6 +1,6 @@
 const PostDTO = require('../model/PostDTO');
 const PostInfoDTO = require('../model/PostInfoDTO');
-const {Post} = require('../schemas/Post');
+const {Post} = require('../../../shared/src/schemas/Post');
 
 const getPostInfos = async () => {
     try {

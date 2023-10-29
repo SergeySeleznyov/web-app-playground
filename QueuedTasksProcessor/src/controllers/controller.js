@@ -1,5 +1,5 @@
 const RabbitMQCommand = require('../../../shared/src/RabbitMQCommand');
-const {Post: PostMongoDBScheme} = require('../schemas/Post');
+const {Post: PostMongoDBScheme} = require('../../../shared/src/schemas/Post');
 const {
     index,
     deleteDocument: esDeleteDocument,

@@ -1,4 +1,4 @@
-const {Post} = require('../schemas/Post');
+const {Post} = require('../../../shared/src/schemas/Post');
 const PostInfoDTO = require('./PostInfoDTO');
 
 /** Class representing Post Data Transfer Object */

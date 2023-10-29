@@ -1,6 +1,5 @@
-// TODO npm delete express
 const {connectToDataBase, disconnectFromDatabse} = require('./app-mongodb');
-const dispatchCommand = require('./controllers/controller');
+const {dispatchCommand} = require('./controllers/controller');
 const {
     subscribe: subscribeToRabbitMQMessages,
     unSubscribe: unSubscribeFromRabbitMQMessages,

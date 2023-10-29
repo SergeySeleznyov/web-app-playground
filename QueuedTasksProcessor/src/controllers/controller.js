@@ -1,9 +1,26 @@
-const RabbitMQCommand = require('../model/RabbitMQCommand');
-const {Post: PostMongoDBScheme} = require('../schemas/Post');
+const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
+
+const mongoose = require('mongoose');
+module.exports.mongoose = mongoose;
+const {Post: PostMongoDBScheme} = require('../../../shared/src/schemas/Post');
+
+const {elasticsearch} = require('../config');
+const {Client} = require('@elastic/elasticsearch');
+const client = new Client({
+    node: elasticsearch.url,
+    auth: {
+        username: elasticsearch.login,
+        password: elasticsearch.password,
+    },
+});
+client.info()
+    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
+    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+module.exports.esClient = client;
 const {
     index,
     deleteDocument: esDeleteDocument,
-} = require('../elastic-search/elastic-search-dal');
+} = require('../../../shared/src/elastic-search-dal');
 
 const dispatchCommand = async (message) => {
     try {
@@ -47,4 +64,7 @@ const deleteDocument = async (postId) => {
     console.log(`Indexed document(${postId}) has been successfuly deleted.`);
 };
 
-module.exports = dispatchCommand;
+module.exports = {
+    ...module.exports,
+    dispatchCommand,
+};

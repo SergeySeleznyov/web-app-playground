@@ -1,6 +1,9 @@
-const PostDTO = require('../model/PostDTO');
+const {PostDTO} = require('../model/PostDTO');
 const PostInfoDTO = require('../model/PostInfoDTO');
-const {Post} = require('../schemas/Post');
+
+const mongoose = require('mongoose');
+module.exports.mongoose = mongoose;
+const {Post} = require('../../../shared/src/schemas/Post');
 
 const getPostInfos = async () => {
     try {
@@ -62,6 +65,7 @@ const deletePost = async (id) => {
 };
 
 module.exports = {
+    ...module.exports,
     getPostInfos,
     getPost,
     setPost,

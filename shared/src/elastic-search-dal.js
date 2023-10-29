@@ -1,18 +1,4 @@
-const {Client} = require('@elastic/elasticsearch');
-const config = require('../config');
-
-
-const client = new Client({
-    node: config.elasticsearch.url,
-    auth: {
-        username: config.elasticsearch.login,
-        password: config.elasticsearch.password,
-    },
-});
-
-client.info()
-    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
-    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+const esClient = module.parent.exports.esClient;
 
 const indexName = 'blog-index';
 // TODO Rename to IndexDocument
@@ -25,7 +11,7 @@ const index = async (id, title, content) => {
             content,
         },
     };
-    const response = await client.index(document);
+    const response = await esClient.index(document);
     console.log(` Elastic Search index response=${JSON.stringify(response)}`);
     return response;
 };
@@ -48,7 +34,7 @@ const getIndexedDocumentInfos = async (query) => {
         ],
         size: MAX_SEARCH_RESULT_SIZE,
     };
-    const response = await client.search(searchRequest);
+    const response = await esClient.search(searchRequest);
     const result = response?.hits?.hits.map((res) => ({
         'id': res._id,
         'title': res.fields?.['title']?.join(','),
@@ -89,7 +75,7 @@ const searchQuery = async (query) => {
 
         },
     };
-    const response = await client.search(searchRequest);
+    const response = await esClient.search(searchRequest);
     return response?.hits?.hits.map((i) => {
         i._source.content = ''; return i;
     });
@@ -103,7 +89,7 @@ const deleteDocument = async (id) => {
 
     let result = 'Not executed.';
     try {
-        const response = await client.delete(deleteRequest);
+        const response = await esClient.delete(deleteRequest);
         result = response.result;
     } catch (innerError) {
         console.error(innerError);

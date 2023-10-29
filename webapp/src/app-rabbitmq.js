@@ -5,7 +5,7 @@ const amqplib = require('amqplib');
 const config = require('./config');
 
 // /** @typedef {require('./model/RabbitMQCommand').default} RabbitMQCommand */
-/** @typedef {import('./model/RabbitMQMessage')} RabbitMQMessage */
+/** @typedef {import('../../shared/src/RabbitMQMessage')} RabbitMQMessage */
 
 const connectionString = config.rabbitmq.connection_string;
 const queueName = config.rabbitmq.queue_name;

@@ -1,6 +1,6 @@
 
 const express = require('express');
-const {index, search, deleteDocument: esDeleteDocument} = require('../../../shared/elastic-search/elastic-search-dal');
+const {index, search, deleteDocument: esDeleteDocument} = require('../../../shared/src/elastic-search-dal');
 const {nanoid} = require('nanoid');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();
@@ -10,8 +10,8 @@ const {
     setPost,
     deletePost} = require('../controllers/posts');
 const {sendMessage} = require('../app-rabbitmq');
-const RabbitMQMessage = require('../model/RabbitMQMessage');
-const RabbitMQCommand = require('../model/RabbitMQCommand');
+const RabbitMQMessage = require('../../../shared/src/RabbitMQMessage');
+const RabbitMQCommand = require('../../../shared/src/RabbitMQCommand');
 const {elasticsearch} = require('../config');
 
 apiRoute.get('/posts', async (req, res) => {

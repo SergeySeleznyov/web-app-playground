@@ -4,7 +4,7 @@ const {elasticsearch} = require('../config');
 const {
     getAllIndexedDocumentInfos: esGetIndexedDocument,
     deleteDocument: esDeleteDocument,
-} = require('../../../shared/elastic-search/elastic-search-dal');
+} = require('../../../shared/src/elastic-search-dal');
 
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();

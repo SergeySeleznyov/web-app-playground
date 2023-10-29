@@ -1,9 +1,9 @@
-const RabbitMQCommand = require('../model/RabbitMQCommand');
+const RabbitMQCommand = require('../../../shared/src/RabbitMQCommand');
 const {Post: PostMongoDBScheme} = require('../schemas/Post');
 const {
     index,
     deleteDocument: esDeleteDocument,
-} = require('../../../shared/elastic-search/elastic-search-dal');
+} = require('../../../shared/src/elastic-search-dal');
 
 const dispatchCommand = async (message) => {
     try {

@@ -1,19 +1,31 @@
 # TODO
 
-[x] Переделать поиск на наличие хандлера
-[x] Перенести поиск
-[x] Перенести добавление новыой записи
-[x] Протестировать
-[x] Удалить старый туллбар
-[x] Переименовать новый туллбар
-[x] Добавить линтер на клиент и сервер + скрипты для запуска
-[x] Добавить Хаски
-[x] Добавить JSDocs
-[ ] Добавить docker-compose c mongodb, RabbitMQ, ElasticSearch
-[ ] добавить логирование
-[ ] Добавить RabbitMQ
-[ ] Добавить Кафку?
-[ ] Добавить бэкэнд на Go?
-[ ] Переписать на Typescript
-[ ] Добавить тесты
-[ ] Оформить как docker-compose проект
+[x] Add MongoDB
+[x] Add MongoDB-Management
+[x] Add ElasticSearch
+[x] Add liter with auto-apply on save + npm scripts
+[x] Add husky
+[x] Add JSDocs
+[x] Add docker-compose with mongodb
+[x] Add docker-compose with ElasticSearch
+[X] Add RabbitMQ
+    [x] ДобAddавить docker-compose c RabbitMQ
+    [x] Add Publisher with ES commands
+    [x] Add Consumer dispatches ES commands
+[ ] Add logging (Winston?)
+[ ] Add Admin view
+    [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB
+[ ] Add jSDOC for backend
+[ ] Refactor routings - move more codes to controller
+[ ] Share types among back and front
+    [ ] Solve problem with CommonJS vs ES6 modules
+[ ] Add react route lib
+[ ] Add history api
+[ ] Add Kaffka?
+[ ] Add CI/GITLAB
+[ ] Rewrite Worker on Go?
+[ ] Add jest-tests
+[ ] Add Quartz?
+[ ] Use MUI Theme everywhere
+[ ] Rewrite on Typescript?
+[ ] Dockerize all sub-projects

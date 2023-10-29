@@ -16,7 +16,6 @@ const eventNames = {
 /** @constructor */
 const event = new EventEmitter();
 
-// TODO rename to notify*
 const setCaption = (value) => event.emit(eventNames.setCaption, value);
 const setSearchTextChanged = (value) => event.emit(eventNames.setSearchTextChanged, value);
 const setNavigateBack = (value) => event.emit(eventNames.setNavigateBack, value);

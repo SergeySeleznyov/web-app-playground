@@ -1,6 +1,6 @@
 
 const express = require('express');
-const {index, search, deleteDocument: esDeleteDocument} = require('../elastic-search/elastic-search-dal');
+const {index, search, deleteDocument: esDeleteDocument} = require('../../../shared/elastic-search/elastic-search-dal');
 const {nanoid} = require('nanoid');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();

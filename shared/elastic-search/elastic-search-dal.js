@@ -1,6 +1,6 @@
+// TODO Share with WebApp
 const {Client} = require('@elastic/elasticsearch');
-const config = require('../config');
-
+const config = require('../../QueuedTasksProcessor/src/config');
 
 const client = new Client({
     node: config.elasticsearch.url,

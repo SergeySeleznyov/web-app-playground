@@ -3,7 +3,7 @@ const {Post: PostMongoDBScheme} = require('../schemas/Post');
 const {
     index,
     deleteDocument: esDeleteDocument,
-} = require('../elastic-search/elastic-search-dal');
+} = require('../../../shared/elastic-search/elastic-search-dal');
 
 const dispatchCommand = async (message) => {
     try {

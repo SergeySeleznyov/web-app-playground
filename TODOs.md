@@ -21,6 +21,10 @@
 [ ] Share types among back and front
     [ ] Solve problem with CommonJS vs ES6 modules
 [ ] Add react route lib
+[ ] Sentry - Exception logging
+[ ] ELK - general logging
+[ ] Metrics monitoring - prometheus
+[ ] Usage/High Load simulation (using what?)
 [ ] Add history api
 [ ] Add Kafka?
 [ ] Add CI/GITLAB

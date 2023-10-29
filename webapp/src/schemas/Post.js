@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postScheme = new Schema({
-    id: String,
+    id: {type: String, unique: true},
     title: String,
     content: String,
 });

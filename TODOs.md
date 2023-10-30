@@ -10,6 +10,7 @@
 [x] Add docker-compose with ElasticSearch
 [x] Add RabbitMQ
 [x] Add propTypes
+[ ] Add convict librart for config
 [ ] Add logging (Winston?)
     [ ] ELK - general logging
 [ ] Add Admin view

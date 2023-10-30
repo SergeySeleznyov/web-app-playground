@@ -9,6 +9,8 @@ const port = process.env.PORT;
 
 const nodeName = isTest ? '' : process.env.NODE_NAME;
 
+const LogLevel = isTest ? '' : process.env.LOG_LEVEL;
+
 // TODO Use JSDoc
 const mongodb = {
     connection_string: isTest ? '' : process.env.MONGODB_CONNECTION_STRING,
@@ -31,10 +33,18 @@ const rabbitmq = {
     channelReopenTimeout: isTest ? 0 : parseInt(process.env.RABBITMQ_CHANNEL_REOPEN_TIMEOUT),
 };
 
+const logstash = {
+    enabled: isTest ? '' : process.env.LOGSTASH_HOST_ENABLED,
+    host: isTest ? '' : process.env.LOGSTASH_HOST,
+    port: isTest ? '' : process.env.LOGSTASH_PORT,
+};
+
 module.exports = {
     port,
     nodeName,
+    LogLevel,
     mongodb,
     elasticsearch,
     rabbitmq,
+    logstash,
 };

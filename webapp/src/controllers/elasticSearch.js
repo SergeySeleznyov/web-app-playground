@@ -1,3 +1,4 @@
+const logger = require('../logger');
 const {sendMessage} = require('../app-rabbitmq');
 const RabbitMQMessage = require('../../../shared/src/model/RabbitMQMessage');
 const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
@@ -12,8 +13,8 @@ const client = new Client({
     },
 });
 client.info()
-    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
-    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+    .then((response) => logger.info(`Elastic Search connection check: ${JSON.stringify(response)}`))
+    .catch((error) => logger.error(`Elastic Search connection error: ${error}`));
 module.exports.esClient = client;
 const {
     indexDocument: esIndexDocument,

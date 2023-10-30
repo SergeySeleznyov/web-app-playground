@@ -1,3 +1,4 @@
+const logger = require('../logger');
 const {PostDTO} = require('../model/PostDTO');
 const PostInfoDTO = require('../model/PostInfoDTO');
 
@@ -15,7 +16,7 @@ const getPostInfos = async () => {
         return postInfos;
     } catch (innerError) {
         const errorMessage = `getPostInfos controller: ${innerError.message}`;
-        console.log(errorMessage);
+        logger.error(errorMessage);
 
         const e = new Error(errorMessage, {cause: innerError});
         throw e;
@@ -34,7 +35,7 @@ const getPost = async (postId) => {
         return postDTO;
     } catch (innerError) {
         const errorMessage = `getPost controller: ${innerError.message}`;
-        console.log(errorMessage);
+        logger.error(errorMessage);
 
         const e = new Error(errorMessage, {cause: innerError});
         throw e;

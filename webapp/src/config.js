@@ -7,6 +7,8 @@ const isTest = process.env.NODE_ENV === 'test';
 
 const port = process.env.PORT;
 
+const nodeName = isTest ? '' : process.env.NODE_NAME;
+
 // TODO Use JSDoc
 const mongodb = {
     connection_string: isTest ? '' : process.env.MONGODB_CONNECTION_STRING,
@@ -31,6 +33,7 @@ const rabbitmq = {
 
 module.exports = {
     port,
+    nodeName,
     mongodb,
     elasticsearch,
     rabbitmq,

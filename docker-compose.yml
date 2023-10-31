@@ -2,46 +2,6 @@ version: "3.7"
 
 services:
 
-  rabbitmq:
-    # image: rabbitmq:3.1
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    hostname: rabbitmq
-    restart: unless-stopped
-    # environment:
-      # - RABBITMQ_DEFAULT_USER=user     # default is guest
-      # - RABBITMQ_DEFAULT_PASS=password # default is guest
-    ports:
-      - 5672:5672
-      - 15672:15672 # For rabbitmq-management only
-    volumes:
-      - ./rabbitmq-data/:/var/lib/rabbitmq/mnesia/'
-    networks:
-      network_35_10_0_0_16:
-        ipv4_address: 35.10.0.5
-        aliases:
-          - rabbitmq
-
-  elasticsearch:
-    # https://hub.docker.com/_/elasticsearch/
-    image: elasticsearch:8.9.2
-    container_name: elasticsearch
-    hostname: elasticsearch
-    restart: unless-stopped
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false # Disable ssl requirement for requests
-    ports:
-      - 9200:9200
-      - 9300:9300
-    volumes:
-      - ./elasticsearch-data:/usr/share/elasticsearch/data
-    networks:
-      network_35_10_0_0_16:
-        ipv4_address: 35.10.0.4  
-        aliases:
-          - elasticsearch
-
   mongo:
     # https://hub.docker.com/_/mongo
     image: mongo:6.0.8
@@ -84,6 +44,46 @@ services:
         ipv4_address: 35.10.0.3      
         aliases:
           - mongo-express
+
+  rabbitmq:
+    # image: rabbitmq:3.1
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: unless-stopped
+    # environment:
+      # - RABBITMQ_DEFAULT_USER=user     # default is guest
+      # - RABBITMQ_DEFAULT_PASS=password # default is guest
+    ports:
+      - 5672:5672
+      - 15672:15672 # For rabbitmq-management only
+    volumes:
+      - ./rabbitmq-data/:/var/lib/rabbitmq/mnesia/'
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.4
+        aliases:
+          - rabbitmq
+
+  elasticsearch:
+    # https://hub.docker.com/_/elasticsearch/
+    image: elasticsearch:8.9.2
+    container_name: elasticsearch
+    hostname: elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false # Disable ssl requirement for requests
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.5
+        aliases:
+          - elasticsearch
 
 networks:
   network_35_10_0_0_16:

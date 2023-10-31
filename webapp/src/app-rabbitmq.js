@@ -1,8 +1,10 @@
 // @ts-check
 
+const config = require('./config');
+const logger = require('./logger');
+
 // const { amqplain } = require("amqplib/lib/credentials");
 const amqplib = require('amqplib');
-const config = require('./config');
 
 // /** @typedef {require('./model/RabbitMQCommand').default} RabbitMQCommand */
 /** @typedef {import('../../shared/src/model/RabbitMQMessage')} RabbitMQMessage */
@@ -18,23 +20,23 @@ const createRabbitMQChannel = async (connectionString) => {
         if (channel !== null) return;
 
         const connection = await amqplib.connect(connectionString);
-        console.log(`RabbitMQ connected.`); // TODO improve logging
+        logger.info(`[AMQP] connected.`);
         const _channel = await connection.createChannel();
-        console.log(`RabbitMQ channel created.`); // TODO improve logging
+        logger.info(`[AMQP] channel created.`);
 
         // TODO think about moving it after .on('error') and .on('close')
         await _channel.assertQueue(queueName, {
             durable: true,
         });
-        console.log(`RabbitMQ queue asserted.`); // TODO improve logging
+        logger.info(`[AMQP] queue asserted.`);
 
         _channel.on('error', function(err) {
-            console.error('[AMQP] channel error', err.message); // TODO improve logging
+            logger.error('[AMQP] channel error', err.message);
         });
 
         _channel.on('close', function() {
-            console.log('[AMQP] channel closed'); // TODO improve logging
-            console.log('[AMQP] reconnecting...'); // TODO improve logging
+            logger.info('[AMQP] channel closed');
+            logger.info('[AMQP] reconnecting...');
             channel = null;
 
             return setTimeout(async () => {
@@ -43,8 +45,11 @@ const createRabbitMQChannel = async (connectionString) => {
         });
 
         channel = _channel;
-    } catch (err) {
-        throw err;
+    } catch (innerError) {
+        const errorMessage = `createRabbitMQChannel Error: ${innerError.message}`;
+        const error = new Error(errorMessage);
+        logger.error(error);
+        throw error;
     }
 };
 
@@ -67,7 +72,7 @@ const sendMessage = (message) => {
     const undefinedConverterHelper = (key, value) => (value !== undefined) ? value : null;
     const serializedMessage = JSON.stringify(message, undefinedConverterHelper);
     channel.sendToQueue(queueName, Buffer.from(serializedMessage), {persistent: true});
-    console.log(' [x] Sent %s', serializedMessage); // TODO improve logging
+    logger.info(` [AMQP] Sent message=${serializedMessage}`);
 };
 
 module.exports = {

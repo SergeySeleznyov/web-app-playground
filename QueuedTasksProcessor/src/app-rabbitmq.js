@@ -4,6 +4,7 @@ const EventEmitter = require('node:events');
 const amqplib = require('amqplib');
 const config = require('./config');
 const RabbitMQMessage = require('../../shared/src/model/RabbitMQMessage');
+const logger = require('./logger');
 
 // /** @typedef {require('./model/RabbitMQCommand').default} RabbitMQCommand */
 // /** @typedef {import('./model/RabbitMQMessage')} RabbitMQMessage */
@@ -21,17 +22,16 @@ const createRabbitMQChannel = async (connectionString) => {
         if (channel !== null) return;
 
         const connection = await amqplib.connect(connectionString);
-        console.log(`RabbitMQ connected.`); // TODO improve logging
+        logger.info(`[AMQP] connected.`);
         const _channel = await connection.createChannel();
-        console.log(`RabbitMQ channel created.`); // TODO improve logging
+        logger.info(`[AMQP] channel created.`);
 
         _channel.on('error', function(err) {
-            console.error('[AMQP] channel error', err.message); // TODO improve logging
+            logger.error('[AMQP] channel error', err.message);
         });
 
         _channel.on('close', function() {
-            console.log('[AMQP] channel closed'); // TODO improve logging
-            console.log('[AMQP] reconnecting...'); // TODO improve logging
+            logger.info('[AMQP] channel closed. Reconnecting...');
             channel = null;
 
             return setTimeout(async () => {
@@ -42,7 +42,7 @@ const createRabbitMQChannel = async (connectionString) => {
         _channel.prefetch(1);
         _channel.consume(queueName, function(msg) {
             const jsonString = JSON.parse(msg?.content?.toString() || '');
-            console.log(`RabbitMQ received message: ${jsonString}`);
+            logger.info(`[AMQP] received message: ${jsonString}`);
             const rabbitMQMessage = RabbitMQMessage.fromString(jsonString);
             eventEmitter.emit(eventName, rabbitMQMessage);
         }, {
@@ -50,8 +50,11 @@ const createRabbitMQChannel = async (connectionString) => {
         });
 
         channel = _channel;
-    } catch (err) {
-        throw err;
+    } catch (innerError) {
+        const errorMessage = `createRabbitMQChannel Error: ${innerError.message}`;
+        const error = new Error(errorMessage);
+        logger.error(error);
+        throw error;
     }
 };
 

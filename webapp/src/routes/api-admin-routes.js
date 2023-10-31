@@ -1,3 +1,5 @@
+const logger = require('../logger');
+
 const express = require('express');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();
@@ -12,8 +14,8 @@ const client = new Client({
     },
 });
 client.info()
-    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
-    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+    .then((response) => logger.info(`Elastic Search connection check: ${JSON.stringify(response)}`))
+    .catch((error) => logger.error(`Elastic Search connection error: ${error}`));
 module.exports.esClient = client;
 const {
     getAllIndexedDocumentInfos: esGetIndexedDocument,
@@ -31,7 +33,7 @@ apiRoute.get('/es-index', async (req, res) => {
     } catch (innerError) {
         const errorMessage = `Error during a list of indexed document getting: ${innerError.message}`;
         const error = new Error(errorMessage, {cause: innerError});
-        console.error(error.message);
+        logger.error(error.message);
 
         // res.sendStatus(500);
         res.status(500);
@@ -52,7 +54,7 @@ apiRoute.delete('/es-delete-document/:id', async (req, res) => {
     } catch (innerError) {
         const errorMessage = `Error during indexed document deleting: ${innerError.message}`;
         const error = new Error(errorMessage, {cause: innerError});
-        console.error(error.message);
+        logger.error(error.message);
 
         // res.sendStatus(500);
         res.status(500);

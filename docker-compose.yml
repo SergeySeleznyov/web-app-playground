@@ -24,9 +24,9 @@ services:
           - mongo
 
   mongo-express:
+    # https://hub.docker.com/_/mongo-express
     profiles:
       - dev
-    # https://hub.docker.com/_/mongo-express
     depends_on:
       - mongo
     image: mongo-express:1.0.0-alpha.4
@@ -46,6 +46,7 @@ services:
           - mongo-express
 
   rabbitmq:
+    # https://hub.docker.com/_/rabbitmq
     # image: rabbitmq:3.1
     image: rabbitmq:3-management
     container_name: rabbitmq

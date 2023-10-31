@@ -22,9 +22,9 @@ const createRabbitMQChannel = async (connectionString) => {
         if (channel !== null) return;
 
         const connection = await amqplib.connect(connectionString);
-        logger.info(`RabbitMQ connected.`);
+        logger.info(`[AMQP] connected.`);
         const _channel = await connection.createChannel();
-        logger.info(`RabbitMQ channel created.`);
+        logger.info(`[AMQP] channel created.`);
 
         _channel.on('error', function(err) {
             logger.error('[AMQP] channel error', err.message);
@@ -42,7 +42,7 @@ const createRabbitMQChannel = async (connectionString) => {
         _channel.prefetch(1);
         _channel.consume(queueName, function(msg) {
             const jsonString = JSON.parse(msg?.content?.toString() || '');
-            logger.info(`RabbitMQ received message: ${jsonString}`);
+            logger.info(`[AMQP] received message: ${jsonString}`);
             const rabbitMQMessage = RabbitMQMessage.fromString(jsonString);
             eventEmitter.emit(eventName, rabbitMQMessage);
         }, {

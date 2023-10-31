@@ -45,8 +45,11 @@ const createRabbitMQChannel = async (connectionString) => {
         });
 
         channel = _channel;
-    } catch (err) {
-        throw err;
+    } catch (innerError) {
+        const errorMessage = `createRabbitMQChannel Error: ${innerError.message}`;
+        const error = new Error(errorMessage);
+        logger.error(error);
+        throw error;
     }
 };
 

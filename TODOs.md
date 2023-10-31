@@ -10,12 +10,12 @@
 [x] Add docker-compose with ElasticSearch
 [x] Add RabbitMQ
 [x] Add propTypes
-[ ] Add convict librart for config
 [ ] Add logging to backend (Winston?)
     [ ] ELK - general logging
     [ ] MongoDB
     [ ] Add logging to frontend
     [ ] Add logging to QueuedTasksProcessor
+[ ] Add convict librart for config
 [ ] Add Admin view
     [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB
     [ ] Add Admin view - Add react route lib

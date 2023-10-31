@@ -1,4 +1,5 @@
 const winston = require('winston');
+require('winston-mongodb');
 // const LogstashTransport = require('winston-logstash/lib/winston-logstash-latest');
 const config = require('./config');
 
@@ -18,6 +19,11 @@ winston.addColors({
     http: 'white',
 });
 
+const metadata = {
+    service: config.nodeName,
+    ip: '127.0.0.1', // TODO set real IP
+};
+
 const consoleTransport = new winston.transports.Console({
     level: 'debug',
     format: winston.format.cli({
@@ -27,6 +33,21 @@ const consoleTransport = new winston.transports.Console({
     // colorize: true,
     // timestamp: true,
 });
+
+const mongoDBTransport = new winston.transports.MongoDB({
+    level: 'info',
+    // eslint-disable-next-line max-len
+    db: config.mongodb.connection_string, // MongoDB connection uri, pre-connected MongoClient object or promise which resolves to a pre-connected MongoClient object.
+    dbName: config.mongodb.database_name,
+    collection: config.mongodb.log_collection_name,
+    label: {
+        service: config.nodeName,
+    },
+    tryReconnect: true,
+    storeHost: true,
+    decolorize: true,
+});
+
 
 // const logstashTransport = new LogstashTransport({
 //     level: 'warn',
@@ -43,27 +64,28 @@ const getTransports = () => {
     //     transports.push(logstashTransport);
     // }
 
-    // Add logging go MongoDB
+    if (config.log.enableMongoDB) {
+        transports.push(mongoDBTransport);
+    }
+
     return transports;
 };
 
 const logger = winston.createLogger({
-    level: config.LogLevel || 'info',
+    level: config.log.level || 'info',
     levels: levels,
-    defaultMeta: {
-        'service': config.nodeName,
-        'node-ip': '127.0.0.1',
-    },
+    defaultMeta: metadata,
     format: winston.format.combine(
         winston.format.colorize({all: true}),
         winston.format.label({label: config.nodeName}), // TODO Find a better way to use label here
         winston.format.timestamp({
             format: 'YYYY-MM-DD HH:mm:ss.SSSZ',
         }),
+        winston.format.metadata(),
         winston.format.align(),
         winston.format.errors({stack: true}),
-        winston.format.json({levels}),
-        // winston.format.cli({levels}),
+        // winston.format.json({levels}),
+        winston.format.cli({levels}),
     ),
     transports: getTransports(),
     // exceptionHandlers: [

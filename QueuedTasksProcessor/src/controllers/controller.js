@@ -1,3 +1,4 @@
+const logger = require('../logger');
 const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 
 const mongoose = require('mongoose');
@@ -14,8 +15,8 @@ const client = new Client({
     },
 });
 client.info()
-    .then((response) => console.log(`Elastic Search connection check: ${JSON.stringify(response)}`))
-    .catch((error) => console.error(`Elastic Search connection error: ${error}`));
+    .then((response) => logger.info(`Elastic Search connection check: ${JSON.stringify(response)}`))
+    .catch((error) => logger.error(`Elastic Search connection error: ${error}`));
 module.exports.esClient = client;
 const {
     indexDocument: esIndexDocument,
@@ -38,7 +39,7 @@ const dispatchCommand = async (message) => {
     } catch (innerError) {
         const errorMessage = `Error during a rabbitMQ command dispatching: ${innerError.message}`;
         const error = new Error(errorMessage, {cause: innerError});
-        console.error(error.message);
+        logger.error(error.message);
     }
 };
 
@@ -49,9 +50,9 @@ const indexDocument = async (postId) => {
     } catch (innerError) {
         const errorMessage = `Error during a document indexing: ${innerError.message}`;
         const error = new Error(errorMessage, {cause: innerError});
-        console.error(error.message);
+        logger.error(error.message);
     }
-    console.log(`New document(${postId}) has been successfuly indexed.`);
+    logger.info(`New document(${postId}) has been successfuly indexed.`);
 };
 const deleteDocument = async (postId) => {
     try {
@@ -59,9 +60,9 @@ const deleteDocument = async (postId) => {
     } catch (innerError) {
         const errorMessage = `Error during a indexed document deleting: ${innerError.message}`;
         const error = new Error(errorMessage, {cause: innerError});
-        console.error(error.message);
+        logger.error(error.message);
     }
-    console.log(`Indexed document(${postId}) has been successfuly deleted.`);
+    logger.info(`Indexed document(${postId}) has been successfuly deleted.`);
 };
 
 module.exports = {

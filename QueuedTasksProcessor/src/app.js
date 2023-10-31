@@ -1,3 +1,4 @@
+const logger = require('./logger');
 const {connectToDataBase, disconnectFromDatabse} = require('./app-mongodb');
 const {dispatchCommand} = require('./controllers/controller');
 const {
@@ -10,13 +11,13 @@ const {
         await connectToDataBase();
         subscribeToRabbitMQMessages(dispatchCommand);
     } catch (err) {
-        return console.log(err);
+        return logger.error(err);
     }
 })();
 
 process.on('SIGINT', async () => {
     unSubscribeFromRabbitMQMessages(dispatchCommand);
     await disconnectFromDatabse();
-    console.log('The app was stopped.');
+    logger.error('The app was stopped.');
     process.exit();
 });

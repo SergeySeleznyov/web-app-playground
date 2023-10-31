@@ -32,11 +32,13 @@ const rabbitmq = {
     channelReopenTimeout: isTest ? 0 : parseInt(process.env.RABBITMQ_CHANNEL_REOPEN_TIMEOUT),
 };
 
+// TODO Use JSDoc and remove ''.concat(...)
 const log = {
     level: isTest ? '' : process.env.LOG_LEVEL,
     enableMongoDB: isTest ? 'false' : process.env.LOG_TO_MONGODB === 'true',
 };
 
+// TODO Use JSDoc and remove ''.concat(...)
 const logstash = {
     enabled: isTest ? '' : process.env.LOGSTASH_HOST_ENABLED === 'true',
     host: isTest ? '' : process.env.LOGSTASH_HOST,

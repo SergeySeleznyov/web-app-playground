@@ -11,8 +11,8 @@
 [x] Add RabbitMQ
 [x] Add propTypes
 [ ] Add logging to backend (Winston?)
+    [x] MongoDB
     [ ] ELK - general logging
-    [ ] MongoDB
     [ ] Add logging to frontend
     [ ] Add logging to QueuedTasksProcessor
 [ ] Add convict librart for config

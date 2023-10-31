@@ -12,6 +12,7 @@
 [x] Add propTypes
 [ ] Add logging to backend (Winston?)
     [x] MongoDB
+    [ ] fluentd
     [ ] ELK - general logging
     [ ] Add logging to frontend
     [ ] Add logging to QueuedTasksProcessor

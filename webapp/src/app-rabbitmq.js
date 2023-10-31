@@ -28,7 +28,7 @@ const createRabbitMQChannel = async (connectionString) => {
         await _channel.assertQueue(queueName, {
             durable: true,
         });
-        logger.info(`RabbitMQ queue asserted.`);
+        logger.info(`[AMQP] queue asserted.`);
 
         _channel.on('error', function(err) {
             logger.error('[AMQP] channel error', err.message);

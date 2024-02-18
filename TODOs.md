@@ -10,7 +10,7 @@
 [x] Add docker-compose with ElasticSearch
 [x] Add RabbitMQ
 [x] Add propTypes
-[ ] Add logging to backend (Winston?)
+[ ] Add logging to backend (Winston with different transport)
     [x] MongoDB
     [ ] fluentd
     [ ] ELK - general logging
@@ -24,22 +24,20 @@
 [ ] Share types among back and front
     [ ] Solve problem with CommonJS vs ES6 modules
 [ ] Sentry - Exception logging
-[ ] Metrics monitoring - prometheus
-[ ] Usage/High Load simulation (using what?)
-[ ] Add history api
-[ ] Add Kafka?
-[ ] Rewrite Worker on Go?
+[ ] Metrics monitoring - use Prometheus
+[ ] Add Kafka as on option instead of RabbitMQ
+[ ] Find some task for another Worker on Go
 [ ] CI
     [ ] Add jest-tests
     [ ] Add GITLAB/CI
 [ ] Use MUI Theme everywhere
-[ ] Rewrite on Typescript?
+[ ] Rewrite on Typescript
 [ ] Dockerize all sub-projects
-[ ] Find a way to use for ML
+[ ] Find a task sutable for ML
 [ ] Use Consul or analogue
-[ ] Share setting with Zookeeper?
+[ ] Share setting with Zookeeper
 [ ] Add MongoDB cluster
 [ ] Add load balancer (fabio/traefik/caddy)
 [ ] Move to github
-[ ] Add Quartz?
+[ ] Find a task to use Quartz
 [ ] Use lerna: https://lerna.js.org/

@@ -4,11 +4,12 @@
 
 ### Set up the settings
 
-Find the settings in the file specified: 
+Find the settings in the file specified:
 
 ```./webapp/.env```
 
 Fill out the connection settings for the integration with:
+
 * MongoDB
 * ElasticSearch
 * RabbitMQ
@@ -16,15 +17,15 @@ Fill out the connection settings for the integration with:
 ### Start docker containers
 
 ```sh
-$ up.cmd
+$up.cmd
 ```
 
 ### Start WebApp
 
 ```sh
-$ cd webapp
-$ npm ci
-$ npm run start:dev
+$cd webapp
+$npm ci
+$npm run start:dev
 ```
 
 #### (Optional) Separate run client and server

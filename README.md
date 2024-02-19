@@ -12,6 +12,8 @@ Fill out the connection settings for the integration with:
 
 * MongoDB
 * ElasticSearch
+* LOGSTASH
+* KIBANA
 * RabbitMQ
 
 ### Start docker containers

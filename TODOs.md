@@ -13,11 +13,11 @@
 [ ] Add logging to backend (Winston with different transport)
     [x] MongoDB
     [ ] fluentd
+    [x] Use Logstash
+    [x] Use Kibana
     [x] ELK - general logging
     [ ] Add logging to frontend
     [x] Add logging to QueuedTasksProcessor
-[x] Use Logstash
-[x] Use Kibana
 [ ] Add convict librart for config
 [ ] Add Admin view
     [ ] Add Admin view - Indexed document list + delete button for those who is missed in MongoDB

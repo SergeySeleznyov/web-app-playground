@@ -40,7 +40,7 @@ const log = {
 
 // TODO Use JSDoc and remove ''.concat(...)
 const logstash = {
-    enabled: isTest ? '' : process.env.LOGSTASH_HOST_ENABLED === 'true',
+    enabled: isTest ? '' : process.env.LOGSTASH_ENABLED === 'true',
     host: isTest ? '' : process.env.LOGSTASH_HOST,
     port: isTest ? '' : process.env.LOGSTASH_PORT,
 };

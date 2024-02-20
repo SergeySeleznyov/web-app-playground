@@ -68,7 +68,11 @@ services:
 
   elasticsearch:
     # https://hub.docker.com/_/elasticsearch/
-    image: elasticsearch:8.9.2
+    # image: elasticsearch:8.9.2
+    build:
+      context: elasticsearch/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
     container_name: elasticsearch
     hostname: elasticsearch
     restart: unless-stopped
@@ -85,6 +89,52 @@ services:
         ipv4_address: 35.10.0.5
         aliases:
           - elasticsearch
+
+  logstash:
+    # https://hub.docker.com/_/logstash
+    depends_on:
+      - elasticsearch
+    build:
+      context: logstash/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+    ports:
+      - 5044:5044
+      - 50000:50000/tcp
+      - 50000:50000/udp
+      - 9600:9600
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx256m
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+    restart: unless-stopped
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.6
+        aliases:
+          - elasticsearch
+
+  kibana:
+    build:
+      context: kibana/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro,Z
+    ports:
+      - 5601:5601
+    environment:
+      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      network_35_10_0_0_16:
+        ipv4_address: 35.10.0.7
+        aliases:
+          - kibana
 
 networks:
   network_35_10_0_0_16:

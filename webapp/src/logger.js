@@ -1,6 +1,6 @@
 const winston = require('winston');
 require('winston-mongodb');
-// const LogstashTransport = require('winston-logstash/lib/winston-logstash-latest');
+const LogstashTransport = require('winston-logstash/lib/winston-logstash-latest');
 const config = require('./config');
 
 const levels = {
@@ -49,20 +49,20 @@ const mongoDBTransport = new winston.transports.MongoDB({
 });
 
 
-// const logstashTransport = new LogstashTransport({
-//     level: 'warn',
-//     host: config.logstash.host,
-//     port: config.logstash.port,
-// });
+const logstashTransport = new LogstashTransport({
+    level: 'warn',
+    host: config.logstash.host,
+    port: config.logstash.port,
+});
 
 const getTransports = () => {
     const transports = [
         consoleTransport,
     ];
 
-    // if (config.logstash.enabled) {
-    //     transports.push(logstashTransport);
-    // }
+    if (config.logstash.enabled) {
+        transports.push(logstashTransport);
+    }
 
     if (config.log.enableMongoDB) {
         transports.push(mongoDBTransport);

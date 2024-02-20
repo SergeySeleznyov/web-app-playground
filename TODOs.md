@@ -27,6 +27,7 @@
     [ ] Solve problem with CommonJS vs ES6 modules
 [ ] Sentry - Exception logging
 [ ] Metrics monitoring - use Prometheus+Grafana
+[ ] zabbix
 [ ] MongoDB - visualize metrics - use Prometheus + Grafana
 [ ] Add Kafka as on option instead of RabbitMQ
 [ ] Find some task for another Worker on Go

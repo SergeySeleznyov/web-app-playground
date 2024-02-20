@@ -134,7 +134,7 @@ services:
       network_35_10_0_0_16:
         ipv4_address: 35.10.0.7
         aliases:
-          - elasticsearch
+          - kibana
 
 networks:
   network_35_10_0_0_16:

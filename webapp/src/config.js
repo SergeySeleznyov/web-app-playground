@@ -18,6 +18,7 @@ const mongodb = {
 
 // TODO Use JSDoc
 const elasticsearch = {
+    // TODO rename enabled
     enable: isTest ? false : process.env.ELASTIC_SEARCH_ENABLE === 'true',
     local: isTest ? false : process.env.ELASTIC_SEARCH_LOCAL === 'true',
     url: isTest ? '' : process.env.ELASTIC_SEARCH_URL,

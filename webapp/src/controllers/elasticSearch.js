@@ -5,16 +5,21 @@ const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 
 const {elasticsearch} = require('../config');
 const {Client} = require('@elastic/elasticsearch');
-const client = new Client({
-    node: elasticsearch.url,
-    auth: {
-        username: elasticsearch.login,
-        password: elasticsearch.password,
-    },
-});
-client.info()
-    .then((response) => logger.info(`Elastic Search connection check: ${JSON.stringify(response)}`))
-    .catch((error) => logger.error(`Elastic Search connection error: ${error}`));
+
+const initElasticSearchClient = () => {
+    const client = new Client({
+        node: elasticsearch.url,
+        auth: {
+            username: elasticsearch.login,
+            password: elasticsearch.password,
+        },
+    });
+    client.info()
+        .then((response) => logger.info(`Elastic Search connection check: ${JSON.stringify(response)}`))
+        .catch((error) => logger.error(`Elastic Search connection error: ${error}`));
+    return client;
+};
+const client = elasticsearch.enable ? initElasticSearchClient() : null;
 module.exports.esClient = client;
 const {
     indexDocument: esIndexDocument,

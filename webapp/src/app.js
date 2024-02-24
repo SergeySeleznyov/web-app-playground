@@ -65,3 +65,5 @@ process.on('uncaughtException', (err, origin) => {
 
     logger.error(errorMessage);
 });
+
+module.exports = app;

@@ -5,11 +5,12 @@ const PostInfoDTO = require('../model/PostInfoDTO');
 const mongoose = require('mongoose');
 module.exports.mongoose = mongoose;
 const {Post} = require('../../../shared/src/schemas/Post');
+const {postsDal} = require('../../../shared/src/posts-dal');
 
 const getPostInfos = async () => {
     try {
         logger.info(`[MongoDB] Document list getting...`);
-        const postsDBO = await Post.find({});
+        const postsDBO = await postsDal.getAll();
         const postInfos = postsDBO.map((i) => new PostInfoDTO(
             i.id,
             i.title,

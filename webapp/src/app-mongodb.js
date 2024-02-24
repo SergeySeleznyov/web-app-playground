@@ -3,6 +3,8 @@ const logger = require('./logger');
 const mongoose = require('mongoose');
 
 const connectToDataBase = async () => {
+    if (config.isTest) return;
+
     try {
         if (!config.mongodb.connection_string) {
             throw new Error(`MongoDB connection string is empty`);
@@ -22,6 +24,8 @@ const connectToDataBase = async () => {
 };
 
 const disconnectFromDatabse = async () => {
+    if (config.isTest) return;
+
     try {
         await mongoose.disconnect();
         logger.info(`MongoDB database successful disconnected.`);

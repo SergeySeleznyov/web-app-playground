@@ -32,6 +32,7 @@ const consoleTransport = new winston.transports.Console({
     // prettyPrint: true,
     // colorize: true,
     // timestamp: true,
+    silent: config.isTest,
 });
 
 const mongoDBTransport = config.log.enableMongoDB && new winston.transports.MongoDB({
@@ -58,9 +59,9 @@ const logstashTransport = config.logstash.enabled && new LogstashTransport({
 });
 
 const getTransports = () => {
-    const transports = [
-        consoleTransport,
-    ];
+    const transports = [];
+
+    transports.push(consoleTransport);
 
     if (config.logstash.enabled) {
         transports.push(logstashTransport);

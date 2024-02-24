@@ -50,6 +50,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.33.2",
     "husky": "^8.0.3",
+    "jest": "^27.5.1",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3"
   },

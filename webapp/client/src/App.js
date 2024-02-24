@@ -6,7 +6,7 @@ import {ColorModeContext} from './components/ThemeSwitcher';
 import {darkTheme, lightTheme} from './themes';
 
 /** Main App component.
-* @return {Component} Render asd asd
+* @return {Component} Render
 */
 function App() {
     const [mode, setMode] = React.useState('light');

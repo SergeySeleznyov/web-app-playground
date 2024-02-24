@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "root",
+			"path": "."
+		},
+		{
+			"name": "backend-ws",
+			"path": "webapp"
+		},
+		{
+			"name": "frontend-ws",
+			"path": "webapp/client"
+		}
+	],
+	"settings": {}
+}

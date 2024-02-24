@@ -35,12 +35,12 @@ const rabbitmq = {
 // TODO Use JSDoc and remove ''.concat(...)
 const log = {
     level: isTest ? '' : process.env.LOG_LEVEL,
-    enableMongoDB: isTest ? 'false' : process.env.LOG_TO_MONGODB === 'true',
+    enableMongoDB: isTest ? false : process.env.LOG_TO_MONGODB === 'true',
 };
 
 // TODO Use JSDoc and remove ''.concat(...)
 const logstash = {
-    enabled: isTest ? '' : process.env.LOGSTASH_ENABLED === 'true',
+    enabled: isTest ? false : process.env.LOGSTASH_ENABLED === 'true',
     host: isTest ? '' : process.env.LOGSTASH_HOST,
     port: isTest ? '' : process.env.LOGSTASH_PORT,
 };

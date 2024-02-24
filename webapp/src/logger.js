@@ -34,7 +34,7 @@ const consoleTransport = new winston.transports.Console({
     // timestamp: true,
 });
 
-const mongoDBTransport = new winston.transports.MongoDB({
+const mongoDBTransport = config.log.enableMongoDB && new winston.transports.MongoDB({
     level: 'info',
     // eslint-disable-next-line max-len
     db: config.mongodb.connection_string, // MongoDB connection uri, pre-connected MongoClient object or promise which resolves to a pre-connected MongoClient object.

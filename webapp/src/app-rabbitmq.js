@@ -32,11 +32,11 @@ const createRabbitMQChannel = async (connectionString) => {
         });
         logger.info(`[AMQP] queue asserted.`);
 
-        _channel.on('error', function (err) {
+        _channel.on('error', function(err) {
             logger.error('[AMQP] channel error', err.message);
         });
 
-        _channel.on('close', function () {
+        _channel.on('close', function() {
             logger.info('[AMQP] channel closed');
             logger.info('[AMQP] reconnecting...');
             channel = null;
@@ -76,7 +76,7 @@ const sendMessage = (message) => {
     }
     const undefinedConverterHelper = (key, value) => (value !== undefined) ? value : null;
     const serializedMessage = JSON.stringify(message, undefinedConverterHelper);
-    channel.sendToQueue(queueName, Buffer.from(serializedMessage), { persistent: true });
+    channel.sendToQueue(queueName, Buffer.from(serializedMessage), {persistent: true});
     logger.info(` [AMQP] Sent message=${serializedMessage}`);
 };
 

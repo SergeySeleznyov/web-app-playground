@@ -46,13 +46,15 @@ const mongoDBTransport = config.log.enableMongoDB && new winston.transports.Mong
     tryReconnect: true,
     storeHost: true,
     decolorize: true,
+    silent: config.isTest,
 });
 
 
-const logstashTransport = new LogstashTransport({
+const logstashTransport = config.logstash.enabled && new LogstashTransport({
     level: 'warn',
     host: config.logstash.host,
     port: config.logstash.port,
+    silent: config.isTest,
 });
 
 const getTransports = () => {

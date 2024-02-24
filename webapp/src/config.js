@@ -46,6 +46,7 @@ const logstash = {
 };
 
 module.exports = {
+    isTest,
     port,
     nodeName,
     log,

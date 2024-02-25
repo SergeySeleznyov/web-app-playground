@@ -1,20 +1,28 @@
 const request = require('supertest');
 const app = require('../../../app');
 
-const Post3 = {
+const newPost = {
     id: 'id3',
     title: 'title3',
     content: 'content3',
 };
-const postRequestBody = JSON.stringify(Post3);
+const postRequestBody = JSON.stringify(newPost);
 
 const mockPostDalSet = jest.fn();
-
 jest.mock('../../../../../shared/src/posts-dal', () => ({
     set: async (args) => {
         mockPostDalSet(JSON.stringify(args));
     },
 }));
+
+const mockQueueSendMessage = jest.fn();
+jest.mock('../../../app-rabbitmq', () => ({
+    sendMessage: async (args) => {
+        mockQueueSendMessage(JSON.stringify(args));
+    },
+}));
+
+const rabbitmqCommand = '"{\\"postId\\":\\"id3\\",\\"command\\":\\"INDEX\\"}"';
 
 describe('post /api/post', () => {
     it('correct response', (done) => {
@@ -29,6 +37,9 @@ describe('post /api/post', () => {
 
                 expect(mockPostDalSet).toHaveBeenCalledTimes(1);
                 expect(mockPostDalSet.mock.calls).toStrictEqual([[postRequestBody]]);
+
+                expect(mockQueueSendMessage).toHaveBeenCalledTimes(1);
+                expect(mockQueueSendMessage.mock.calls).toStrictEqual([[rabbitmqCommand]]);
 
                 done();
             });

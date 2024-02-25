@@ -9,6 +9,16 @@ jest.mock('../../../../../shared/src/posts-dal', () => ({
     },
 }));
 
+
+const mockQueueSendMessage = jest.fn();
+jest.mock('../../../app-rabbitmq', () => ({
+    sendMessage: async (args) => {
+        mockQueueSendMessage(JSON.stringify(args));
+    },
+}));
+
+const rabbitmqCommand = '"{\\"postId\\":\\"id3\\",\\"command\\":\\"DELETE\\"}"';
+
 describe('delete /api/post/:id', () => {
     it('correct response', (done) => {
         request(app)
@@ -21,6 +31,9 @@ describe('delete /api/post/:id', () => {
 
                 expect(mockPostDalSet).toHaveBeenCalledTimes(1);
                 expect(mockPostDalSet.mock.calls).toStrictEqual([['id3']]);
+
+                expect(mockQueueSendMessage).toHaveBeenCalledTimes(1);
+                expect(mockQueueSendMessage.mock.calls).toStrictEqual([[rabbitmqCommand]]);
 
                 done();
             });

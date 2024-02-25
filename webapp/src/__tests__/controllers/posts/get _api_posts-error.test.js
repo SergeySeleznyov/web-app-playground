@@ -9,12 +9,14 @@ jest.mock('../../../../../shared/src/posts-dal', () => ({
     },
 }));
 
+const errorMessageExpected = 'Error during a list of Posts getting: getPostInfos controller: Some DB error';
+
 describe('get /api/posts', () => {
     it('error', (done) => {
         request(app)
             .get('/api/posts')
             .then((response) => {
-                expect(response.text).toBe('Error during a list of Posts getting: getPostInfos controller: Some DB error');
+                expect(response.text).toBe(errorMessageExpected);
                 expect(response.statusCode).toBe(500);
                 done();
             });

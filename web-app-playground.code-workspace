@@ -5,12 +5,16 @@
 			"path": "."
 		},
 		{
-			"name": "backend-ws",
+			"name": "WebApp Back",
 			"path": "webapp"
 		},
 		{
-			"name": "frontend-ws",
+			"name": "WebApp Front",
 			"path": "webapp/client"
+		},
+		{
+			"name": "Queued Tasks Processor",
+			"path": "QueuedTasksProcessor"
 		}
 	],
 	"settings": {}

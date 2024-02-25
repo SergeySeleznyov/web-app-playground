@@ -22,7 +22,6 @@ apiRoute.get('/posts', async (req, res) => {
         const error = new Error(errorMessage, {cause: innerError});
         logger.error(error.message);
 
-        // res.sendStatus(500);
         res.status(500);
         res.send(errorMessage);
     }
@@ -43,7 +42,6 @@ apiRoute.get('/post/:id', async (req, res) => {
         const error = new Error(errorMessage, {cause: innerError});
         logger.error(error.message);
 
-        // res.sendStatus(500);
         res.status(500);
         res.send(errorMessage);
     }
@@ -67,7 +65,6 @@ apiRoute.post('/post', async (req, res) => {
         const error = new Error(errorMessage, {cause: innerError});
         logger.error(error.message);
 
-        // res.sendStatus(500);
         res.status(500);
         res.send(errorMessage);
     }
@@ -90,7 +87,6 @@ apiRoute.delete('/post/:id', async (req, res) => {
         const error = new Error(errorMessage, {cause: innerError});
         logger.error(error.message);
 
-        // res.sendStatus(500);
         res.status(500);
         res.send(errorMessage);
     }

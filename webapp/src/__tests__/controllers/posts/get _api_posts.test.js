@@ -1,6 +1,5 @@
-// const logger = require('../logger');
 const request = require('supertest');
-const app = require('../../src/app');
+const app = require('../../../app');
 
 const dbContent = [
     {
@@ -12,21 +11,15 @@ const dbContent = [
     },
 ];
 
-jest.mock('../../../shared/src/posts-dal', () => ({
+jest.mock('../../../../../shared/src/posts-dal', () => ({
     list: async () => {
         const promise = new Promise((res, rej) => res(dbContent));
         return await promise;
     },
 }));
 
-// beforeAll(() => {
-//     logger.silent = true;
-// });
-// afterAll(() => {
-//     logger.silent = false;
-// });
 
-describe('get /posts', () => {
+describe('get /api/posts', () => {
     it('correct response', (done) => {
         request(app)
             .get('/api/posts')

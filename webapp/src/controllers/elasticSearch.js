@@ -3,10 +3,14 @@ const {sendMessage} = require('../app-rabbitmq');
 const RabbitMQMessage = require('../../../shared/src/model/RabbitMQMessage');
 const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 
-const {elasticsearch} = require('../config');
+const {elasticsearch, isTest} = require('../config');
 const {Client} = require('@elastic/elasticsearch');
 
 const initElasticSearchClient = () => {
+    if (!elasticsearch.enable || isTest) {
+        return null;
+    }
+
     const client = new Client({
         node: elasticsearch.url,
         auth: {
@@ -19,7 +23,7 @@ const initElasticSearchClient = () => {
         .catch((error) => logger.error(`Elastic Search connection error: ${error}`));
     return client;
 };
-const client = elasticsearch.enable ? initElasticSearchClient() : null;
+const client = initElasticSearchClient();
 module.exports.esClient = client;
 const {
     indexDocument: esIndexDocument,

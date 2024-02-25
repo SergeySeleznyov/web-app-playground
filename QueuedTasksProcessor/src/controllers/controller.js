@@ -3,7 +3,7 @@ const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 
 const mongoose = require('mongoose');
 module.exports.mongoose = mongoose;
-const {Post: PostMongoDBScheme} = require('../../../shared/src/schemas/Post');
+const {Post: PostMongoDBScheme} = require('../../../shared/src/schemas/Post'); // TODO remove
 
 const {elasticsearch} = require('../config');
 const {Client} = require('@elastic/elasticsearch');
@@ -45,6 +45,7 @@ const dispatchCommand = async (message) => {
 
 const indexDocument = async (postId) => {
     try {
+        // TODO pass request to DB though DAL
         const postDBO = await PostMongoDBScheme.findOne({'id': postId});
         await esIndexDocument(postDBO.id, postDBO.title, postDBO.content);
     } catch (innerError) {

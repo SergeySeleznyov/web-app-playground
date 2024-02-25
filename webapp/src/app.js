@@ -44,9 +44,11 @@ app.use('/admin', adminRoute);
 (async () => {
     try {
         await connectToDataBase();
-        app.listen(config.port, () => {
-            logger.info(`Server is listening on port ${config.port}`);
-        });
+        if (!config.isTest) {
+            app.listen(config.port, () => {
+                logger.info(`Server is listening on port ${config.port}`);
+            });
+        }
     } catch (err) {
         return logger.error(err);
     }

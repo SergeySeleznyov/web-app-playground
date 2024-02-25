@@ -5,7 +5,7 @@ dotenv.config({path: `.env.local`, override: true});
 
 const isTest = process.env.NODE_ENV === 'test';
 
-const port = process.env.PORT;
+const port = isTest ? '' : process.env.PORT;
 
 const nodeName = isTest ? '' : process.env.NODE_NAME;
 

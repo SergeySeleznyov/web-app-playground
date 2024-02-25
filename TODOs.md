@@ -33,7 +33,9 @@
 [ ] Find some task for another Worker on Go
 [ ] CI
     [ ] Add jest-tests
-        [ ] Use Mockingoose
+        [ ] Mock MongoDB interaction in a better way - use Mockingoose
+        [ ] Mock ElasticSearch interaction in a better way
+        [ ] Mock RabbinMQ interaction in a better way
     [ ] Add GITLAB/CI
 [ ] Use MUI Theme everywhere
 [ ] Rewrite on Typescript

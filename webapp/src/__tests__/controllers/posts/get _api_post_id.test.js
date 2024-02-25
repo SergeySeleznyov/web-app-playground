@@ -34,7 +34,7 @@ jest.mock(
     }),
 );
 
-describe('get /api/post:id', () => {
+describe('get /api/post/:id', () => {
     it('correct response', (done) => {
         request(app)
             .get('/api/post/id1')

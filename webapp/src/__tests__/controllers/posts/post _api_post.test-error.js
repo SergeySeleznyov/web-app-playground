@@ -15,7 +15,7 @@ jest.mock('../../../../../shared/src/posts-dal', () => ({
 }));
 
 describe('post /api/post', () => {
-    it('error', (done) => {
+    it('error - Some DB error', (done) => {
         request(app)
             .post('/api/post')
             .send(postRequestBody)

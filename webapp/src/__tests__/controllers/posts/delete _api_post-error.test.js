@@ -10,7 +10,7 @@ jest.mock('../../../../../shared/src/posts-dal', () => ({
 const expectedErrorMessage = 'Error during a Post deleting: deletePost controller: some DB error';
 
 describe('delete /api/post/:id', () => {
-    it('error', (done) => {
+    it('error - some DB error', (done) => {
         request(app)
             .delete('/api/post/id3')
             .set('Content-Type', 'application/json')

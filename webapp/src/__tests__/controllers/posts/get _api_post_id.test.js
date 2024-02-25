@@ -44,7 +44,7 @@ describe('get /api/post/:id', () => {
                 done();
             });
     });
-    it('error', (done) => {
+    it('error - Some DB error', (done) => {
         request(app)
             .get('/api/post/id2')
             .then((response) => {

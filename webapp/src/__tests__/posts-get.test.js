@@ -13,11 +13,9 @@ const dbContent = [
 ];
 
 jest.mock('../../../shared/src/posts-dal', () => ({
-    postsDal: {
-        getAll: async () => {
-            const promise = new Promise((res, rej) => res(dbContent));
-            return await promise;
-        },
+    list: async () => {
+        const promise = new Promise((res, rej) => res(dbContent));
+        return await promise;
     },
 }));
 

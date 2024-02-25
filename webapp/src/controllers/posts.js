@@ -4,13 +4,12 @@ const PostInfoDTO = require('../model/PostInfoDTO');
 
 const mongoose = require('mongoose');
 module.exports.mongoose = mongoose;
-const {Post} = require('../../../shared/src/schemas/Post');
-const {postsDal} = require('../../../shared/src/posts-dal');
+const postsDal = require('../../../shared/src/posts-dal');
 
 const getPostInfos = async () => {
     try {
         logger.info(`[MongoDB] Document list getting...`);
-        const postsDBO = await postsDal.getAll();
+        const postsDBO = await postsDal.list();
         const postInfos = postsDBO.map((i) => new PostInfoDTO(
             i.id,
             i.title,
@@ -33,7 +32,7 @@ const getPost = async (id) => {
             throw new Error(`Post id can't be empty.`);
         }
 
-        const postDBO = await Post.findOne({'id': id});
+        const postDBO = await postsDal.get(id);
         const postDTO = new PostDTO(postDBO.id, postDBO.title, postDBO.content);
 
         logger.info(`[MongoDB] Document returned.`);
@@ -50,29 +49,15 @@ const getPost = async (id) => {
 const setPost = async (id, title, content) => {
     logger.info(`[MongoDB] Document (id=${id}) is about to be persisted in the DB...`);
 
-    const exists = await Post.exists({id: id});
-    if (exists) {
-        await Post.updateOne(
-            {
-                id: id,
-            },
-            {
-                title: title,
-                content: content,
-            },
-        );
-    } else {
-        const postDTO = new PostDTO(id, title, content);
-        const postDBO = postDTO.toDBO();
-        await postDBO.save();
+    const postDTO = new PostDTO(id, title, content);
+    await postsDal.set(postDTO);
 
-        logger.info(`[MongoDB] Document persisted in the DB.`);
-    }
+    logger.info(`[MongoDB] Document persisted in the DB.`);
 };
 
 const deletePost = async (id) => {
     logger.info(`[MongoDB] Document (id=${id}) is about to be deleted from the DB...`);
-    await Post.deleteOne({id: id});
+    await postsDal.del(id);
     logger.info(`[MongoDB] Document has been deleted from the DB.`);
 };
 

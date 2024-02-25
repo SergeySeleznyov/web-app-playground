@@ -4,23 +4,6 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();
 
-const {elasticsearch} = require('../config');
-const {Client} = require('@elastic/elasticsearch');
-
-const initElasticSearchClient = () => {
-    const client = new Client({
-        node: elasticsearch.url,
-        auth: {
-            username: elasticsearch.login,
-            password: elasticsearch.password,
-        },
-    });
-    client.info()
-        .then((response) => logger.info(`Elastic Search connection check: ${JSON.stringify(response)}`))
-        .catch((error) => logger.error(`Elastic Search connection error: ${error}`));
-};
-const client = elasticsearch.enable ? initElasticSearchClient() : null;
-module.exports.esClient = client;
 const {
     getAllIndexedDocumentInfos: esGetIndexedDocument,
     deleteDocument: esDeleteDocument,

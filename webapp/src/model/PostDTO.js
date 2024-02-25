@@ -1,6 +1,8 @@
+// TODO try to rid of mongo here
 const mongoose = require('mongoose');
 module.exports.mongoose = mongoose;
-const {Post} = require('../../../shared/src/schemas/Post');
+require('../../../shared/src/schemas/Post');
+
 const PostInfoDTO = require('./PostInfoDTO');
 
 /** Class representing Post Data Transfer Object */
@@ -30,19 +32,6 @@ class PostDTO extends PostInfoDTO {
             title: this.title,
             content: this.content,
         };
-    }
-
-    /** Returnes a JSON representation of the Post.
-    * @return {Post} Representation object of the Post class.
-    */
-    toDBO() {
-        const args = {
-            id: this.id,
-            title: this.title,
-            content: this.content,
-        };
-        const post = new Post(args);
-        return post;
     }
 }
 

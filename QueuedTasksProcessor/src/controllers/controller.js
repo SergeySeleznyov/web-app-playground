@@ -66,5 +66,6 @@ const deleteDocument = async (postId) => {
 };
 
 module.exports = {
+    ...module.exports, // INFO required for source sharing
     dispatchCommand,
 };

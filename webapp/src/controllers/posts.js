@@ -77,6 +77,7 @@ const deletePost = async (id) => {
 };
 
 module.exports = {
+    ...module.exports, // INFO required for source sharing
     getPostInfos,
     getPost,
     setPost,

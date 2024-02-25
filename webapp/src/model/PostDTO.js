@@ -47,5 +47,6 @@ class PostDTO extends PostInfoDTO {
 }
 
 module.exports = {
+    ...module.exports, // INFO required for source sharing
     PostDTO,
 };

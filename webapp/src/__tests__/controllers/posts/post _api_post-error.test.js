@@ -14,6 +14,8 @@ jest.mock('../../../../../shared/src/posts-dal', () => ({
     },
 }));
 
+const expectedErrorMessage = 'Error during a Post posting: setPost controller: some DB error';
+
 describe('post /api/post', () => {
     it('error - Some DB error', (done) => {
         request(app)
@@ -22,7 +24,7 @@ describe('post /api/post', () => {
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
             .then((response) => {
-                expect(response.text).toBe('OK');
+                expect(response.text).toBe(expectedErrorMessage);
                 expect(response.statusCode).toBe(500);
 
                 done();

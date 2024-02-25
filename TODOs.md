@@ -33,6 +33,7 @@
 [ ] Find some task for another Worker on Go
 [ ] CI
     [ ] Add jest-tests
+        [ ] Use Mockingoose
     [ ] Add GITLAB/CI
 [ ] Use MUI Theme everywhere
 [ ] Rewrite on Typescript

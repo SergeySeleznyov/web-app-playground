@@ -22,6 +22,14 @@ Fill out the connection settings for the integration with:
 $up.cmd
 ```
 
+### Start Queued Task Processor
+
+```sh
+$ cd QueuedTasksProcessor
+$ npm ci
+$ npm run start
+```
+
 ### Start WebApp
 
 ```sh

@@ -66,6 +66,5 @@ const deleteDocument = async (postId) => {
 };
 
 module.exports = {
-    ...module.exports,
     dispatchCommand,
 };

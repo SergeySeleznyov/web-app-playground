@@ -7,6 +7,8 @@ jest.mock('../../../../../shared/src/posts-dal', () => ({
     },
 }));
 
+const expectedErrorMessage = 'Error during a Post deleting: deletePost controller: some DB error';
+
 describe('delete /api/post/:id', () => {
     it('error', (done) => {
         request(app)
@@ -14,7 +16,7 @@ describe('delete /api/post/:id', () => {
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
             .then((response) => {
-                expect(response.text).toBe('Error during a Post deleting: some DB error');
+                expect(response.text).toBe(expectedErrorMessage);
                 expect(response.statusCode).toBe(500);
 
                 done();

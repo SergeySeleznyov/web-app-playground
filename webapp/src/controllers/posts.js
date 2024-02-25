@@ -47,18 +47,34 @@ const getPost = async (id) => {
 };
 
 const setPost = async (id, title, content) => {
-    logger.info(`[MongoDB] Document (id=${id}) is about to be persisted in the DB...`);
+    try {
+        logger.info(`[MongoDB] Document (id=${id}) is about to be persisted in the DB...`);
 
-    const postDTO = new PostDTO(id, title, content);
-    await postsDal.set(postDTO);
+        const postDTO = new PostDTO(id, title, content);
+        await postsDal.set(postDTO);
 
-    logger.info(`[MongoDB] Document persisted in the DB.`);
+        logger.info(`[MongoDB] Document persisted in the DB.`);
+    } catch (innerError) {
+        const errorMessage = `setPost controller: ${innerError.message}`;
+        logger.error(errorMessage);
+
+        const e = new Error(errorMessage, {cause: innerError});
+        throw e;
+    }
 };
 
 const deletePost = async (id) => {
-    logger.info(`[MongoDB] Document (id=${id}) is about to be deleted from the DB...`);
-    await postsDal.del(id);
-    logger.info(`[MongoDB] Document has been deleted from the DB.`);
+    try {
+        logger.info(`[MongoDB] Document (id=${id}) is about to be deleted from the DB...`);
+        await postsDal.del(id);
+        logger.info(`[MongoDB] Document has been deleted from the DB.`);
+    } catch (innerError) {
+        const errorMessage = `deletePost controller: ${innerError.message}`;
+        logger.error(errorMessage);
+
+        const e = new Error(errorMessage, {cause: innerError});
+        throw e;
+    }
 };
 
 module.exports = {

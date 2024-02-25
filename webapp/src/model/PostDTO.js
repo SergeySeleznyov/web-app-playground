@@ -47,6 +47,5 @@ class PostDTO extends PostInfoDTO {
 }
 
 module.exports = {
-    ...module.exports,
     PostDTO,
 };

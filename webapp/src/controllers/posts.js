@@ -77,7 +77,6 @@ const deletePost = async (id) => {
 };
 
 module.exports = {
-    ...module.exports,
     getPostInfos,
     getPost,
     setPost,

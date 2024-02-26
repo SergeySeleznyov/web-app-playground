@@ -15,9 +15,10 @@ module.exports = {
         '/node_modules/',
     ],
     coverageReporters: [
-        'cobertura',
-        'text-summary',
-        'html',
+        'cobertura', /* For GitLab integration */
+        'text-summary', /* For the summary in console */
+        'html', /* For manual observe */
+        'lcov', /* For VS Code plugin */
     ],
     roots: ['<rootDir>/src/'],
     testEnvironment: 'node',

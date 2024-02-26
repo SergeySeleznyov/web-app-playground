@@ -17,5 +17,12 @@
 			"path": "QueuedTasksProcessor"
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"Orta.vscode-jest",
+			"hbenl.vscode-test-explorer",
+			"markis.code-coverage",
+		]
+	},
 }

@@ -5,7 +5,7 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const app = new express();
 const apiRoute = require('./routes/api-public-routes');
-const adminRoute = require('./routes/api-admin-routes');
+// const adminRoute = require('./routes/api-admin-routes');
 const cors = require('cors');
 const {connectToDataBase, disconnectFromDatabse} = require('./app-mongodb');
 const config = require('./config');

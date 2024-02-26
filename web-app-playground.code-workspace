@@ -23,6 +23,11 @@
 			"Orta.vscode-jest",
 			"hbenl.vscode-test-explorer",
 			"markis.code-coverage",
+			"Gruntfuggly.todo-tree",
+			"wayou.vscode-todo-highlight",
+			"alefragnani.Bookmarks",
+			"ms-azuretools.vscode-docker",
+			"dbaeumer.vscode-eslint",
 		]
 	},
 }

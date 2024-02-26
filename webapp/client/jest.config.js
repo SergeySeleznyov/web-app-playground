@@ -1,5 +1,5 @@
 module.exports = {
-    displayName: 'frontend!',
+    displayName: 'WebApp Frontend',
     verbose: true,
     clearMocks: true,
     collectCoverage: true,
@@ -13,9 +13,13 @@ module.exports = {
         'coverage',
         '/node_modules/',
     ],
-    coverageProvider: 'babel',
-    coverageReporters: ['cobertura'],
+    coverageReporters: [
+        'cobertura',
+        'text-summary',
+        'html',
+    ],
     roots: ['<rootDir>'],
+    testEnvironment: 'jsdom',
     testMatch: [
         '**/__tests__/**/*.test.[jt]s?(x)',
         // '**/?(*.)+(spec|test).[jt]s?(x)',

@@ -1,6 +1,6 @@
 /** @type {import('jest').Config} */
 module.exports = {
-    displayName: 'backend-tests',
+    displayName: 'WebApp Backend',
     verbose: true,
     clearMocks: true,
     collectCoverage: true,
@@ -14,8 +14,11 @@ module.exports = {
         'coverage',
         '/node_modules/',
     ],
-    coverageProvider: 'babel',
-    coverageReporters: ['cobertura'],
+    coverageReporters: [
+        'cobertura',
+        'text-summary',
+        'html',
+    ],
     roots: ['<rootDir>/src/'],
     testEnvironment: 'node',
     testMatch: [

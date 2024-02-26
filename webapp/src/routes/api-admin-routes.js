@@ -1,4 +1,3 @@
-/*
 // INFO for future admin-view feature
 const logger = require('../logger');
 
@@ -52,4 +51,3 @@ apiRoute.delete('/es-delete-document/:id', async (req, res) => {
 });
 
 module.exports = apiRoute;
-*/

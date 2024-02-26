@@ -39,7 +39,7 @@ app.use(express.static('html'));
 app.use(express.json({limit: '50mb'}));
 
 app.use('/api', apiRoute);
-// app.use('/admin', adminRoute); // INFO for future admin-view feature
+app.use('/admin', adminRoute); // INFO for future admin-view feature
 
 (async () => {
     try {

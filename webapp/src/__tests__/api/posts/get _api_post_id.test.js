@@ -6,7 +6,7 @@ const dbContent = [
         id: 'id1',
         title: 'title1',
     }, {
-        id: 'id1',
+        id: 'id2',
         title: 'title2',
     },
 ];

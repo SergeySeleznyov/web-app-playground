@@ -28,9 +28,6 @@ const getPostInfos = async () => {
 const getPost = async (id) => {
     try {
         logger.info(`[MongoDB] Document (id=${id}) getting...`);
-        if (!id) {
-            throw new Error(`Post id can't be empty.`);
-        }
 
         const postDBO = await postsDal.get(id);
         const postDTO = new PostDTO(postDBO.id, postDBO.title, postDBO.content);

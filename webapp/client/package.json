@@ -22,7 +22,7 @@
     "start": "react-scripts start",
     "clean": "rimraf build",
     "build": "npm run clean && set BUILD_PATH=./../html&& react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx --ext .js src/",
     "lint:fix": "npm run lint -- --fix"

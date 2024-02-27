@@ -21,6 +21,7 @@ module.exports = {
         'lcov', /* For VS Code plugin */
     ],
     roots: ['<rootDir>/src/'],
+    setupFiles: ['<rootDir>/jest.setup.js'],
     testEnvironment: 'node',
     testMatch: [
         '**/__tests__/**/*.test.[jt]s?(x)',

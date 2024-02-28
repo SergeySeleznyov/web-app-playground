@@ -49,16 +49,16 @@ const PostList = ({postInfos, onOpen, onEdit, onDelete, onAddNew, onSearchTextCh
                             <Box
                                 display='flex'
                                 flexGrow={1}
+                                onClick={() => onOpen(postInfo.id)}
+                                sx={{
+                                    '&:hover': {
+                                        cursor: 'pointer',
+                                    },
+                                }}
                             >
                                 <Typography
                                     color="textSecondary"
                                     variant="h5"
-                                    onClick={() => onOpen(postInfo.id)}
-                                    sx={{
-                                        '&:hover': {
-                                            cursor: 'pointer',
-                                        },
-                                    }}
                                 >
                                     {postInfo.title}
                                 </Typography>

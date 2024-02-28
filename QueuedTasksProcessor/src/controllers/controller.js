@@ -3,10 +3,10 @@ const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 
 const mongoose = require('mongoose');
 module.exports.mongoose = mongoose;
-const {Post: PostMongoDBScheme} = require('../../../shared/src/schemas/Post'); // TODO remove
+const { Post: PostMongoDBScheme } = require('../../../shared/src/schemas/Post'); // TODO remove
 
-const {elasticsearch} = require('../config');
-const {Client} = require('@elastic/elasticsearch');
+const { elasticsearch } = require('../config');
+const { Client } = require('@elastic/elasticsearch');
 const client = new Client({
     node: elasticsearch.url,
     auth: {
@@ -27,18 +27,18 @@ const dispatchCommand = async (message) => {
     try {
         const postId = message.postId;
         switch (message.command) {
-        case RabbitMQCommand.INDEX:
-            await indexDocument(postId);
-            break;
-        case RabbitMQCommand.DELETE:
-            await deleteDocument(postId);
-            break;
-        default:
-            break;
+            case RabbitMQCommand.INDEX:
+                await indexDocument(postId);
+                break;
+            case RabbitMQCommand.DELETE:
+                await deleteDocument(postId);
+                break;
+            default:
+                break;
         }
     } catch (innerError) {
         const errorMessage = `Error during a rabbitMQ command dispatching: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
     }
 };
@@ -46,11 +46,11 @@ const dispatchCommand = async (message) => {
 const indexDocument = async (postId) => {
     try {
         // TODO pass request to DB though DAL
-        const postDBO = await PostMongoDBScheme.findOne({'id': postId});
+        const postDBO = await PostMongoDBScheme.findOne({ 'id': postId });
         await esIndexDocument(postDBO.id, postDBO.title, postDBO.content);
     } catch (innerError) {
         const errorMessage = `Error during a document indexing: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
     }
     logger.info(`New document(${postId}) has been successfuly indexed.`);
@@ -60,7 +60,7 @@ const deleteDocument = async (postId) => {
         await esDeleteDocument(postId);
     } catch (innerError) {
         const errorMessage = `Error during a indexed document deleting: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
     }
     logger.info(`Indexed document(${postId}) has been successfuly deleted.`);

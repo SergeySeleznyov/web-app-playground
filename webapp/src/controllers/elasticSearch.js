@@ -1,10 +1,10 @@
 const logger = require('../logger');
-const {sendMessage} = require('../app-rabbitmq');
+const { sendMessage } = require('../app-rabbitmq');
 const RabbitMQMessage = require('../../../shared/src/model/RabbitMQMessage');
 const RabbitMQCommand = require('../../../shared/src/model/RabbitMQCommand');
 
-const {elasticsearch, isTest} = require('../config');
-const {Client} = require('@elastic/elasticsearch');
+const { elasticsearch, isTest } = require('../config');
+const { Client } = require('@elastic/elasticsearch');
 
 const initElasticSearchClient = () => {
     if (!elasticsearch.enable || isTest) {

@@ -29,7 +29,8 @@ module.exports = {
         'react-hooks',
     ],
     'rules': {
-        'indent': ['error', 4],
+        'indent': ['error', 4, { 'SwitchCase': 1 }],
         'max-len': ['error', 120],
+        'object-curly-spacing': ['error', 'always'],
     },
 };

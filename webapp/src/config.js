@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
-dotenv.config({path: `.env.local`, override: true});
+dotenv.config({ path: `.env.local`, override: true });
 // TODO Use convict
 
 const isTest = process.env.NODE_ENV === 'test';

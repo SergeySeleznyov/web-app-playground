@@ -79,16 +79,16 @@ const logger = winston.createLogger({
     levels: levels,
     defaultMeta: metadata,
     format: winston.format.combine(
-        winston.format.colorize({all: true}),
-        winston.format.label({label: config.nodeName}), // TODO Find a better way to use label here
+        winston.format.colorize({ all: true }),
+        winston.format.label({ label: config.nodeName }), // TODO Find a better way to use label here
         winston.format.timestamp({
             format: 'YYYY-MM-DD HH:mm:ss.SSSZ',
         }),
         winston.format.metadata(),
         winston.format.align(),
-        winston.format.errors({stack: true}),
+        winston.format.errors({ stack: true }),
         // winston.format.json({levels}),
-        winston.format.cli({levels}),
+        winston.format.cli({ levels }),
     ),
     transports: getTransports(),
     // exceptionHandlers: [
@@ -101,7 +101,7 @@ const logger = winston.createLogger({
 
 logger.on('error', (error) => {
     const errorMessage = `Stop the press, logging not working: ${error.message}`;
-    throw new Error(errorMessage, {cause: error});
+    throw new Error(errorMessage, { cause: error });
 });
 
 // TODO use profiling

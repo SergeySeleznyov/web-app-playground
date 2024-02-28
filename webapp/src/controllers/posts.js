@@ -1,5 +1,5 @@
 const logger = require('../logger');
-const {PostDTO} = require('../model/PostDTO');
+const { PostDTO } = require('../model/PostDTO');
 const PostInfoDTO = require('../model/PostInfoDTO');
 
 const mongoose = require('mongoose');
@@ -20,7 +20,7 @@ const getPostInfos = async () => {
         const errorMessage = `getPostInfos controller: ${innerError.message}`;
         logger.error(errorMessage);
 
-        const e = new Error(errorMessage, {cause: innerError});
+        const e = new Error(errorMessage, { cause: innerError });
         throw e;
     }
 };
@@ -38,7 +38,7 @@ const getPost = async (id) => {
         const errorMessage = `getPost controller: ${innerError.message}`;
         logger.error(errorMessage);
 
-        const e = new Error(errorMessage, {cause: innerError});
+        const e = new Error(errorMessage, { cause: innerError });
         throw e;
     }
 };
@@ -55,7 +55,7 @@ const setPost = async (id, title, content) => {
         const errorMessage = `setPost controller: ${innerError.message}`;
         logger.error(errorMessage);
 
-        const e = new Error(errorMessage, {cause: innerError});
+        const e = new Error(errorMessage, { cause: innerError });
         throw e;
     }
 };
@@ -69,7 +69,7 @@ const deletePost = async (id) => {
         const errorMessage = `deletePost controller: ${innerError.message}`;
         logger.error(errorMessage);
 
-        const e = new Error(errorMessage, {cause: innerError});
+        const e = new Error(errorMessage, { cause: innerError });
         throw e;
     }
 };

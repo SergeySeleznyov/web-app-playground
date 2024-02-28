@@ -5,11 +5,11 @@ const list = async () => {
     return postInfoList;
 };
 const get = async (id) => {
-    const post = await Post.findOne({'id': id});
+    const post = await Post.findOne({ 'id': id });
     return post;
 };
 const exists = async (id) => {
-    const postExists = await Post.exists({id: id});
+    const postExists = await Post.exists({ id: id });
     return postExists;
 };
 const set = async (postDTO) => {
@@ -36,7 +36,7 @@ const set = async (postDTO) => {
 };
 
 const del = async (id) => {
-    await Post.deleteOne({id: id});
+    await Post.deleteOne({ id: id });
 };
 
 module.exports = {

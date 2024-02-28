@@ -76,7 +76,7 @@ const sendMessage = (message) => {
     }
     const undefinedConverterHelper = (key, value) => (value !== undefined) ? value : null;
     const serializedMessage = JSON.stringify(message, undefinedConverterHelper);
-    channel.sendToQueue(queueName, Buffer.from(serializedMessage), {persistent: true});
+    channel.sendToQueue(queueName, Buffer.from(serializedMessage), { persistent: true });
     logger.info(` [AMQP] Sent message=${serializedMessage}`);
 };
 

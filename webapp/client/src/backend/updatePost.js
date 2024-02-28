@@ -1,5 +1,5 @@
 // @ts-check
-import {apiUrl} from '../config';
+import { apiUrl } from '../config';
 
 /**
  * Updates post by its id.
@@ -17,7 +17,7 @@ const updatePost = async (id, title, content) => {
     };
     const options = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jsonBody),
     };
     const res = await fetch(url, options);

@@ -3,7 +3,7 @@ const logger = require('../logger');
 const express = require('express');
 // eslint-disable-next-line new-cap
 const apiRoute = express.Router();
-const {nanoid} = require('nanoid');
+const { nanoid } = require('nanoid');
 
 const postController = require('../controllers/posts');
 
@@ -19,7 +19,7 @@ apiRoute.get('/posts', async (req, res) => {
         }
     } catch (innerError) {
         const errorMessage = `Error during a list of Posts getting: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
 
         res.status(500);
@@ -39,7 +39,7 @@ apiRoute.get('/post/:id', async (req, res) => {
         }
     } catch (innerError) {
         const errorMessage = `Error during a Post getting: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
 
         res.status(500);
@@ -62,7 +62,7 @@ apiRoute.post('/post', async (req, res) => {
         res.sendStatus(200);
     } catch (innerError) {
         const errorMessage = `Error during a Post posting: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
 
         res.status(500);
@@ -84,7 +84,7 @@ apiRoute.delete('/post/:id', async (req, res) => {
         res.sendStatus(200);
     } catch (innerError) {
         const errorMessage = `Error during a Post deleting: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
 
         res.status(500);
@@ -104,7 +104,7 @@ apiRoute.post('/search/', async (req, res) => {
         res.send(searchResult);
     } catch (innerError) {
         const errorMessage = `Error during a searching: ${innerError.message}`;
-        const error = new Error(errorMessage, {cause: innerError});
+        const error = new Error(errorMessage, { cause: innerError });
         logger.error(error.message);
 
         res.status(500);

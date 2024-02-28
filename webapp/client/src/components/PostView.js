@@ -1,11 +1,11 @@
 // @ts-check
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
 import getPost from '../backend/getPost';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
-import {IconButton, Toolbar, Typography} from '@mui/material';
+import { IconButton, Toolbar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import sleep from '../utils/sleep';
 import useAppBar from '../hooks/useAppBar';
@@ -25,7 +25,7 @@ import PropTypes from 'prop-types';
  * @param {TextCallback} params.onDelete TonDelete
  * @return {React.ReactElement}
 */
-const PostView = ({id, navigateBack, onEdit, onDelete}) => {
+const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
     /** @type {[?Post, import('react').Dispatch<import('react').SetStateAction<?Post>>]} */
     const [post, setPost] = useState(/** @type {?Post} */(null));
 

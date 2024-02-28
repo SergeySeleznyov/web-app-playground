@@ -1,5 +1,5 @@
 // @ts-check
-import {apiUrl} from '../config';
+import { apiUrl } from '../config';
 
 /**
  * Deleted post by its id.
@@ -10,7 +10,7 @@ const deletePost = async (id) => {
     const url = `${apiUrl}/post/${id}`;
     const res = await fetch(
         url,
-        {method: 'DELETE'},
+        { method: 'DELETE' },
     );
     if (res.status !== 200) {
         throw new Error(`Failed to delete post.`);

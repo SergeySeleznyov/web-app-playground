@@ -1,19 +1,19 @@
 // @ts-check
-import React, {useState} from 'react';
-import {AppBar, Box, Divider, IconButton, Toolbar, Typography} from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, Box, Divider, IconButton, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
-import {styled, alpha} from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from '@mui/icons-material/Save';
 import useAppBar from '../hooks/useAppBar';
-import {ThemeSwitcher} from './ThemeSwitcher';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 // TODO Apply theme
 const Search = styled(Box, {
     name: 'search-box',
-})(({theme}) => ({
+})(({ theme }) => ({
     'position': 'relative',
     'borderRadius': theme.shape.borderRadius,
     'backgroundColor': alpha(theme.palette.common.white, 0.15),
@@ -31,7 +31,7 @@ const Search = styled(Box, {
 
 const SearchIconWrapper = styled(Box, {
     name: 'search-box-wrapper',
-})(({theme}) => ({
+})(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -43,7 +43,7 @@ const SearchIconWrapper = styled(Box, {
 
 const StyledInputBase = styled(InputBase, {
     name: 'search-box-InputBase',
-})(({theme}) => ({
+})(({ theme }) => ({
     'color': 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase, {
  */
 const MainAppToolbar = () => {
     const [searchText, setSearchText] = useState('');
-    const {caption, searchTextChanged, navigateBack, addNew, handleSave, saveVisible} = useAppBar();
+    const { caption, searchTextChanged, navigateBack, addNew, handleSave, saveVisible } = useAppBar();
 
     const handleNavigateBackClick = () => {
         navigateBack?.();
@@ -97,7 +97,7 @@ const MainAppToolbar = () => {
                         <ArrowBackIcon />
                     </IconButton> : null}
 
-                <Typography variant="h6" sx={{my: 2}}>
+                <Typography variant="h6" sx={{ my: 2 }}>
                     {caption}
                 </Typography>
 
@@ -109,15 +109,15 @@ const MainAppToolbar = () => {
                     </SearchIconWrapper>
                     <StyledInputBase
                         placeholder="Search…"
-                        inputProps={{'aria-label': 'search'}}
+                        inputProps={{ 'aria-label': 'search' }}
                         value={searchText}
                         onChange={handleSearchTextChanged}
                     />
                 </Search> : null}
 
-                <Box sx={{flexGrow: 1}} />
+                <Box sx={{ flexGrow: 1 }} />
 
-                <Box sx={{display: 'flex'}}>
+                <Box sx={{ display: 'flex' }}>
 
                     {addNew ? <IconButton
                         size="large"

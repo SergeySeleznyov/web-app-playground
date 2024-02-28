@@ -1,7 +1,7 @@
 // @ts-check
 import React from 'react';
 import Box from '@mui/material/Box';
-import {LinearProgress, Typography} from '@mui/material';
+import { LinearProgress, Typography } from '@mui/material';
 import CenterBox from './CenterBox';
 
 /**

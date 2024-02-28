@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import PostUI from './components/PostUI';
-import {CssBaseline, ThemeProvider} from '@mui/material';
-import {ColorModeContext} from './components/ThemeSwitcher';
-import {darkTheme, lightTheme} from './themes';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { ColorModeContext } from './components/ThemeSwitcher';
+import { darkTheme, lightTheme } from './themes';
 
 /** Main App component.
 * @return {Component} Render

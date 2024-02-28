@@ -1,10 +1,10 @@
 // @ts-check
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
 import getPost from '../backend/getPost';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import {TextField, Toolbar} from '@mui/material';
+import { TextField, Toolbar } from '@mui/material';
 import useAppBar from '../hooks/useAppBar';
 import PropTypes from 'prop-types';
 import Post from '../model/Post';
@@ -22,7 +22,7 @@ import Post from '../model/Post';
  * @param {PostSaveCallback} params.onSave The onSave
   * @return {React.ReactElement}
 */
-const PostEdit = ({id, navigateBack, onSave}) => {
+const PostEdit = ({ id, navigateBack, onSave }) => {
     /** @type {[string, import('react').Dispatch<import('react').SetStateAction<string>>]} */
     const [title, setTitle] = /** @type {?string} */ useState(/** @type {string} */(''));
 
@@ -31,7 +31,7 @@ const PostEdit = ({id, navigateBack, onSave}) => {
 
     const isNewPost = id === '';
     const AppBarCaption = isNewPost ? 'New blog post' : `Edit blog post #${id}`;
-    const {setCaption} = useAppBar(AppBarCaption, null, navigateBack, null, doSave);
+    const { setCaption } = useAppBar(AppBarCaption, null, navigateBack, null, doSave);
 
     useEffect(() => {
         setCaption(AppBarCaption);

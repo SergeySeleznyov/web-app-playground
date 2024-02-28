@@ -2,8 +2,8 @@
 
 /** @module AppBar */
 
-import {useEffect, useState} from 'react';
-const {EventEmitter} = require('eventemitter3');
+import { useEffect, useState } from 'react';
+const { EventEmitter } = require('eventemitter3');
 
 const eventNames = {
     setCaption: 'setCaption',
@@ -112,7 +112,7 @@ const useAppBar = (initialCaption, onSearchTextChanged, onNavigateBack, onAddNew
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return {caption, setCaption, searchTextChanged, navigateBack, addNew, handleSave, saveVisible};
+    return { caption, setCaption, searchTextChanged, navigateBack, addNew, handleSave, saveVisible };
 };
 
 export default useAppBar;

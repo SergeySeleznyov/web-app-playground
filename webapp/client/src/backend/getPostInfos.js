@@ -1,5 +1,5 @@
 // @ts-check
-import {apiUrl} from '../config';
+import { apiUrl } from '../config';
 import PostInfo from '../model/PostInfo';
 
 /**

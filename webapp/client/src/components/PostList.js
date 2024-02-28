@@ -3,7 +3,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
-import {IconButton, Toolbar, Typography} from '@mui/material';
+import { IconButton, Toolbar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useAppBar from '../hooks/useAppBar';
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ const AppBarCaption = 'Blog posts';
  * @param {TextCallback} params.onSearchTextChanged The onSearchTextChanged callback to search a {@link Post}.
   * @return {React.ReactElement}
 */
-const PostList = ({postInfos, onOpen, onEdit, onDelete, onAddNew, onSearchTextChanged}) => {
+const PostList = ({ postInfos, onOpen, onEdit, onDelete, onAddNew, onSearchTextChanged }) => {
     useAppBar(AppBarCaption, onSearchTextChanged, null, onAddNew);
 
     return (
@@ -47,6 +47,7 @@ const PostList = ({postInfos, onOpen, onEdit, onDelete, onAddNew, onSearchTextCh
                     <Paper elevation={3} key={postInfo.id}>
                         <Toolbar>
                             <Box
+                                data-testid="post-list__item_main-part"
                                 display='flex'
                                 flexGrow={1}
                                 onClick={() => onOpen(postInfo.id)}

@@ -1,10 +1,10 @@
 // @ts-check
 import Box from '@mui/material/Box';
-import {css, styled} from '@mui/material';
+import { css, styled } from '@mui/material';
 
 const CenterBox = styled(Box, {
     name: 'center-box',
-})(({theme}) => css({
+})(({ theme }) => css({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

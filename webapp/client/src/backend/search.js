@@ -1,5 +1,5 @@
 // @ts-check
-import {apiUrl} from '../config';
+import { apiUrl } from '../config';
 import SearchResult from '../model/SearchResult';
 
 /**
@@ -14,7 +14,7 @@ const search = async (text) => {
     };
     const options = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jsonBody),
     };
     const res = await fetch(url, options);

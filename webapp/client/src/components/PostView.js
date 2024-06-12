@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import sleep from '../utils/sleep';
 import useAppBar from '../hooks/useAppBar';
 import PropTypes from 'prop-types';
+import { loadingAdditionalDelay } from '../config';
 // import Post from '../model/Post';
 /** @typedef {import('../model/Post').default} Post */
 /** @typedef {import('../utils/types').VoidNotifyCallback} VoidNotifyCallback */
@@ -36,7 +37,7 @@ const PostView = ({ id, navigateBack, onEdit, onDelete }) => {
         (
             async () => {
                 const post = await getPost(id);
-                await sleep(1000);
+                await sleep(loadingAdditionalDelay);
                 setPost(post);
             }
         )();
